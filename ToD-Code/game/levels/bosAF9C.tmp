@@ -1,0 +1,68 @@
+[gd_scene load_steps=6 format=3 uid="uid://d4coijn8kr066"]
+
+[ext_resource type="PackedScene" uid="uid://b15ao87wkybpx" path="res://game/boss/scene/first_boss.tscn" id="1_aymlm"]
+[ext_resource type="PackedScene" uid="uid://bgsoxr6nsjbrr" path="res://game/player/player.tscn" id="2_q5s4j"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_l3tre"]
+distance = -634.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_voi4g"]
+size = Vector2(72.5, 656)
+
+[sub_resource type="Environment" id="Environment_hfpf1"]
+background_mode = 3
+glow_enabled = true
+glow_normalized = true
+glow_intensity = 3.6
+glow_strength = 0.62
+glow_bloom = 0.33
+glow_blend_mode = 1
+glow_hdr_scale = 2.82
+
+[node name="BossRoom" type="Node2D"]
+position = Vector2(0, 3)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -551.0
+offset_top = -602.0
+offset_right = 1786.0
+offset_bottom = 759.0
+color = Color(0.236334, 0.236334, 0.236334, 1)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_l3tre")
+
+[node name="RightLimit" type="Area2D" parent="."]
+position = Vector2(1148, 0)
+collision_layer = 2
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightLimit"]
+position = Vector2(45, 332)
+shape = SubResource("RectangleShape2D_voi4g")
+
+[node name="LeftLimit" type="Area2D" parent="."]
+position = Vector2(-3, -7)
+collision_layer = 2
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftLimit"]
+position = Vector2(-27, 339)
+shape = SubResource("RectangleShape2D_voi4g")
+
+[node name="player" parent="." instance=ExtResource("2_q5s4j")]
+position = Vector2(439, 350)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(619, 68)
+zoom = Vector2(0.5, 0.5)
+
+[node name="FirstBoss" parent="." instance=ExtResource("1_aymlm")]
+position = Vector2(517, 13)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_hfpf1")

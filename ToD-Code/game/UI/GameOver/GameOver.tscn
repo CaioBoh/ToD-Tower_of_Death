@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://p62dvojxc015"]
+
+[ext_resource type="Texture2D" uid="uid://bxas2v23c7rck" path="res://game/UI/GameOver/TelaMorte.png" id="1_oubnn"]
+
+[node name="GameOver" type="CanvasLayer"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.392157)
+
+[node name="TelaMorte" type="Sprite2D" parent="."]
+position = Vector2(574.416, 323)
+scale = Vector2(0.597042, 0.597042)
+texture = ExtResource("1_oubnn")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 65.0
+offset_top = 535.0
+offset_right = 331.0
+offset_bottom = 586.0
+text = "JOGAR NOVAMENTE"

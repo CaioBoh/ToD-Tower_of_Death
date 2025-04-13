@@ -1,0 +1,319 @@
+[gd_scene load_steps=48 format=3 uid="uid://7wlia6j3uw4f"]
+
+[ext_resource type="Script" path="res://game/enemies/standing_enemy/StandingEnemy.gd" id="1_3uqiy"]
+[ext_resource type="Texture2D" uid="uid://iwv1w6rwaih6" path="res://game/enemies/standing_enemy/sprites/Attack/eisqueleto-ataque-centralizado6.png" id="2_eb7gi"]
+[ext_resource type="Texture2D" uid="uid://50rd3u1cpi6p" path="res://game/enemies/standing_enemy/sprites/Attack/eisqueleto-ataque-centralizado7.png" id="3_ojl3t"]
+[ext_resource type="Texture2D" uid="uid://ch3phko76cjix" path="res://game/enemies/standing_enemy/sprites/Attack/eisqueleto-ataque-centralizado8.png" id="4_1bq5y"]
+[ext_resource type="Texture2D" uid="uid://dvtwnp8bondee" path="res://game/enemies/standing_enemy/sprites/Attack/eisqueleto-ataque-centralizado9.png" id="5_1crgu"]
+[ext_resource type="Texture2D" uid="uid://csx0g5f5tn60e" path="res://game/enemies/standing_enemy/sprites/Attack/eisqueleto-ataque-centralizado10.png" id="6_gjim8"]
+[ext_resource type="Texture2D" uid="uid://c8ppse3v72w7c" path="res://game/enemies/standing_enemy/sprites/Walking/Eisqueleto-walking1.png" id="7_4wsve"]
+[ext_resource type="Texture2D" uid="uid://b67e34rdyokgv" path="res://game/enemies/standing_enemy/sprites/Attack/eisqueleto-ataque-centralizado11.png" id="7_v7nl4"]
+[ext_resource type="Texture2D" uid="uid://bgt2ybxrtq70p" path="res://game/enemies/standing_enemy/sprites/Attack/eisqueleto-ataque-centralizado1.png" id="9_me46j"]
+[ext_resource type="Texture2D" uid="uid://jxoo846rnun3" path="res://game/enemies/standing_enemy/sprites/Attack/eisqueleto-ataque-centralizado2.png" id="10_0vgij"]
+[ext_resource type="Texture2D" uid="uid://clf2tj8btmqsg" path="res://game/enemies/standing_enemy/sprites/Attack/eisqueleto-ataque-centralizado3.png" id="11_u26u7"]
+[ext_resource type="Texture2D" uid="uid://def5wf57sb88q" path="res://game/enemies/standing_enemy/sprites/Attack/eisqueleto-ataque-centralizado4.png" id="12_0lh8n"]
+[ext_resource type="Texture2D" uid="uid://lpdlo0s4pjer" path="res://game/enemies/standing_enemy/sprites/Attack/eisqueleto-ataque-centralizado5.png" id="13_cgjxn"]
+[ext_resource type="Texture2D" uid="uid://b6eswv3n60ps3" path="res://game/enemies/standing_enemy/sprites/Walking/Eisqueleto-walking2.png" id="14_ax2k3"]
+[ext_resource type="Texture2D" uid="uid://2xc5t7syuydr" path="res://game/enemies/standing_enemy/sprites/Walking/Eisqueleto-walking3.png" id="15_01rxd"]
+[ext_resource type="Texture2D" uid="uid://cmyecbj8447db" path="res://game/enemies/standing_enemy/sprites/Walking/Eisqueleto-walking4.png" id="16_isxeq"]
+[ext_resource type="Texture2D" uid="uid://n3jf3bn4ymsm" path="res://game/enemies/standing_enemy/sprites/Walking/Eisqueleto-walking5.png" id="17_w4syw"]
+[ext_resource type="Texture2D" uid="uid://xwtnq6ssy0oo" path="res://game/enemies/standing_enemy/sprites/Walking/Eisqueleto-walking6.png" id="18_lyxf0"]
+[ext_resource type="Texture2D" uid="uid://cjytgjnsjs81t" path="res://game/enemies/standing_enemy/sprites/Walking/Eisqueleto-walking8.png" id="19_gunvl"]
+[ext_resource type="AudioStream" uid="uid://q8tbxanokfuu" path="res://game/sound/hitting-enemy2.sfxr" id="20_a3aid"]
+[ext_resource type="AudioStream" uid="uid://bgda1pfpangi4" path="res://game/sound/hitting-enemy.sfxr" id="21_ekb5o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pingi"]
+atlas = ExtResource("2_eb7gi")
+region = Rect2(0, 0, 196, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xrpi3"]
+atlas = ExtResource("3_ojl3t")
+region = Rect2(0, 0, 196, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ptb2"]
+atlas = ExtResource("4_1bq5y")
+region = Rect2(0, 0, 196, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ji2x"]
+atlas = ExtResource("5_1crgu")
+region = Rect2(0, 0, 196, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tmc0h"]
+atlas = ExtResource("6_gjim8")
+region = Rect2(0, 0, 196, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_htp34"]
+atlas = ExtResource("7_v7nl4")
+region = Rect2(0, 0, 196, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y0k12"]
+atlas = ExtResource("7_4wsve")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aaow7"]
+atlas = ExtResource("9_me46j")
+region = Rect2(0, 0, 196, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yt8wl"]
+atlas = ExtResource("10_0vgij")
+region = Rect2(0, 0, 196, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d5ykh"]
+atlas = ExtResource("11_u26u7")
+region = Rect2(0, 0, 196, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ub03"]
+atlas = ExtResource("12_0lh8n")
+region = Rect2(0, 0, 196, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjph2"]
+atlas = ExtResource("13_cgjxn")
+region = Rect2(0, 0, 196, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m5nsg"]
+atlas = ExtResource("2_eb7gi")
+region = Rect2(0, 0, 196, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eu466"]
+atlas = ExtResource("14_ax2k3")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mk7gk"]
+atlas = ExtResource("15_01rxd")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6xd6a"]
+atlas = ExtResource("16_isxeq")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x1x51"]
+atlas = ExtResource("17_w4syw")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tnq30"]
+atlas = ExtResource("18_lyxf0")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_afdt5"]
+atlas = ExtResource("19_gunvl")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cehwy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pingi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xrpi3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ptb2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ji2x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tmc0h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_htp34")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y0k12")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aaow7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yt8wl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d5ykh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ub03")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjph2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m5nsg")
+}],
+"loop": false,
+"name": &"transition_to_attack",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eu466")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mk7gk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6xd6a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x1x51")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tnq30")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_afdt5")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fkonv"]
+size = Vector2(83.8097, 126.646)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_apssp"]
+size = Vector2(142.932, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ywmt5"]
+size = Vector2(168.307, 32.0848)
+
+[sub_resource type="Animation" id="Animation_x6tt6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_dah13"]
+resource_name = "hurt"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0666667, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.1896, 0.79, 0.509813, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0666667, 0.1, 0.3),
+"transitions": PackedFloat32Array(1e-05, 1, 1.02837),
+"update": 0,
+"values": [Color(1, 50, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uu4ys"]
+_data = {
+"RESET": SubResource("Animation_x6tt6"),
+"hurt": SubResource("Animation_dah13")
+}
+
+[node name="StandingEnemy" type="CharacterBody2D"]
+scale = Vector2(0.536931, 0.536931)
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_3uqiy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, 1.86244)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_cehwy")
+animation = &"attack"
+frame = 5
+frame_progress = 1.0
+
+[node name="SightRay1" type="RayCast2D" parent="."]
+position = Vector2(0, -36)
+target_position = Vector2(1799.11, 62.0741)
+collision_mask = 3
+
+[node name="hurtbox" type="CollisionShape2D" parent="."]
+position = Vector2(-2.79366, 1.86243)
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_fkonv")
+
+[node name="SpearRange" type="Area2D" parent="."]
+position = Vector2(-9.53674e-07, 2.38419e-07)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpearRange"]
+position = Vector2(53.668, 5.43729)
+rotation = -0.281125
+scale = Vector2(0.87752, 1)
+shape = SubResource("RectangleShape2D_apssp")
+debug_color = Color(0.995991, 0, 0.195235, 0.42)
+
+[node name="HitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(59.598, 3.72488)
+rotation = -0.276638
+scale = Vector2(0.769148, 0.944401)
+shape = SubResource("RectangleShape2D_ywmt5")
+disabled = true
+debug_color = Color(0.797637, 0.28198, 0.788478, 0.42)
+
+[node name="WalkTime" type="Timer" parent="."]
+autostart = true
+
+[node name="AttackDelay" type="Timer" parent="."]
+wait_time = 0.37
+one_shot = true
+
+[node name="HurtSound1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_a3aid")
+
+[node name="HurtSound2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("21_ekb5o")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_uu4ys")
+}
+
+[connection signal="animation_changed" from="AnimatedSprite2D" to="." method="_on_animation_changed"]
+[connection signal="body_entered" from="SpearRange" to="." method="_on_spear_range_body_entered"]
+[connection signal="body_exited" from="SpearRange" to="." method="_on_spear_range_body_exited"]
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
+[connection signal="timeout" from="WalkTime" to="." method="_on_walk_time_timeout"]
+[connection signal="timeout" from="AttackDelay" to="." method="_on_attack_delay_timeout"]

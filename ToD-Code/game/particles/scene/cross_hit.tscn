@@ -1,0 +1,84 @@
+[gd_scene load_steps=13 format=3 uid="uid://c5s67km22522a"]
+
+[ext_resource type="Texture2D" uid="uid://cg7hkqm7p2kiv" path="res://game/particles/texture/ball.png" id="1_pum76"]
+[ext_resource type="Script" path="res://game/particles/script/cross_hit.gd" id="1_qlmgl"]
+
+[sub_resource type="Gradient" id="Gradient_hmr0a"]
+offsets = PackedFloat32Array(0.235955, 0.382022, 0.977528)
+colors = PackedColorArray(0.932584, 0.932584, 0.932584, 1, 0.44252, 0.980673, 0.613463, 1, 0.32549, 0.992157, 0.537255, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ajyak"]
+gradient = SubResource("Gradient_hmr0a")
+
+[sub_resource type="Curve" id="Curve_4m4we"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.717593, 0.0188679), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_r375a"]
+curve = SubResource("Curve_4m4we")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wio8d"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(50, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+spread = 180.0
+initial_velocity_min = 30.0
+initial_velocity_max = 76.88
+gravity = Vector3(0, 0, 0)
+scale_min = 0.01
+scale_max = 0.1
+scale_curve = SubResource("CurveTexture_r375a")
+color_ramp = SubResource("GradientTexture1D_ajyak")
+
+[sub_resource type="Gradient" id="Gradient_wwii1"]
+offsets = PackedFloat32Array(0.168539, 0.292135)
+colors = PackedColorArray(1, 1, 1, 1, 0.32549, 0.980392, 0.623529, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_033vo"]
+gradient = SubResource("Gradient_wwii1")
+
+[sub_resource type="Curve" id="Curve_ioeek"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.532407, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_6bmvg"]
+curve = SubResource("Curve_ioeek")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2fbsk"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(1, 80, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+spread = 180.0
+initial_velocity_min = 30.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.01
+scale_max = 0.1
+scale_curve = SubResource("CurveTexture_6bmvg")
+color_ramp = SubResource("GradientTexture1D_033vo")
+
+[node name="CrossHit" type="Node2D"]
+position = Vector2(6, -9)
+script = ExtResource("1_qlmgl")
+
+[node name="Horizontal" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_wio8d")
+texture = ExtResource("1_pum76")
+one_shot = true
+explosiveness = 0.76
+local_coords = true
+
+[node name="Vertical" type="GPUParticles2D" parent="."]
+position = Vector2(1, 33)
+emitting = false
+amount = 300
+process_material = SubResource("ParticleProcessMaterial_2fbsk")
+texture = ExtResource("1_pum76")
+one_shot = true
+explosiveness = 0.71
+randomness = 0.69
+local_coords = true

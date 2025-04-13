@@ -1,0 +1,73 @@
+[gd_scene load_steps=9 format=3 uid="uid://jnc6sv3y7w1i"]
+
+[ext_resource type="Texture2D" uid="uid://d3ufr4cb7jdbc" path="res://game/map/chest/sprites/chestsAll.png" id="1_nxwhp"]
+[ext_resource type="Script" path="res://game/map/chest/chest.gd" id="1_uvuk2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6hs7"]
+atlas = ExtResource("1_nxwhp")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lgaxw"]
+atlas = ExtResource("1_nxwhp")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nygoi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6hs7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lgaxw")
+}],
+"loop": true,
+"name": &"open",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tocwn"]
+size = Vector2(55, 35)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h7m3y"]
+size = Vector2(60, 49)
+
+[sub_resource type="LabelSettings" id="LabelSettings_b68jd"]
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[node name="chest" type="StaticBody2D"]
+collision_layer = 4
+script = ExtResource("1_uvuk2")
+
+[node name="texture" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-9.53674e-07, 9.53674e-07)
+scale = Vector2(3.25, 3.25)
+sprite_frames = SubResource("SpriteFrames_nygoi")
+animation = &"open"
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+top_level = true
+position = Vector2(0.5, -3.5)
+shape = SubResource("RectangleShape2D_tocwn")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_h7m3y")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -71.0
+offset_top = -49.0
+offset_right = 73.0
+offset_bottom = -26.0
+text = "Pressione a tecla E"
+label_settings = SubResource("LabelSettings_b68jd")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

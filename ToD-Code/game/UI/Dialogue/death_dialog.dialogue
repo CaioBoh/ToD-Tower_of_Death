@@ -1,0 +1,82 @@
+
+~ start
+set Global.is_talking = true
+if Global.death_encounters == 0 and Global.dead_count == 0:
+	Dona Morte : Olá Atlas!
+	Dona Morte : Bem... fico muito honrado quando um jovem decide me desafiar de forma tão estúpida.
+	Dona Morte : Tudo bem, use essa sua espadinha pra tentar atravessar meu castelo.
+	Dona Morte : Mas ja aviso desde já que não será simples.
+	set Global.death_encounters +=1
+	set Global.talked_first_time = true
+elif Global.death_encounters == 1 and Global.dead_count == 0:
+	Dona Morte : Certo, ja pode ir já
+	set Global.death_encounters +=1
+elif Global.death_encounters == 2 and Global.dead_count == 0:
+	Dona Morte : Sério mesmo...
+	set Global.death_encounters +=1
+elif Global.death_encounters > 2 and Global.dead_count == 0:
+	Dona Morte : ...
+	- Ei, diga alguma coisa
+		Dona Morte: Só entre no portal por favor...
+	- Nossa, tu é feio pa burro aaaaaaa
+		Dona Morte: Obrigada.
+	set Global.death_encounters +=1
+elif Global.death_encounters == 0 and Global.dead_count == 1:
+	Dona Morte: [wave]haha[/wave] é a primeira de muitas
+	Dona Morte: Aparentemente você não é tão habilidoso assim
+	set Global.death_encounters +=1
+elif Global.death_encounters == 0 and Global.dead_count == 2 and Global.talked_first_time:
+	Dona Morte: O que foi? Eu te avisei, não avisei?
+	set Global.death_encounters +=1
+elif Global.death_encounters == 0 and Global.dead_count == 2 and not Global.talked_first_time:
+	Dona Morte: Vai lá mal educado. 
+	Dona Morte: Chegou, passou reto e perdeu dicas importantes que eu costumo passar...
+	set Global.death_encounters +=1
+elif Global.death_encounters == 0 and Global.dead_count == 3:
+	Dona Morte: Não me olhe com essa cara, entre logo no portal e tente novamente
+	Dona Morte: estou começando a achar divertido.
+	set Global.death_encounters +=1
+elif Global.death_encounter == 0 and Global.dead_count == 10:
+	Dona Morte: HAHAHA DEZ MORTES CARA, DEZ MORTES
+	Dona Morte: estou começando a me questionar se você é persistente ou se é só cabeça dura mesmo...
+	set Global.death_encounters +=1
+elif Global.death_encounter == 0 and Global.dead_count == 12:
+	Dona Morte: deve estar se perguntando...
+	Dona Morte: "Caramba será que essa veia mocoronga não tem trabalho a se fazer?"
+	Dona Morte: ... "deve ter muita gente por ai morrendo"
+	Dona Morte: então amiguinho, no meu reino, o tempo funciona diferente
+	Dona Morte: mas acho que você não quer saber...
+	set Global.death_encounters +=1
+elif Global.death_encounter == 1 and Global.dead_count == 12:
+	Dona Morte: O que é mais importante é que enquanto estiver aqui, eu também estarei...
+	Dona Morte: Pra mim isso é um evento unico.
+	Dona Morte: Talvez realmente me vença... talvez realmente salve sua mulher.
+	Dona Morte: Talvez até entenda o real significado dessa sua contante busca por algo que ja se foi.
+	Dona Morte: Talvez ja tenhamos virados amigos.
+	set Global.death_encounters +=1
+elif Global.death_encounter == 1 and Global.dead_count == 25:
+	Dona Morte: Olá! Atlas, na sua tentativa, eu fui fazer outra coisa...
+	Dona Morte: Gosto de atuar em séries e filmes no meu tempo livre.
+elif Global.death_encounter == 0 and Global.dead_count == 40
+	Dona Morte: Nossa Atlas, não que eu esteja contando...
+	Dona Morte: Mas [wave]QUARENTA[/wave] mortes!
+	Dona Morte: Já pensou em desistir? provavelmente já né.
+	Dona Morte: Pois pense com mais carinho.
+	set Global.death_encounters +=1
+elif Global.death_encounter == 0 and Global.dead_count == 100:
+	Dona Morte: PARABENS PELA CENTÉSIMA MORTE ATLAS
+	Dona Morte: Agora me deixa quieta aqui por favor, você deve estar tirando um sarro com a minha cara não é possivel.
+	Dona Morte: Veremos então quem é mais insistente, é isso que quer provar não é?
+	set Global.death_encounters +=1
+elif Global.death_encounter == 15:
+	Dona Morte: AOOOOO cara chato
+	set Global.death_encounters +=1
+elif Global.death_encounter == 66:
+	Dona Morte: vai meu fio, para de me encarar. Eu hein que cara estranho.
+	set Global.death_encounters +=1
+else:
+	Dona Morte: ...
+	set Global.death_encounters +=1
+
+set Global.is_talking = false
+=> END

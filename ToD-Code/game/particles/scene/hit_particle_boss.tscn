@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3 uid="uid://dcqgqtr04erq2"]
+
+[ext_resource type="Texture2D" uid="uid://cg7hkqm7p2kiv" path="res://game/particles/texture/ball.png" id="1_nxwa1"]
+[ext_resource type="Script" path="res://game/particles/script/hit_particle_boss.gd" id="2_d20u8"]
+
+[sub_resource type="Gradient" id="Gradient_b6opd"]
+offsets = PackedFloat32Array(0.031746, 0.238095, 0.619048, 0.714286, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 7.353, 0, 1, 0, 0.87451, 0.588235, 1, 0, 0.769569, 0.517647, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8dagd"]
+gradient = SubResource("Gradient_b6opd")
+
+[sub_resource type="Curve" id="Curve_c26vt"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.532076), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_t38ft"]
+curve = SubResource("Curve_c26vt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rryck"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 67.57
+spread = 23.824
+initial_velocity_min = 588.24
+initial_velocity_max = 1000.0
+gravity = Vector3(0, 980, 0)
+scale_min = 0.01
+scale_max = 0.3
+scale_curve = SubResource("CurveTexture_t38ft")
+color_initial_ramp = SubResource("GradientTexture1D_8dagd")
+
+[node name="Hit_particle_boss" type="GPUParticles2D"]
+emitting = false
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_rryck")
+texture = ExtResource("1_nxwa1")
+one_shot = true
+explosiveness = 0.87
+script = ExtResource("2_d20u8")

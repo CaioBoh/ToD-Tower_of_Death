@@ -1,0 +1,17 @@
+[remap]
+
+importer="com.timothyqiu.gdfxr.importer"
+type="AudioStreamWAV"
+uid="uid://cf65dlary8k32"
+path="res://.godot/imported/explosion4.sfxr-40636bfcd899c1bbdbac83822d36d0a0.sample"
+
+[deps]
+
+source_file="res://game/sound/explosion4.sfxr"
+dest_files=["res://.godot/imported/explosion4.sfxr-40636bfcd899c1bbdbac83822d36d0a0.sample"]
+
+[params]
+
+loop=false
+bit_depth=0
+sample_rate=0
