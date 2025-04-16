@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cwort4gur7eo2"]
 
 [ext_resource type="Texture2D" uid="uid://cg7hkqm7p2kiv" path="res://game/particles/texture/ball.png" id="1_3ehpk"]
-[ext_resource type="Script" path="res://game/particles/script/hit_particle_2.gd" id="2_hm4ls"]
+[ext_resource type="Script" uid="uid://d0bmpx732q1fq" path="res://game/particles/script/hit_particle_2.gd" id="2_hm4ls"]
 
 [sub_resource type="Gradient" id="Gradient_luq0n"]
 offsets = PackedFloat32Array(0, 0.412698, 1)

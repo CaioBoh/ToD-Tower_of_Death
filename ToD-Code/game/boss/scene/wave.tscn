@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bb1h7k4kk1f4o"]
 
-[ext_resource type="Script" path="res://game/boss/scripts/wave.gd" id="1_p7gvv"]
+[ext_resource type="Script" uid="uid://b5ffbw17bu8aw" path="res://game/boss/scripts/wave.gd" id="1_p7gvv"]
 [ext_resource type="Texture2D" uid="uid://ig38txyrxhf8" path="res://game/particles/texture/line.png" id="2_yh6ce"]
 
 [sub_resource type="Animation" id="Animation_blcmq"]
@@ -60,8 +60,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_iaxny"]
 _data = {
-"RESET": SubResource("Animation_blcmq"),
-"new_animation": SubResource("Animation_r6pw4")
+&"RESET": SubResource("Animation_blcmq"),
+&"new_animation": SubResource("Animation_r6pw4")
 }
 
 [node name="Wave" type="Area2D"]

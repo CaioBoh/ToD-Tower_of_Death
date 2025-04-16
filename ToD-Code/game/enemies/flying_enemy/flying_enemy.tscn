@@ -1,6 +1,6 @@
 [gd_scene load_steps=21 format=3 uid="uid://c2hcqohgaw0t5"]
 
-[ext_resource type="Script" path="res://game/enemies/flying_enemy/flying_enemy.gd" id="1_riyx6"]
+[ext_resource type="Script" uid="uid://cswxkbfqnikr5" path="res://game/enemies/flying_enemy/flying_enemy.gd" id="1_riyx6"]
 [ext_resource type="Texture2D" uid="uid://cho3gamjywlvt" path="res://game/enemies/flying_enemy/sprites/flying_skull2.png" id="2_gouph"]
 [ext_resource type="Texture2D" uid="uid://sjeeopb3q48y" path="res://game/enemies/flying_enemy/sprites/flying_skull3.png" id="3_2d228"]
 [ext_resource type="Texture2D" uid="uid://1qfy2nyi8hja" path="res://game/enemies/flying_enemy/sprites/flying_skull4.png" id="4_y18c1"]
@@ -131,9 +131,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hh2wh"]
 _data = {
-"RESET": SubResource("Animation_m2ynq"),
-"death": SubResource("Animation_dbkeg"),
-"hurt": SubResource("Animation_57l3a")
+&"RESET": SubResource("Animation_m2ynq"),
+&"death": SubResource("Animation_dbkeg"),
+&"hurt": SubResource("Animation_57l3a")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_prrqy"]

@@ -1,20 +1,20 @@
 [gd_scene load_steps=39 format=3 uid="uid://c1cm4q3gijxok"]
 
-[ext_resource type="Script" path="res://game/boss/scripts/boss_hands.gd" id="1_4jfak"]
-[ext_resource type="Script" path="res://game/boss/scripts/Hitbox.gd" id="2_0c5qw"]
+[ext_resource type="Script" uid="uid://kfs44d52cy60" path="res://game/boss/scripts/boss_hands.gd" id="1_4jfak"]
+[ext_resource type="Script" uid="uid://ncvuswq3ubfu" path="res://game/boss/scripts/Hitbox.gd" id="2_0c5qw"]
 [ext_resource type="Texture2D" uid="uid://jv77um3a3h1i" path="res://game/boss/sprites/Boss1-hand.png" id="2_exirc"]
-[ext_resource type="Script" path="res://game/boss/scripts/Hitbox2.gd" id="4_2kddg"]
-[ext_resource type="Script" path="res://game/boss/scripts/state_machine/FiniteStateMachine.gd" id="5_fqqjp"]
-[ext_resource type="Script" path="res://game/boss/scripts/state_machine/Idle.gd" id="6_y8rx2"]
-[ext_resource type="Script" path="res://game/boss/scripts/state_machine/SincPunch.gd" id="7_3wm1s"]
-[ext_resource type="Script" path="res://game/boss/scripts/state_machine/RightPunch.gd" id="8_8kev3"]
-[ext_resource type="Script" path="res://game/boss/scripts/state_machine/LeftPunch.gd" id="9_kuixh"]
-[ext_resource type="Script" path="res://game/boss/scripts/state_machine/RightPush.gd" id="10_qjnis"]
-[ext_resource type="Script" path="res://game/boss/scripts/state_machine/LeftPush.gd" id="11_kx46t"]
-[ext_resource type="Script" path="res://game/boss/scripts/state_machine/PressAttack.gd" id="12_i4x0c"]
+[ext_resource type="Script" uid="uid://bfa0d3ep4qeor" path="res://game/boss/scripts/Hitbox2.gd" id="4_2kddg"]
+[ext_resource type="Script" uid="uid://dsm7wsct8qcvu" path="res://game/boss/scripts/state_machine/FiniteStateMachine.gd" id="5_fqqjp"]
+[ext_resource type="Script" uid="uid://bgpvqls6etmue" path="res://game/boss/scripts/state_machine/Idle.gd" id="6_y8rx2"]
+[ext_resource type="Script" uid="uid://begpkmiifs4nv" path="res://game/boss/scripts/state_machine/SincPunch.gd" id="7_3wm1s"]
+[ext_resource type="Script" uid="uid://ordmkxo0k01h" path="res://game/boss/scripts/state_machine/RightPunch.gd" id="8_8kev3"]
+[ext_resource type="Script" uid="uid://btprhu74cv3ni" path="res://game/boss/scripts/state_machine/LeftPunch.gd" id="9_kuixh"]
+[ext_resource type="Script" uid="uid://byagaj2qn2ivt" path="res://game/boss/scripts/state_machine/RightPush.gd" id="10_qjnis"]
+[ext_resource type="Script" uid="uid://6d5ch46wvxsk" path="res://game/boss/scripts/state_machine/LeftPush.gd" id="11_kx46t"]
+[ext_resource type="Script" uid="uid://bnqm7jrxhj1n5" path="res://game/boss/scripts/state_machine/PressAttack.gd" id="12_i4x0c"]
 [ext_resource type="Animation" uid="uid://51e6u8co5oqe" path="res://RightPunch.res" id="13_2mm8y"]
-[ext_resource type="Script" path="res://game/boss/scripts/state_machine/RightUga.gd" id="13_gubsa"]
-[ext_resource type="Script" path="res://game/boss/scripts/state_machine/LeftUga.gd" id="14_4b3et"]
+[ext_resource type="Script" uid="uid://c6uxu0iphj6oo" path="res://game/boss/scripts/state_machine/RightUga.gd" id="13_gubsa"]
+[ext_resource type="Script" uid="uid://bsxxtyn5dxpps" path="res://game/boss/scripts/state_machine/LeftUga.gd" id="14_4b3et"]
 [ext_resource type="AudioStream" uid="uid://b1vqu78ob30uq" path="res://game/sound/boss/hit_ground_variant1.sfxr" id="16_7o6bd"]
 [ext_resource type="AudioStream" uid="uid://bl035nw4v6k2y" path="res://game/sound/boss/hit_ground_variant4.sfxr" id="16_s22na"]
 [ext_resource type="AudioStream" uid="uid://ch73774c1wrch" path="res://game/sound/boss/hit_ground_variant2.sfxr" id="18_2c8bg"]
@@ -496,20 +496,20 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u0eui"]
 _data = {
-"Idle": SubResource("Animation_lo370"),
-"LeftPunchTest": SubResource("Animation_qtwvj"),
-"LeftPush": SubResource("Animation_pe2rm"),
-"LeftUga": SubResource("Animation_qv7ie"),
-"PressAttack": SubResource("Animation_8ukyw"),
-"RESET": SubResource("Animation_vd4in"),
-"RightPush": SubResource("Animation_xmxvx"),
-"RightUga": SubResource("Animation_ipewp"),
-"SincPunch": SubResource("Animation_30bt2")
+&"Idle": SubResource("Animation_lo370"),
+&"LeftPunchTest": SubResource("Animation_qtwvj"),
+&"LeftPush": SubResource("Animation_pe2rm"),
+&"LeftUga": SubResource("Animation_qv7ie"),
+&"PressAttack": SubResource("Animation_8ukyw"),
+&"RESET": SubResource("Animation_vd4in"),
+&"RightPush": SubResource("Animation_xmxvx"),
+&"RightUga": SubResource("Animation_ipewp"),
+&"SincPunch": SubResource("Animation_30bt2")
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mtqvn"]
 _data = {
-"RightPunch": ExtResource("13_2mm8y")
+&"RightPunch": ExtResource("13_2mm8y")
 }
 
 [sub_resource type="Animation" id="Animation_k250m"]
@@ -621,9 +621,9 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3b6fq"]
 _data = {
-"RESET": SubResource("Animation_k250m"),
-"left_hurt": SubResource("Animation_0cs62"),
-"right_hurt": SubResource("Animation_svmkl")
+&"RESET": SubResource("Animation_k250m"),
+&"left_hurt": SubResource("Animation_0cs62"),
+&"right_hurt": SubResource("Animation_svmkl")
 }
 
 [node name="Hands" type="Node2D"]

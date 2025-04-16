@@ -1,12 +1,12 @@
 [gd_scene load_steps=12 format=3 uid="uid://cumvpgfebedbj"]
 
 [ext_resource type="Texture2D" uid="uid://cg7hkqm7p2kiv" path="res://game/particles/texture/ball.png" id="1_lrptg"]
-[ext_resource type="Script" path="res://game/particles/script/receiving_power_particle.gd" id="2_6s6jy"]
+[ext_resource type="Script" uid="uid://b8lh1o5j2vsxo" path="res://game/particles/script/receiving_power_particle.gd" id="2_6s6jy"]
 
 [sub_resource type="CurveTexture" id="CurveTexture_dvpdi"]
 
 [sub_resource type="Curve" id="Curve_bd5gs"]
-max_value = 1024.0
+_limits = [0.0, 1024.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.856322, 0), 0.0, 0.0, 0, 0, Vector2(1, 1024), 0.0, 0.0, 0, 0]
 point_count = 3
 

@@ -3,34 +3,34 @@
 [ext_resource type="Texture2D" uid="uid://d1gtwnw5a64cl" path="res://game/map/tileset.png" id="1_nx72r"]
 [ext_resource type="PackedScene" uid="uid://bgsoxr6nsjbrr" path="res://game/player/player.tscn" id="2_j0sdp"]
 [ext_resource type="Texture2D" uid="uid://b5ffpxs4egn0a" path="res://game/map/backgrounds.png" id="3_3n3w6"]
-[ext_resource type="Script" path="res://game/UI/CameraChangingAreas/camera_guide.gd" id="4_1u4nr"]
+[ext_resource type="Script" uid="uid://cji1mklyh24x1" path="res://game/UI/CameraChangingAreas/camera_guide.gd" id="4_1u4nr"]
 [ext_resource type="Texture2D" uid="uid://bp557nlgxlpgp" path="res://game/map/column.png" id="4_ko5b3"]
-[ext_resource type="Script" path="res://game/UI/Camera.gd" id="5_aufkj"]
-[ext_resource type="Shader" path="res://game/map/shader/wave.gdshader" id="5_m3n8e"]
-[ext_resource type="Script" path="res://game/UI/CameraChangingAreas/show_underground.gd" id="7_20i7n"]
-[ext_resource type="Script" path="res://game/levels/first_level/acid_lake.gd" id="7_whji1"]
-[ext_resource type="Script" path="res://game/UI/CameraChangingAreas/hide_underground.gd" id="8_jsls1"]
+[ext_resource type="Script" uid="uid://b1qhlx75cvps4" path="res://game/UI/Camera.gd" id="5_aufkj"]
+[ext_resource type="Shader" uid="uid://brxjtfxyxrc0w" path="res://game/map/shader/wave.gdshader" id="5_m3n8e"]
+[ext_resource type="Script" uid="uid://bdc18rjb12uv8" path="res://game/UI/CameraChangingAreas/show_underground.gd" id="7_20i7n"]
+[ext_resource type="Script" uid="uid://dgobt2bjvb4be" path="res://game/levels/first_level/acid_lake.gd" id="7_whji1"]
+[ext_resource type="Script" uid="uid://1lkt03pbpi6h" path="res://game/UI/CameraChangingAreas/hide_underground.gd" id="8_jsls1"]
 [ext_resource type="Texture2D" uid="uid://cqtxlywxpoyae" path="res://game/map/platform_ghost/ghost_down_cool1.png" id="9_ocpxc"]
-[ext_resource type="Script" path="res://game/UI/CameraChangingAreas/turn_on_off_set.gd" id="10_2h4w3"]
+[ext_resource type="Script" uid="uid://bd8ynl6ovsv2e" path="res://game/UI/CameraChangingAreas/turn_on_off_set.gd" id="10_2h4w3"]
 [ext_resource type="Texture2D" uid="uid://cjposlwj3a1fe" path="res://game/map/platform_ghost/ghost_down_cool2.png" id="10_87v50"]
 [ext_resource type="Texture2D" uid="uid://ukebcbdclpbc" path="res://game/map/platform_ghost/ghost_down_cool3.png" id="11_apwws"]
-[ext_resource type="Script" path="res://game/UI/CameraChangingAreas/turn_off_off_set.gd" id="11_nbbgk"]
+[ext_resource type="Script" uid="uid://b4f1k3aa88vnm" path="res://game/UI/CameraChangingAreas/turn_off_off_set.gd" id="11_nbbgk"]
 [ext_resource type="Texture2D" uid="uid://bhexbhv1hc6ea" path="res://game/map/platform_ghost/ghost_down_cool4.png" id="12_mw0i1"]
-[ext_resource type="Script" path="res://game/UI/CameraChangingAreas/entering_arenas.gd" id="12_srut6"]
-[ext_resource type="Script" path="res://game/levels/first_level/door_boss.gd" id="13_hrjfl"]
-[ext_resource type="Script" path="res://game/UI/CameraChangingAreas/entering_arena_2.gd" id="13_kl44j"]
-[ext_resource type="Script" path="res://game/UI/CameraChangingAreas/entering_arena_3.gd" id="14_5rij8"]
-[ext_resource type="Script" path="res://game/levels/first_level/key.gd" id="14_0155j"]
-[ext_resource type="Script" path="res://game/levels/first_level/arenas.gd" id="14_mb0hh"]
-[ext_resource type="Script" path="res://game/levels/first_level/arena_1.gd" id="15_l7dfb"]
-[ext_resource type="Script" path="res://game/UI/CameraChangingAreas/finishing_arenas.gd" id="15_m16xd"]
-[ext_resource type="Script" path="res://game/levels/first_level/arena_2.gd" id="16_lgjcv"]
-[ext_resource type="Script" path="res://game/UI/CameraChangingAreas/platform_parkour_up_enter.gd" id="16_ypj6l"]
-[ext_resource type="Script" path="res://game/UI/CameraChangingAreas/plataform_parkour_up_exit.gd" id="17_yw2pv"]
-[ext_resource type="Script" path="res://game/levels/first_level/UpgradeMovementPath.gd" id="24_02rkj"]
+[ext_resource type="Script" uid="uid://blgpovxr6676f" path="res://game/UI/CameraChangingAreas/entering_arenas.gd" id="12_srut6"]
+[ext_resource type="Script" uid="uid://cbkqtsvrc87us" path="res://game/levels/first_level/door_boss.gd" id="13_hrjfl"]
+[ext_resource type="Script" uid="uid://bk7f45dmp75bg" path="res://game/UI/CameraChangingAreas/entering_arena_2.gd" id="13_kl44j"]
+[ext_resource type="Script" uid="uid://c08sdbsyfjj8q" path="res://game/UI/CameraChangingAreas/entering_arena_3.gd" id="14_5rij8"]
+[ext_resource type="Script" uid="uid://6dx7rck74nsg" path="res://game/levels/first_level/key.gd" id="14_0155j"]
+[ext_resource type="Script" uid="uid://bt47ok778jxxf" path="res://game/levels/first_level/arenas.gd" id="14_mb0hh"]
+[ext_resource type="Script" uid="uid://baj4g3jei0l5o" path="res://game/levels/first_level/arena_1.gd" id="15_l7dfb"]
+[ext_resource type="Script" uid="uid://qda76j34n5og" path="res://game/UI/CameraChangingAreas/finishing_arenas.gd" id="15_m16xd"]
+[ext_resource type="Script" uid="uid://bqvp55qlbfv0f" path="res://game/levels/first_level/arena_2.gd" id="16_lgjcv"]
+[ext_resource type="Script" uid="uid://c4em78ell8a4d" path="res://game/UI/CameraChangingAreas/platform_parkour_up_enter.gd" id="16_ypj6l"]
+[ext_resource type="Script" uid="uid://dg17we11n77l0" path="res://game/UI/CameraChangingAreas/plataform_parkour_up_exit.gd" id="17_yw2pv"]
+[ext_resource type="Script" uid="uid://djesuoe875uan" path="res://game/levels/first_level/UpgradeMovementPath.gd" id="24_02rkj"]
 [ext_resource type="Texture2D" uid="uid://cg7hkqm7p2kiv" path="res://game/particles/texture/ball.png" id="24_tyfui"]
 [ext_resource type="PackedScene" uid="uid://d4c2d23qet6ui" path="res://game/enemies/enemy_summoner/enemy_summoner.tscn" id="27_rr4bo"]
-[ext_resource type="Script" path="res://game/levels/first_level/arena_3.gd" id="29_y4jbg"]
+[ext_resource type="Script" uid="uid://drj3gt2mtp60q" path="res://game/levels/first_level/arena_3.gd" id="29_y4jbg"]
 [ext_resource type="PackedScene" uid="uid://7wlia6j3uw4f" path="res://game/enemies/standing_enemy/standing_enemy.tscn" id="31_ql4wn"]
 [ext_resource type="PackedScene" uid="uid://c2hcqohgaw0t5" path="res://game/enemies/flying_enemy/flying_enemy.tscn" id="32_nepk0"]
 
@@ -389,8 +389,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vvxd8"]
 _data = {
-"RESET": SubResource("Animation_ac1h4"),
-"moving": SubResource("Animation_1vdrv")
+&"RESET": SubResource("Animation_ac1h4"),
+&"moving": SubResource("Animation_1vdrv")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1wovc"]
@@ -475,8 +475,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ob8bs"]
 _data = {
-"RESET": SubResource("Animation_1pvgn"),
-"moving": SubResource("Animation_ik4iq")
+&"RESET": SubResource("Animation_1pvgn"),
+&"moving": SubResource("Animation_ik4iq")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qr32b"]
@@ -540,8 +540,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bsf6g"]
 _data = {
-"RESET": SubResource("Animation_353yj"),
-"moving": SubResource("Animation_b8wp5")
+&"RESET": SubResource("Animation_353yj"),
+&"moving": SubResource("Animation_b8wp5")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lc0og"]
@@ -605,8 +605,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xmq71"]
 _data = {
-"RESET": SubResource("Animation_0udbh"),
-"moving": SubResource("Animation_xlb0d")
+&"RESET": SubResource("Animation_0udbh"),
+&"moving": SubResource("Animation_xlb0d")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6tpcq"]
@@ -670,8 +670,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j5gof"]
 _data = {
-"RESET": SubResource("Animation_eqjd7"),
-"moving": SubResource("Animation_p0xse")
+&"RESET": SubResource("Animation_eqjd7"),
+&"moving": SubResource("Animation_p0xse")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ua865"]
@@ -735,8 +735,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_py2h7"]
 _data = {
-"RESET": SubResource("Animation_e86bb"),
-"moving": SubResource("Animation_2a1eg")
+&"RESET": SubResource("Animation_e86bb"),
+&"moving": SubResource("Animation_2a1eg")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sqka4"]
@@ -802,8 +802,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_l0dh0"]
 _data = {
-"RESET": SubResource("Animation_ut57e"),
-"animation_for_sprites": SubResource("Animation_841mt")
+&"RESET": SubResource("Animation_ut57e"),
+&"animation_for_sprites": SubResource("Animation_841mt")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_necgq"]
@@ -915,6 +915,21 @@ size = Vector2(220, 88)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tmvo4"]
 size = Vector2(199, 85)
 
+[sub_resource type="Animation" id="Animation_sm6i7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Reaper:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-725.959, 266.585)]
+}
+
 [sub_resource type="Animation" id="Animation_272ab"]
 resource_name = "reapers"
 length = 5.0
@@ -931,25 +946,10 @@ tracks/0/keys = {
 "values": [Vector2(-725.959, 266.585), Vector2(-725.959, 854.585), Vector2(-725.959, 266.585), Vector2(-725.959, 854.585), Vector2(-725.959, 266.585), Vector2(-725.959, 854.585), Vector2(-725.959, 266.585), Vector2(-725.959, 854.585)]
 }
 
-[sub_resource type="Animation" id="Animation_sm6i7"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Reaper:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-725.959, 266.585)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_n13qa"]
 _data = {
-"RESET": SubResource("Animation_sm6i7"),
-"reapers": SubResource("Animation_272ab")
+&"RESET": SubResource("Animation_sm6i7"),
+&"reapers": SubResource("Animation_272ab")
 }
 
 [node name="FirstLevel" type="Node2D"]
