@@ -1,9 +1,7 @@
 extends Area2D
+
 @onready var marker_2d: Marker2D = $Marker2D
 @export var acid_damage: int = 20
-
-
-
 
 func _on_body_entered(body: Node2D) -> void:
 	body.hurt(self,acid_damage);

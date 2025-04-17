@@ -516,6 +516,7 @@ rounded = true
 show_percentage = false
 
 [node name="SwordSideArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 4
 collision_mask = 4
 
@@ -551,7 +552,7 @@ target_position = Vector2(0, 33)
 collision_mask = 2
 
 [node name="IsThereStairs" type="RayCast2D" parent="."]
-position = Vector2(1, 32)
+position = Vector2(1, 32.1)
 target_position = Vector2(10, 0)
 collision_mask = 2
 
@@ -609,7 +610,7 @@ wait_time = 0.4
 one_shot = true
 
 [connection signal="area_entered" from="SwordSideArea" to="." method="_on_sword_side_area_area_entered"]
-[connection signal="body_entered" from="SwordSideArea" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="SwordSideArea" to="." method="_on_sword_side_area_body_entered"]
 [connection signal="area_entered" from="SwordUpArea" to="." method="_on_sword_up_area_area_entered"]
 [connection signal="body_entered" from="SwordUpArea" to="." method="_on_sword_up_area_body_entered"]
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
