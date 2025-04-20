@@ -18,7 +18,7 @@ var is_talking = false
 var talked_first_time: bool = false
 
 
-func freeze_time(timeScale, duration):
+func change_time_scale_for_duration(timeScale, duration):
 	Engine.time_scale = timeScale
-	await get_tree().create_timer(duration,true,false,true).timeout
+	await get_tree().create_timer(duration, true, false, true).timeout
 	Engine.time_scale = 1

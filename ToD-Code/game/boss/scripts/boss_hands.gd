@@ -98,7 +98,7 @@ func _on_hitbox_2_hitted():
 	print(soul_instance.global_position)
 	juice_anim.play("right_hurt")
 	add_child(soul_instance)
-	Global.freeze_time(0.0,0.1)
+	Global.change_time_scale_for_duration(0.0,0.1)
 
 func _on_hitbox_hitted():
 	damaged.emit()
@@ -121,7 +121,7 @@ func _on_hitbox_hitted():
 	soul_instance.emitting = true
 	juice_anim.play("left_hurt")
 	add_child(soul_instance)
-	Global.freeze_time(0.0,0.1)
+	Global.change_time_scale_for_duration(0.0,0.1)
 	await bounce_tween.finished
 	#juice_anim.play("RESET")
 

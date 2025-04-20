@@ -516,7 +516,6 @@ rounded = true
 show_percentage = false
 
 [node name="SwordSideArea" type="Area2D" parent="."]
-visible = false
 collision_layer = 4
 collision_mask = 4
 

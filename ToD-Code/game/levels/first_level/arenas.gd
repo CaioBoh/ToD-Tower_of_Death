@@ -1,6 +1,5 @@
 extends Node
 
-
 @onready var platform: AnimatableBody2D = $platform
 @onready var platform_path_follower: PathFollow2D = $Path2D/PathFollow2D
 @onready var floor_1: CollisionShape2D = $Floor/Floor1
@@ -13,62 +12,21 @@ extends Node
 @onready var enemy_spawn_trigger_1: Area2D = $enemy_spawn_trigger1
 @onready var arena_3_enemies: Node2D = $Arena3/Enemies
 @onready var spawn_timer_arena3: Timer = $Arena3/SpawnTimer
+@onready var floors := [floor_1, floor_2, floor_3]
 
-enum PlatformStatus {WAITING,STOP, UP, DOWN}
 var arenas_cleared = 0;
 var current_platform_status: PlatformStatus
+const platform_path_progress_per_arena = [0.168, 0.449, 0.714, 0.999]
 
-
+enum PlatformStatus { WAITING, STOP, UP, DOWN }
 
 func _ready() -> void:
 	floor_1.disabled = true
 	floor_2.disabled = true
 	floor_3.disabled = true
 
-
 func _physics_process(delta: float) -> void:
-	platform.global_position = platform_path_follower.global_position
-	if arenas_cleared == 0:
-		if current_platform_status == PlatformStatus.UP:
-			if platform_path_follower.progress_ratio <= 0.168:
-				platform_path_follower.progress_ratio += 0.001
-			else:
-				
-				current_platform_status = PlatformStatus.STOP
-				floor_1.disabled = false
-				platform_seeking_player.disabled = true
-				print("floor 1 turned on")
-	elif arenas_cleared == 1:
-		if current_platform_status == PlatformStatus.UP:
-			if platform_path_follower.progress_ratio <= 0.449:
-				platform_path_follower.progress_ratio += 0.001
-			else:
-				current_platform_status = PlatformStatus.STOP
-				floor_2.disabled = false
-				platform_seeking_player.disabled = true
-				print("floor 2 turned on")
-				
-	elif arenas_cleared == 2:
-		if current_platform_status == PlatformStatus.UP:
-			if platform_path_follower.progress_ratio <= 0.714:
-				platform_path_follower.progress_ratio += 0.001
-			else:
-				current_platform_status = PlatformStatus.STOP
-				floor_3.disabled = false
-				arena_3_timer.start()
-				platform_seeking_player.disabled = true
-				print("floor 3 turned on")
-	elif arenas_cleared == 3:
-		if current_platform_status == PlatformStatus.UP:
-			if platform_path_follower.progress_ratio < 0.999:
-				platform_path_follower.progress_ratio += 0.001
-			else:
-				current_platform_status = PlatformStatus.STOP
-				spawn_timer_arena3.stop()
-				for enemy in arena_3_enemies.get_children(false):
-					enemy.hurt(enemy,200)
-				self.set_physics_process(false)
-				
+	check_platform()
 	
 	if current_platform_status == PlatformStatus.DOWN:
 		floor_1.disabled = true
@@ -82,6 +40,27 @@ func _physics_process(delta: float) -> void:
 		else:
 			current_platform_status = PlatformStatus.WAITING
 
+func check_platform():
+	platform.global_position = platform_path_follower.global_position
+	if current_platform_status != PlatformStatus.UP:
+		return
+		
+	if platform_path_follower.progress_ratio <= platform_path_progress_per_arena[arenas_cleared]:
+		platform_path_follower.progress_ratio += 0.001
+	else:
+		current_platform_status = PlatformStatus.STOP
+		if arenas_cleared != 3:
+			floors[arenas_cleared].disabled = false
+			platform_seeking_player.disabled = true
+			if arenas_cleared == 2:
+				arena_3_timer.start()
+			print($"floor %d turned on", arenas_cleared + 1)
+		else:
+			spawn_timer_arena3.stop()
+			for enemy in arena_3_enemies.get_children(false):
+				enemy.hurt(enemy,200)
+			self.set_physics_process(false)
+
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body == Global.global_player and current_platform_status == PlatformStatus.WAITING:
 		current_platform_status = PlatformStatus.UP
@@ -93,13 +72,11 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 		current_platform_status = PlatformStatus.DOWN
 		print(current_platform_status)
 
-
 func _on_arena_1_arena_1_cleared() -> void:
 	arenas_cleared = 1
 	current_platform_status = PlatformStatus.WAITING
 	platform_seeking_player.disabled = false
 	print("arena 1 cleared")
-
 
 func _on_arena_2_arena_2_cleared() -> void:
 	arenas_cleared = 2
@@ -107,13 +84,16 @@ func _on_arena_2_arena_2_cleared() -> void:
 	platform_seeking_player.disabled = false
 	print("arena 2 cleared")
 
-
 func _on_arena_3_timer_timeout() -> void:
 	arenas_cleared = 3
+	for enemy in $Arena3/Enemies.get_children():
+		if enemy.has_method("hurt"):
+			enemy.hurt(Global.global_player, enemy.health)
+			spawn_timer_arena3.stop()
+	
 	current_platform_status = PlatformStatus.WAITING
 	platform_seeking_player.disabled = false
 	print("arena 3 cleared")
-
 
 func _on_enemy_spawn_trigger_1_body_entered(body: Node2D) -> void:
 	enemy_spawn_trigger_1.get_node("CollisionShape2D").disabled = true

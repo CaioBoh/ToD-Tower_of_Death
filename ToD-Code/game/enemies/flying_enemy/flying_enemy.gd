@@ -19,8 +19,6 @@ var death_particle = preload("res://game/particles/scene/death_enemy_explosion_p
 
 var bounce_tween: Tween
 
-
-
 func _ready():
 	player = Global.global_player
 	anim.play("RESET")
@@ -49,7 +47,6 @@ func _on_sight_area_body_entered(body):
 		chasing = true
 
 func hurt(body, damage):
-	
 	create_bounce()
 	bounce_tween.tween_property(sprites,"scale", Vector2(0.56 * 1.35,0.56 * 1.35),0.2) \
 				.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
@@ -70,7 +67,7 @@ func hurt(body, damage):
 		health-=damage
 		anim.play("hurt")
 		add_child(soul_instance)
-		Global.freeze_time(0.0,0.1)
+		Global.change_time_scale_for_duration(0.0,0.1)
 		var knockback_tween:= get_tree().create_tween()
 		knockback_tween.tween_property(self,"knockback_vector", Vector2.ZERO,0.25)	
 	else:
@@ -80,14 +77,11 @@ func hurt(body, damage):
 		knockback_tween.tween_property(self,"knockback_vector", Vector2.ZERO,0.1)	
 		chasing = false
 
-
 func _on_dash_area_body_entered(body):
 	if body == player and not is_dashing and not dead:
 		chasing = false
 		is_dashing = true
 		dash()
-
-
 
 func dash():
 	chasing = false

@@ -65,17 +65,17 @@ scale_curve = SubResource("CurveTexture_qt7lc")
 position = Vector2(2, -6)
 emitting = false
 amount = 40
-process_material = SubResource("ParticleProcessMaterial_g4d5n")
 texture = ExtResource("1_lrptg")
 lifetime = 3.1
 one_shot = true
 explosiveness = 0.85
+process_material = SubResource("ParticleProcessMaterial_g4d5n")
 script = ExtResource("2_6s6jy")
 
 [node name="exploding_after_receiving" type="GPUParticles2D" parent="."]
 emitting = false
 amount = 40
-process_material = SubResource("ParticleProcessMaterial_vsqe8")
 texture = ExtResource("1_lrptg")
 one_shot = true
 explosiveness = 0.85
+process_material = SubResource("ParticleProcessMaterial_vsqe8")

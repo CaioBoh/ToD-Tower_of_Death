@@ -206,7 +206,7 @@ debug_color = Color(0.668713, 0, 0.268887, 0.42)
 
 [node name="anim" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_hh2wh")
+&"": SubResource("AnimationLibrary_hh2wh")
 }
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

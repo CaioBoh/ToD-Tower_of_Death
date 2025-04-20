@@ -308,7 +308,7 @@ stream = ExtResource("21_ekb5o")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_uu4ys")
+&"": SubResource("AnimationLibrary_uu4ys")
 }
 
 [connection signal="animation_changed" from="AnimatedSprite2D" to="." method="_on_animation_changed"]

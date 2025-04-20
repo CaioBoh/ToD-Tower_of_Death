@@ -146,9 +146,7 @@ func hurt(body,damage):
 	
 	if health<=0:
 		queue_free()
-	
-
-
+		
 func _on_animation_changed():
 	#print("animation changed to:" + animated_sprite_2d.animation)
 	pass

@@ -10,13 +10,11 @@ extends Node2D
 var started: bool = false
 var finished: bool = false
 
-
 func _on_spawn_timer_timeout() -> void:
 	spawn_timer.wait_time = 5
 	for summoner in summoners.get_children(false):
 		summoner.already_spawned = false
 		summoner.spawn_enemy()
-
 
 func _on_enemy_spawn_trigger_3_body_entered(body: Node2D) -> void:
 	enemy_spawn_trigger_3.get_node("CollisionShape2D").disabled = true
