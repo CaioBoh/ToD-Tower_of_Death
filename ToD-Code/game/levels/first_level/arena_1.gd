@@ -3,6 +3,8 @@ extends Area2D
 
 @onready var enemies: Node2D = $Enemies
 @onready var enemy_summoners: Node = $EnemySummoners
+@onready var enemy_spawn_trigger_1: Area2D = $"../enemy_spawn_trigger1"
+
 
 var started: bool = false
 var finished: bool = false
@@ -18,3 +20,4 @@ func _on_enemy_spawn_trigger_1_body_entered(_body: Node2D) -> void:
 	for summoner in enemy_summoners.get_children(false):
 		summoner.spawn_enemy()
 	started = true
+	enemy_spawn_trigger_1.get_node("CollisionShape2D").set_deferred("disabled", true)

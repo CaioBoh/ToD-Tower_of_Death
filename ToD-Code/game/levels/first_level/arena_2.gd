@@ -18,3 +18,4 @@ func _on_enemy_spawn_trigger_2_body_entered(_body: Node2D) -> void:
 	for summoner in summoners.get_children(false):
 		summoner.spawn_enemy()
 	started = true
+	enemy_spawn_trigger_2.get_node("CollisionShape2D").set_deferred("disabled", true)

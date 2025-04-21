@@ -30,7 +30,7 @@ const DEATH_PARTICLE_ATLAS = preload("res://game/particles/scene/death_particle_
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 var cont_moedas: int = 0
 var direction: int
-var move_allowed := true
+var input_allowed := true
 var is_attacking := false
 var is_dash_timer_finished := true
 var can_be_hit := false
@@ -49,8 +49,6 @@ func _ready():
 
 func _physics_process(delta):
 	LifeBar.value = Global.player_health
-	if not move_allowed:
-		return
 
 	handle_input(delta)
 	handle_animation()
@@ -75,7 +73,7 @@ func handle_animation():
 		flip_nodes()
 
 func handle_attack():
-	if not Input.is_action_just_pressed("attack") or is_attacking:
+	if not Input.is_action_just_pressed("attack") or is_attacking or not input_allowed:
 		return
 
 	var damage_zone_side = sword_area_side.get_node("CollisionShape2D")
@@ -99,7 +97,7 @@ func handle_attack():
 	is_attacking = false
 	
 func handle_dash():
-	if Input.is_action_just_pressed("dash") and is_on_floor() and Global.dash_picked and is_dash_timer_finished:
+	if Input.is_action_just_pressed("dash") and is_on_floor() and Global.dash_picked and is_dash_timer_finished and input_allowed:
 		is_dash_timer_finished = false
 		
 		knockback_vector = Vector2(direction * KNOCKBACK_DASH, 0)
@@ -124,6 +122,8 @@ func spawn_dash_ghosts(amount_of_time_to_spawn_ghosts):
 	ghost_spawner.stop_spawn()
 	
 func talk() -> bool:
+	if not input_allowed:
+		return false
 	var talked = false
 	var actionables := actionable_seeker.get_overlapping_areas()
 	var first_time_interaction := true
@@ -140,7 +140,6 @@ func talk() -> bool:
 	return talked
 	
 func jump(delta):
-	
 	if not is_on_floor():
 		velocity.y += gravity * delta
 		if jump_state == JumpState.GROUNDED:
@@ -152,7 +151,7 @@ func jump(delta):
 		ledge_forgivess_active = false
 		ledge_forgiveness_timer.stop()
 	
-	if Input.is_action_just_pressed("jump") and not Global.is_talking:
+	if Input.is_action_just_pressed("jump") and input_allowed and not Global.is_talking:
 		if jump_state == JumpState.GROUNDED || ledge_forgivess_active:
 			velocity.y = 0
 			velocity.y += JUMP_VELOCITY
@@ -165,6 +164,8 @@ func jump(delta):
 			jump_state = JumpState.SECOND_JUMP
 
 func move():
+	if not input_allowed:
+		return
 	direction = Input.get_axis("left", "right") as int
 	if Global.is_talking:
 		velocity.x = 0
@@ -237,10 +238,10 @@ func game_over():
 	Global.player_health = 100
 
 func _on_dash_upgrade_dash_picked():
-	move_allowed = false
+	input_allowed = false
 	animation_player.play("receiving_dash")
 	await animation_player.animation_finished
-	move_allowed = true
+	input_allowed = true
 		
 func spawn_death_particle():
 	var instance = DEATH_PARTICLE_ATLAS.instantiate()

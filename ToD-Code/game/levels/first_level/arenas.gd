@@ -18,7 +18,7 @@ var arenas_cleared = 0;
 var current_platform_status: PlatformStatus
 const platform_path_progress_per_arena = [0.167, 0.449, 0.714, 0.999]
 
-enum PlatformStatus { WAITING, STOP, UP, DOWN }
+enum PlatformStatus { WAITING, STOP, UP }
 
 func _ready() -> void:
 	floor_1.disabled = true
@@ -30,24 +30,25 @@ func _physics_process(_delta: float) -> void:
 
 func check_platform():
 	platform.global_position = platform_path_follower.global_position
-	if current_platform_status == PlatformStatus.DOWN:
+#	if current_platform_status == PlatformStatus.DOWN:
 #		floor_1.disabled = true
 #		floor_2.disabled = true
 #		floor_3.disabled = true
-		camera.limit_bottom = 100000000
-		camera.limit_right = 100000000
-		camera.limit_left = -100000000
-		if platform_path_follower.progress_ratio > 0.001:
-			platform_path_follower.progress_ratio -= 0.001
-		else:
-			platform_path_follower.progress_ratio = 0
-			current_platform_status = PlatformStatus.WAITING
+#		camera.limit_bottom = 100000000
+#		camera.limit_right = 100000000
+#		camera.limit_left = -100000000
+#		if platform_path_follower.progress_ratio > 0.001:
+#			platform_path_follower.progress_ratio -= 0.001
+#		else:
+#			platform_path_follower.progress_ratio = 0
+#			current_platform_status = PlatformStatus.WAITING
 	
-	elif current_platform_status == PlatformStatus.UP:	
+	if current_platform_status == PlatformStatus.UP:	
 		if platform_path_follower.progress_ratio <= platform_path_progress_per_arena[arenas_cleared]:
 			platform_path_follower.progress_ratio += 0.001
 		else:
 			platform_path_follower.progress_ratio = platform_path_progress_per_arena[arenas_cleared]
+			Global.global_player.input_allowed = true
 			current_platform_status = PlatformStatus.STOP
 			if arenas_cleared != 3:
 				floors[arenas_cleared].disabled = false
@@ -60,15 +61,13 @@ func check_platform():
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body == Global.global_player:
-		if current_platform_status == PlatformStatus.WAITING or current_platform_status == PlatformStatus.DOWN:
-			current_platform_status = PlatformStatus.UP
-			#print(current_platform_status)
-			#print(platform_path_follower.progress_ratio)
-
-func _on_area_2d_body_exited(body: Node2D) -> void:
-	if body == Global.global_player and current_platform_status != PlatformStatus.STOP:
-		current_platform_status = PlatformStatus.DOWN
-		#print(current_platform_status)
+		if current_platform_status == PlatformStatus.WAITING:
+			print("AAAAAAAAAAAAAAAAAAAA")
+			move_player_to_platform_center()
+			
+#func _on_area_2d_body_exited(body: Node2D) -> void:
+#	if body == Global.global_player and current_platform_status != PlatformStatus.STOP:
+#		current_platform_status = PlatformStatus.DOWN
 
 func _on_arena_1_arena_1_cleared() -> void:
 	arenas_cleared = 1
@@ -92,3 +91,23 @@ func _on_arena_3_timer_timeout() -> void:
 	current_platform_status = PlatformStatus.WAITING
 	platform_seeking_player.disabled = false
 	print("arena 3 cleared")
+	
+func move_player_to_platform_center():
+	Global.global_player.input_allowed = false
+	Global.global_player.knockback_vector = Vector2(0, 0)
+	Global.global_player.velocity.x = 0
+	while not Global.global_player.is_on_floor():
+		await get_tree().create_timer(0.05).timeout
+		
+	var direction = Global.global_player.global_position.direction_to(platform_seeking_player.global_position).x
+	direction /= abs(direction)
+	Global.global_player.direction = int(direction)
+	Global.global_player.velocity.x = Global.global_player.direction * Global.global_player.SPEED
+	while abs(Global.global_player.global_position.x - platform_seeking_player.global_position.x) > 10:
+		await get_tree().create_timer(0.05).timeout
+	
+	Global.global_player.position.x = platform_seeking_player.global_position.x
+	Global.global_player.velocity.x = 0
+	Global.global_player.animation.flip_h = false
+		
+	current_platform_status = PlatformStatus.UP
