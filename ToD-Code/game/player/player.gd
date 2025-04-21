@@ -68,9 +68,16 @@ func handle_input(delta: float):
 			velocity.x = move_toward(velocity.x, 0, SLIPPERY)
 	
 	var actionables := actionable_seeker.get_overlapping_areas()
-	if Input.is_action_just_pressed("interact") and actionables.size() > 0 and not Global.is_talking:
-		actionables[0].action()
-		print(Global.dead_count, ", ", Global.death_encounters)
+	var first_time_interaction := true
+	for actionable in actionables:
+		if actionable.get_meta("times_talked") == 0:
+			actionable.set_meta("times_talked", actionable.get_meta("times_talked") + 1)
+			actionable.action()
+			first_time_interaction = true
+	if Input.is_action_just_pressed("interact") and actionables.size() > 0 and not Global.is_talking:	
+		if first_time_interaction:
+			actionables[0].action()
+
 	# Handle jump.
 	elif Input.is_action_just_pressed("jump"):
 		if jump_state == JumpState.GROUNDED:

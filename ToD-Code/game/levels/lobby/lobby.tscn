@@ -725,14 +725,15 @@ color = Color(0, 0.86, 0.444333, 1)
 energy = 1.72
 texture = SubResource("GradientTexture2D_jmplq")
 
-[node name="Dialogue Area" parent="Death" instance=ExtResource("22_5lkgx")]
+[node name="Death Dialogue Actionable" parent="Death" instance=ExtResource("22_5lkgx")]
 position = Vector2(-153.076, 249.035)
 scale = Vector2(2.28472, 2.28472)
 collision_layer = 16
 collision_mask = 16
 dialogue_resource = ExtResource("16_eh5lj")
+metadata/times_talked = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Death/Dialogue Area"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Death/Death Dialogue Actionable"]
 position = Vector2(-172.872, 8.38187)
 shape = SubResource("RectangleShape2D_012m1")
 debug_color = Color(0.831838, 0.391724, 0, 0.42)
@@ -756,13 +757,14 @@ position = Vector2(0, -13.5)
 shape = SubResource("RectangleShape2D_ty0q3")
 debug_color = Color(0.795657, 0.0616312, 1, 0.42)
 
-[node name="Void Dialogue Area" parent="." instance=ExtResource("22_5lkgx")]
+[node name="Void Dialogue Actionable" parent="." instance=ExtResource("22_5lkgx")]
 position = Vector2(-24, 74)
 collision_layer = 16
 collision_mask = 16
 dialogue_resource = ExtResource("24_lv3gf")
+metadata/times_talked = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Void Dialogue Area"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Void Dialogue Actionable"]
 position = Vector2(3.5, -2.5)
 shape = SubResource("RectangleShape2D_r75so")
 debug_color = Color(0.8225, 0.396102, 0.16138, 0.42)
