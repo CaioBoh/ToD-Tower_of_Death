@@ -13,7 +13,8 @@ extends CharacterBody2D
 @onready var is_there_stairs: RayCast2D = $IsThereStairs
 @onready var is_touching_floor: RayCast2D = $IsTouchingFloor
 @onready var actionable_seeker: Area2D = $ActionableSeeker
-@onready var just_stopped_talking_timer: Timer = $Just_Stopped_Talking
+@onready var just_stopped_talking_timer: Timer = $JustStoppedTalking
+@onready var ledge_forgiveness_timer: Timer = $LedgeForgivenessTimer
 
 const SPEED = 250.0
 const SLIPPERY = SPEED
@@ -34,6 +35,7 @@ var is_attacking := false
 var is_dash_timer_finished := true
 var can_be_hit := false
 var jump_state := JumpState.GROUNDED
+var ledge_forgivess_active := false
 
 enum JumpState { GROUNDED, FIRST_JUMP, SECOND_JUMP }
 
@@ -58,7 +60,6 @@ func _physics_process(delta):
 	move_and_slide()
 
 func handle_input(delta: float):
-	print(Global.is_talking)
 	talk()
 	jump(delta)
 	move()
@@ -139,23 +140,30 @@ func talk() -> bool:
 	return talked
 	
 func jump(delta):
-	if Input.is_action_just_pressed("jump") and not Global.is_talking:
+	
+	if not is_on_floor():
+		velocity.y += gravity * delta
 		if jump_state == JumpState.GROUNDED:
+			jump_state = JumpState.FIRST_JUMP
+			ledge_forgivess_active = true
+			ledge_forgiveness_timer.start()
+	else:
+		jump_state = JumpState.GROUNDED
+		ledge_forgivess_active = false
+		ledge_forgiveness_timer.stop()
+	
+	if Input.is_action_just_pressed("jump") and not Global.is_talking:
+		if jump_state == JumpState.GROUNDED || ledge_forgivess_active:
+			velocity.y = 0
 			velocity.y += JUMP_VELOCITY
 			jump_state = JumpState.FIRST_JUMP
+			ledge_forgivess_active = false
 		elif jump_state == JumpState.FIRST_JUMP:
 			if velocity.y > 0:
 				velocity.y = 0
 			velocity.y += JUMP_VELOCITY
 			jump_state = JumpState.SECOND_JUMP
-		
-	if not is_on_floor():
-		velocity.y += gravity * delta
-		if jump_state == JumpState.GROUNDED:
-			jump_state = JumpState.FIRST_JUMP
-	else:
-		jump_state = JumpState.GROUNDED
-	
+
 func move():
 	direction = Input.get_axis("left", "right") as int
 	if Global.is_talking:
@@ -283,3 +291,7 @@ func ascend():
 
 func _on_just_stopped_talking_timeout():
 	Global.is_talking = false
+
+
+func _on_ledge_forgiveness_timer_timeout():
+	ledge_forgivess_active = false
