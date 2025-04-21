@@ -66,6 +66,8 @@ Panel/styles/panel = SubResource("StyleBoxFlat_uy0d5")
 [node name="ExampleBalloon" type="CanvasLayer"]
 layer = 100
 script = ExtResource("1_36de5")
+next_action = &"next dialogue"
+skip_action = &"next dialogue"
 
 [node name="Balloon" type="Control" parent="."]
 unique_name_in_owner = true

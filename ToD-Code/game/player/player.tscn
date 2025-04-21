@@ -608,9 +608,14 @@ one_shot = true
 wait_time = 0.4
 one_shot = true
 
+[node name="Just_Stopped_Talking" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
 [connection signal="area_entered" from="SwordSideArea" to="." method="_on_sword_side_area_area_entered"]
 [connection signal="body_entered" from="SwordSideArea" to="." method="_on_sword_side_area_body_entered"]
 [connection signal="area_entered" from="SwordUpArea" to="." method="_on_sword_up_area_area_entered"]
 [connection signal="body_entered" from="SwordUpArea" to="." method="_on_sword_up_area_body_entered"]
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="InvencibleTimer" to="." method="_on_invencible_timer_timeout"]
+[connection signal="timeout" from="Just_Stopped_Talking" to="." method="_on_just_stopped_talking_timeout"]

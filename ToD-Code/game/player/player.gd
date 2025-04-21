@@ -13,6 +13,7 @@ extends CharacterBody2D
 @onready var is_there_stairs: RayCast2D = $IsThereStairs
 @onready var is_touching_floor: RayCast2D = $IsTouchingFloor
 @onready var actionable_seeker: Area2D = $ActionableSeeker
+@onready var just_stopped_talking_timer: Timer = $Just_Stopped_Talking
 
 const SPEED = 250.0
 const SLIPPERY = SPEED
@@ -48,7 +49,7 @@ func _physics_process(delta):
 	LifeBar.value = Global.player_health
 	if not move_allowed:
 		return
-	print(animation.flip_h)
+
 	handle_input(delta)
 	handle_animation()
 	handle_attack()
@@ -57,44 +58,10 @@ func _physics_process(delta):
 	move_and_slide()
 
 func handle_input(delta: float):
-	print(velocity.y)
-	direction = Input.get_axis("left", "right") as int
-	if knockback_vector != Vector2.ZERO:
-		velocity = knockback_vector
-	else:
-		if direction:
-			velocity.x = direction * SPEED
-		else:
-			velocity.x = move_toward(velocity.x, 0, SLIPPERY)
-	
-	var actionables := actionable_seeker.get_overlapping_areas()
-	var first_time_interaction := true
-	for actionable in actionables:
-		if actionable.get_meta("times_talked") == 0:
-			actionable.set_meta("times_talked", actionable.get_meta("times_talked") + 1)
-			actionable.action()
-			first_time_interaction = true
-	if Input.is_action_just_pressed("interact") and actionables.size() > 0 and not Global.is_talking:	
-		if first_time_interaction:
-			actionables[0].action()
-
-	# Handle jump.
-	elif Input.is_action_just_pressed("jump"):
-		if jump_state == JumpState.GROUNDED:
-			velocity.y += JUMP_VELOCITY
-			jump_state = JumpState.FIRST_JUMP
-		elif jump_state == JumpState.FIRST_JUMP:
-			if velocity.y > 0:
-				velocity.y = 0
-			velocity.y += JUMP_VELOCITY
-			jump_state = JumpState.SECOND_JUMP
-		
-	if not is_on_floor():
-		velocity.y += gravity * delta
-		if jump_state == JumpState.GROUNDED:
-			jump_state = JumpState.FIRST_JUMP
-	else:
-		jump_state = JumpState.GROUNDED
+	print(Global.is_talking)
+	talk()
+	jump(delta)
+	move()
 		
 func handle_animation():
 	if velocity.x == 0:
@@ -155,6 +122,52 @@ func spawn_dash_ghosts(amount_of_time_to_spawn_ghosts):
 	await get_tree().create_timer(amount_of_time_to_spawn_ghosts).timeout
 	ghost_spawner.stop_spawn()
 	
+func talk() -> bool:
+	var talked = false
+	var actionables := actionable_seeker.get_overlapping_areas()
+	var first_time_interaction := true
+	for actionable in actionables:
+		if actionable.get_meta("times_talked") == 0:
+			actionable.set_meta("times_talked", actionable.get_meta("times_talked") + 1)
+			actionable.action()
+			first_time_interaction = true
+			talked = true
+	if Input.is_action_just_pressed("interact") and actionables.size() > 0 and not Global.is_talking:	
+		if first_time_interaction:
+			actionables[0].action()
+			talked = true
+	return talked
+	
+func jump(delta):
+	if Input.is_action_just_pressed("jump") and not Global.is_talking:
+		if jump_state == JumpState.GROUNDED:
+			velocity.y += JUMP_VELOCITY
+			jump_state = JumpState.FIRST_JUMP
+		elif jump_state == JumpState.FIRST_JUMP:
+			if velocity.y > 0:
+				velocity.y = 0
+			velocity.y += JUMP_VELOCITY
+			jump_state = JumpState.SECOND_JUMP
+		
+	if not is_on_floor():
+		velocity.y += gravity * delta
+		if jump_state == JumpState.GROUNDED:
+			jump_state = JumpState.FIRST_JUMP
+	else:
+		jump_state = JumpState.GROUNDED
+	
+func move():
+	direction = Input.get_axis("left", "right") as int
+	if Global.is_talking:
+		velocity.x = 0
+	elif knockback_vector != Vector2.ZERO:
+		velocity = knockback_vector
+	else:
+		if direction:
+			velocity.x = direction * SPEED
+		else:
+			velocity.x = move_toward(velocity.x, 0, SLIPPERY)
+			
 func flip_nodes():
 	if direction == 1:
 		animation.flip_h = false
@@ -266,3 +279,7 @@ func _on_sword_up_area_area_entered(area: Area2D) -> void:
 func ascend():
 	var tween = create_tween()
 	tween.tween_property(self, "position:y", position.y - 150, 3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
+
+func _on_just_stopped_talking_timeout():
+	Global.is_talking = false
