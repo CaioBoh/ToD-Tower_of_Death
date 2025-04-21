@@ -822,13 +822,13 @@ _data = {
 point_count = 6
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oetkv"]
-size = Vector2(1431, 5.875)
+size = Vector2(1431, 65)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jl2wp"]
-size = Vector2(1410, 20)
+size = Vector2(1415, 66)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ovws3"]
-size = Vector2(1438.5, 11.5)
+size = Vector2(1420, 63)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yofho"]
 size = Vector2(128, 23)
@@ -991,7 +991,7 @@ tile_map_data = PackedByteArray("AAApAAcAAQAMAAYAAAApAAgAAQAMAAcAAAApAAkAAQAMAAg
 tile_set = SubResource("TileSet_e0rf3")
 
 [node name="player" parent="." instance=ExtResource("2_j0sdp")]
-position = Vector2(6752, -2295)
+position = Vector2(-1208, 1027)
 
 [node name="CameraGuide" type="Marker2D" parent="player"]
 script = ExtResource("4_1u4nr")
@@ -1642,6 +1642,11 @@ enemy_type = 1
 [node name="Enemies" type="Node2D" parent="ARENAS/Arena3"]
 
 [node name="SpawnTimer" type="Timer" parent="ARENAS/Arena3"]
+wait_time = 0.001
+
+[node name="Arena3_Timer" type="Timer" parent="ARENAS/Arena3"]
+wait_time = 10.0
+one_shot = true
 
 [node name="Arena1_enemies" type="Node" parent="ARENAS"]
 
@@ -1657,40 +1662,36 @@ collision_layer = 7
 collision_mask = 7
 
 [node name="Floor1" type="CollisionShape2D" parent="ARENAS/Floor"]
-position = Vector2(-1356, 554.938)
+position = Vector2(-1359, 582)
 shape = SubResource("RectangleShape2D_oetkv")
 debug_color = Color(0.41, 0.334833, 0, 0.419608)
 
 [node name="Floor2" type="CollisionShape2D" parent="ARENAS/Floor"]
-position = Vector2(-1359, -457)
+position = Vector2(-1365.5, -435)
 shape = SubResource("RectangleShape2D_jl2wp")
 debug_color = Color(0.431953, 0.268155, 0.0465756, 0.42)
 
 [node name="Floor3" type="CollisionShape2D" parent="ARENAS/Floor"]
-position = Vector2(-1366, -1416)
+position = Vector2(-1366, -1392.5)
 shape = SubResource("RectangleShape2D_ovws3")
 debug_color = Color(0.424142, 0.23854, 0.00859033, 0.42)
 
-[node name="Arena3_Timer" type="Timer" parent="ARENAS"]
-wait_time = 10.0
-one_shot = true
-
 [node name="enemy_spawn_trigger1" type="Area2D" parent="ARENAS"]
-position = Vector2(-1365, 827)
+position = Vector2(-1367, 539)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ARENAS/enemy_spawn_trigger1"]
 position = Vector2(-1, 1.5)
 shape = SubResource("RectangleShape2D_yofho")
 
 [node name="enemy_spawn_trigger2" type="Area2D" parent="ARENAS"]
-position = Vector2(-1368, -246)
+position = Vector2(-1366, -475)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ARENAS/enemy_spawn_trigger2"]
 position = Vector2(-1, 1.5)
 shape = SubResource("RectangleShape2D_yofho")
 
 [node name="enemy_spawn_trigger3" type="Area2D" parent="ARENAS"]
-position = Vector2(-1368, -1225)
+position = Vector2(-1367, -1435)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ARENAS/enemy_spawn_trigger3"]
 position = Vector2(-1, 1.5)
@@ -2135,7 +2136,7 @@ libraries = {
 [connection signal="body_exited" from="ARENAS/Arena1" to="ARENAS/Arena1" method="_on_body_exited"]
 [connection signal="arena_2_cleared" from="ARENAS/Arena2" to="ARENAS" method="_on_arena_2_arena_2_cleared"]
 [connection signal="timeout" from="ARENAS/Arena3/SpawnTimer" to="ARENAS/Arena3" method="_on_spawn_timer_timeout"]
-[connection signal="timeout" from="ARENAS/Arena3_Timer" to="ARENAS" method="_on_arena_3_timer_timeout"]
+[connection signal="timeout" from="ARENAS/Arena3/Arena3_Timer" to="ARENAS" method="_on_arena_3_timer_timeout"]
 [connection signal="body_entered" from="ARENAS/enemy_spawn_trigger1" to="ARENAS/Arena1" method="_on_enemy_spawn_trigger_1_body_entered"]
 [connection signal="body_entered" from="ARENAS/enemy_spawn_trigger2" to="ARENAS/Arena2" method="_on_enemy_spawn_trigger_2_body_entered"]
 [connection signal="body_entered" from="ARENAS/enemy_spawn_trigger3" to="ARENAS/Arena3" method="_on_enemy_spawn_trigger_3_body_entered"]

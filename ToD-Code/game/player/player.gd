@@ -45,7 +45,7 @@ func _physics_process(delta):
 	LifeBar.value = Global.player_health
 	if not move_allowed:
 		return
-		
+	print(animation.flip_h)
 	handle_input(delta)
 	handle_animation()
 	handle_attack()
@@ -134,7 +134,10 @@ func spawn_dash_ghosts(amount_of_time_to_spawn_ghosts):
 	ghost_spawner.stop_spawn()
 	
 func flip_nodes():
-	animation.flip_h = direction != 1
+	if direction == 1:
+		animation.flip_h = false
+	elif direction == -1:
+		animation.flip_h = true
 	sword_area_side.scale.x = direction
 	actionable_seeker.position.x = 5.5 + direction * 24.5
 	max_height_stairs.position.x = 1.5 + direction * 12.5

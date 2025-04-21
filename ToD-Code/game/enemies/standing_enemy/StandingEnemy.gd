@@ -37,7 +37,7 @@ func _physics_process(delta):
 	if knockback_vector != Vector2.ZERO:
 		velocity = knockback_vector
 	else:
-		velocity.x = dir * speed * delta
+		velocity.x = dir * speed * delta * 5
 	#print(velocity.x)
 	handle_movement()
 	handle_animation()
@@ -57,15 +57,19 @@ func choose(array):
 	
 func handle_animation():
 #	print(velocity.x)
+
+	if dir == 1:
+		animated_sprite_2d.flip_h = false
+	elif dir == -1:
+		animated_sprite_2d.flip_h = true
+	
 	if velocity.x < -1:
 		sight_ray_1.scale.x = -1
 		hit_box.scale.x = -1
-		animated_sprite_2d.flip_h = true
 		spear_range.scale.x = -1
 	elif velocity.x > 1:
 		sight_ray_1.scale.x = 1
 		hit_box.scale.x = 1
-		animated_sprite_2d.flip_h = false
 		spear_range.scale.x = 1
 	if velocity.x < 1 and velocity.x > -1 and !is_chasing and not is_attacking:
 		if animated_sprite_2d.animation != "transition_to_attack":
@@ -89,7 +93,8 @@ func handle_movement():
 	
 	if is_chasing and !player_on_spear_range and !is_attacking and last_animation != "transition_to_attack":
 		
-		dir = position.direction_to(player.global_position).x * 5
+		dir = position.direction_to(player.global_position).x
+		dir = dir / abs(dir)
 		await animated_sprite_2d.animation_finished
 		if animated_sprite_2d.animation != "transition_to_attack":
 			animated_sprite_2d.play("walking")
