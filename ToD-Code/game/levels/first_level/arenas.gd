@@ -25,7 +25,7 @@ func _ready() -> void:
 	floor_2.disabled = true
 	floor_3.disabled = true
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	check_platform()
 
 func check_platform():

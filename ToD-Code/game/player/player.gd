@@ -16,7 +16,7 @@ extends CharacterBody2D
 
 const SPEED = 250.0
 const SLIPPERY = SPEED
-const JUMP_VELOCITY = -900.0 #-470
+const JUMP_VELOCITY = -500
 const KNOCKBACK_HIT = 1000
 const KNOCKBACK_DASH = 3000
 const KNOCKBACK_SWORD_X = 600
@@ -32,6 +32,9 @@ var move_allowed := true
 var is_attacking := false
 var is_dash_timer_finished := true
 var can_be_hit := false
+var jump_state := JumpState.GROUNDED
+
+enum JumpState { GROUNDED, FIRST_JUMP, SECOND_JUMP }
 
 func _ready():
 	Global.global_player = self
@@ -54,6 +57,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 func handle_input(delta: float):
+	print(velocity.y)
 	direction = Input.get_axis("left", "right") as int
 	if knockback_vector != Vector2.ZERO:
 		velocity = knockback_vector
@@ -68,11 +72,22 @@ func handle_input(delta: float):
 		actionables[0].action()
 		print(Global.dead_count, ", ", Global.death_encounters)
 	# Handle jump.
-	elif Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+	elif Input.is_action_just_pressed("jump"):
+		if jump_state == JumpState.GROUNDED:
+			velocity.y += JUMP_VELOCITY
+			jump_state = JumpState.FIRST_JUMP
+		elif jump_state == JumpState.FIRST_JUMP:
+			if velocity.y > 0:
+				velocity.y = 0
+			velocity.y += JUMP_VELOCITY
+			jump_state = JumpState.SECOND_JUMP
 		
 	if not is_on_floor():
 		velocity.y += gravity * delta
+		if jump_state == JumpState.GROUNDED:
+			jump_state = JumpState.FIRST_JUMP
+	else:
+		jump_state = JumpState.GROUNDED
 		
 func handle_animation():
 	if velocity.x == 0:

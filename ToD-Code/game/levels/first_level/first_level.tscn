@@ -165,7 +165,7 @@ texture = ExtResource("1_nx72r")
 12:10/0 = 0
 12:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 3.09359, 8, 3.09359, 8, 8, -8, 8)
 13:10/0 = 0
-13:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -3.8007, 8, -3.97748, 8, 8, -8, 8)
+13:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -4, 8, -3.97748, 8, 8, -8, 8)
 15:10/0 = 0
 15:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -3.8007, 8, -3.97748, 8, 8, -8, 8)
 16:10/0 = 0
@@ -991,7 +991,7 @@ tile_map_data = PackedByteArray("AAApAAcAAQAMAAYAAAApAAgAAQAMAAcAAAApAAkAAQAMAAg
 tile_set = SubResource("TileSet_e0rf3")
 
 [node name="player" parent="." instance=ExtResource("2_j0sdp")]
-position = Vector2(-1208, 1027)
+position = Vector2(3624, 311)
 
 [node name="CameraGuide" type="Marker2D" parent="player"]
 script = ExtResource("4_1u4nr")

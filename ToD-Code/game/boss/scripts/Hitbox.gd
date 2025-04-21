@@ -1,6 +1,6 @@
 extends Area2D
 signal hitted
 
-func hurt(body, damage):
+func hurt(_body, _damage):
 	print("boss tomou dano")
 	hitted.emit()

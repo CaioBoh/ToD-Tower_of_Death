@@ -46,7 +46,7 @@ func _on_left_detector_area_entered(area):
 
 
 
-func _on_left_detector_body_entered(body):
+func _on_left_detector_body_entered(_body):
 	pass # Replace with function body.
 
 
@@ -62,7 +62,7 @@ func _on_hitbox_2_body_entered(body):
 
 
 
-func _on_hitbox_area_entered(area):
+func _on_hitbox_area_entered(_area):
 	#hurt(Global.global_player,10)
 	current_position = global_position
 	
@@ -134,7 +134,7 @@ func _on_first_boss_dead():
 	explosion_instance.global_position = boss_body.global_position
 	explosion_instance.z_index = 10
 	get_parent().get_parent().add_child(explosion_instance)
-	Global.current_camera.shake(5,20,20)
+	Global.current_camera.start_shake(5,20,20)
 	boss_body.get_parent().queue_free()
 	
 # Funcs below to access through animation
@@ -152,4 +152,4 @@ func play_hit_ground_double_sound():
 	hit_ground_double_sound.play()
 	
 func shake_cam():
-	Global.current_camera.shake(0.5,10,30)
+	Global.current_camera.start_shake(0.5,10,30)
