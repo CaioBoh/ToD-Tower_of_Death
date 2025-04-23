@@ -20,7 +20,7 @@ const SPEED = 250.0
 const SLIPPERY = SPEED
 const JUMP_VELOCITY = -500
 const KNOCKBACK_HIT = 1000
-const KNOCKBACK_DASH = 3000
+const KNOCKBACK_DASH = 2000
 const KNOCKBACK_SWORD_X = 600
 const KNOCKBACK_SWORD_Y = -70
 const CROSS_HIT = preload("res://game/particles/scene/cross_hit.tscn")
@@ -31,6 +31,8 @@ var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 var cont_moedas: int = 0
 var direction: int
 var input_allowed := true
+var disable_physics := false
+var dashed_on_air := false
 var is_attacking := false
 var is_dash_timer_finished := true
 var can_be_hit := false
@@ -63,12 +65,13 @@ func handle_input(delta: float):
 	move()
 		
 func handle_animation():
-	if velocity.x == 0:
-		if not is_attacking:
-			animation.play("Atlas_idle")
-	else:
-		if not is_attacking:
-			animation.play("Atlas_run")
+	if input_allowed and not disable_physics:
+		if velocity.x == 0:
+			if not is_attacking:
+				animation.play("Atlas_idle")
+		else:
+			if not is_attacking:
+				animation.play("Atlas_run")
 
 		flip_nodes()
 
@@ -97,8 +100,15 @@ func handle_attack():
 	is_attacking = false
 	
 func handle_dash():
-	if Input.is_action_just_pressed("dash") and is_on_floor() and Global.dash_picked and is_dash_timer_finished and input_allowed:
+	if is_on_floor():
+		dashed_on_air = false
+	if disable_physics:
+		return
+	if Input.is_action_just_pressed("dash") and Global.dash_picked and is_dash_timer_finished and input_allowed and not dashed_on_air:
 		is_dash_timer_finished = false
+		
+		if not is_on_floor():
+			dashed_on_air = true
 		
 		knockback_vector = Vector2(direction * KNOCKBACK_DASH, 0)
 		var knockback_tween = get_tree().create_tween()
@@ -140,6 +150,8 @@ func talk() -> bool:
 	return talked
 	
 func jump(delta):
+	if disable_physics:
+		return
 	if not is_on_floor():
 		velocity.y += gravity * delta
 		if jump_state == JumpState.GROUNDED:
@@ -164,7 +176,7 @@ func jump(delta):
 			jump_state = JumpState.SECOND_JUMP
 
 func move():
-	if not input_allowed:
+	if not input_allowed or disable_physics:
 		return
 	direction = Input.get_axis("left", "right") as int
 	if Global.is_talking:
@@ -238,10 +250,11 @@ func game_over():
 	Global.player_health = 100
 
 func _on_dash_upgrade_dash_picked():
-	input_allowed = false
+	disable_physics = true
+	velocity = Vector2(0, 0)
 	animation_player.play("receiving_dash")
 	await animation_player.animation_finished
-	input_allowed = true
+	disable_physics = false
 		
 func spawn_death_particle():
 	var instance = DEATH_PARTICLE_ATLAS.instantiate()

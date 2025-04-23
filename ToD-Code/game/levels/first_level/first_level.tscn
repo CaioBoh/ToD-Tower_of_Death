@@ -991,7 +991,7 @@ tile_map_data = PackedByteArray("AAApAAcAAQAMAAYAAAApAAgAAQAMAAcAAAApAAkAAQAMAAg
 tile_set = SubResource("TileSet_e0rf3")
 
 [node name="player" parent="." instance=ExtResource("2_j0sdp")]
-position = Vector2(-1201, 1087)
+position = Vector2(6752, -2295)
 
 [node name="CameraGuide" type="Marker2D" parent="player"]
 script = ExtResource("4_1u4nr")
