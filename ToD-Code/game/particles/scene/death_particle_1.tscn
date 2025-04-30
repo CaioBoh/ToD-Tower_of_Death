@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://bsjkmdntn8p43"]
 
-[ext_resource type="Script" path="res://game/particles/script/death_particle_1.gd" id="1_niei5"]
+[ext_resource type="Script" uid="uid://5i04ly75uh28" path="res://game/particles/script/death_particle_1.gd" id="1_niei5"]
 
 [sub_resource type="Gradient" id="Gradient_j0aoh"]
 offsets = PackedFloat32Array(0, 0.313726)

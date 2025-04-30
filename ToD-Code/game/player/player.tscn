@@ -1,6 +1,6 @@
 [gd_scene load_steps=76 format=3 uid="uid://bgsoxr6nsjbrr"]
 
-[ext_resource type="Script" path="res://game/player/player.gd" id="1_glbys"]
+[ext_resource type="Script" uid="uid://be5lw2qj0mg4g" path="res://game/player/player.gd" id="1_glbys"]
 [ext_resource type="Texture2D" uid="uid://nr2565fatmm4" path="res://game/player/sprites/Run/Atlas-Run1.png" id="1_tvake"]
 [ext_resource type="Texture2D" uid="uid://byhevtpoysbgj" path="res://game/player/sprites/Idle/Atlas-Idle1.png" id="2_a2ng3"]
 [ext_resource type="Texture2D" uid="uid://dckut58a6u3gq" path="res://game/player/sprites/Run/Atlas-Run2.png" id="2_nag1t"]
@@ -459,10 +459,10 @@ tracks/5/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_162de"]
 _data = {
-"RESET": SubResource("Animation_dnk2n"),
-"death": SubResource("Animation_7hidi"),
-"hurt_animation": SubResource("Animation_b2kt7"),
-"receiving_dash": SubResource("Animation_81u81")
+&"RESET": SubResource("Animation_dnk2n"),
+&"death": SubResource("Animation_7hidi"),
+&"hurt_animation": SubResource("Animation_b2kt7"),
+&"receiving_dash": SubResource("Animation_81u81")
 }
 
 [sub_resource type="Curve" id="Curve_vonai"]
@@ -499,14 +499,12 @@ position = Vector2(1, 0)
 sprite_frames = SubResource("SpriteFrames_xettt")
 animation = &"Upgrade"
 autoplay = "Atlas_idle"
-frame = 2
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.5, 1)
 shape = SubResource("RectangleShape2D_30y0u")
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
+[node name="LifeBar" type="ProgressBar" parent="."]
 offset_left = -23.0
 offset_top = -41.0
 offset_right = 23.0
@@ -525,7 +523,7 @@ collision_mask = 4
 position = Vector2(21, -4)
 shape = SubResource("RectangleShape2D_hnlc7")
 disabled = true
-debug_color = Color(0.945721, 0.213935, 0.248147, 0.42)
+debug_color = Color(0.991202, 0, 0.269313, 1)
 
 [node name="SwordUpArea" type="Area2D" parent="."]
 collision_layer = 4
@@ -539,7 +537,7 @@ debug_color = Color(0.934515, 0.238558, 0.245729, 0.42)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_162de")
+&"": SubResource("AnimationLibrary_162de")
 }
 
 [node name="GhostSpawner" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("23_foyyw")]
@@ -553,7 +551,7 @@ target_position = Vector2(0, 33)
 collision_mask = 2
 
 [node name="IsThereStairs" type="RayCast2D" parent="."]
-position = Vector2(1, 32)
+position = Vector2(1, 32.1)
 target_position = Vector2(10, 0)
 collision_mask = 2
 
@@ -566,10 +564,10 @@ collision_mask = 2
 position = Vector2(2, -6)
 emitting = false
 amount = 40
-process_material = SubResource("ParticleProcessMaterial_wlrbf")
 texture = ExtResource("25_pjbwp")
 one_shot = true
 explosiveness = 0.85
+process_material = SubResource("ParticleProcessMaterial_wlrbf")
 
 [node name="receiving_power_particle" parent="." instance=ExtResource("26_rwgup")]
 
@@ -610,9 +608,19 @@ one_shot = true
 wait_time = 0.4
 one_shot = true
 
+[node name="JustStoppedTalking" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="LedgeForgivenessTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
 [connection signal="area_entered" from="SwordSideArea" to="." method="_on_sword_side_area_area_entered"]
-[connection signal="body_entered" from="SwordSideArea" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="SwordSideArea" to="." method="_on_sword_side_area_body_entered"]
 [connection signal="area_entered" from="SwordUpArea" to="." method="_on_sword_up_area_area_entered"]
 [connection signal="body_entered" from="SwordUpArea" to="." method="_on_sword_up_area_body_entered"]
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="InvencibleTimer" to="." method="_on_invencible_timer_timeout"]
+[connection signal="timeout" from="JustStoppedTalking" to="." method="_on_just_stopped_talking_timeout"]
+[connection signal="timeout" from="LedgeForgivenessTimer" to="." method="_on_ledge_forgiveness_timer_timeout"]

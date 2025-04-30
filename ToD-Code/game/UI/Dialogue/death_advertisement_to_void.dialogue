@@ -4,5 +4,5 @@ Dona Morte: Não olhe demais para o abismo...
 Dona Morte: Haha, não se preocupe, sua alma te impede de pular ai
 Dona Morte: não importa quanta coragem tenha ou quão louco seja...
 Dona Morte: Quando a alma deseja algo, não há como lutar contra.
-set Global.is_talking = false
+set Global.global_player.just_stopped_talking_timer.start()
 => END

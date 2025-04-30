@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dcqgqtr04erq2"]
 
 [ext_resource type="Texture2D" uid="uid://cg7hkqm7p2kiv" path="res://game/particles/texture/ball.png" id="1_nxwa1"]
-[ext_resource type="Script" path="res://game/particles/script/hit_particle_boss.gd" id="2_d20u8"]
+[ext_resource type="Script" uid="uid://bo25fa6muvha" path="res://game/particles/script/hit_particle_boss.gd" id="2_d20u8"]
 
 [sub_resource type="Gradient" id="Gradient_b6opd"]
 offsets = PackedFloat32Array(0.031746, 0.238095, 0.619048, 0.714286, 1)

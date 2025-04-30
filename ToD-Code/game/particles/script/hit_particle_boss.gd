@@ -6,7 +6,7 @@ func _ready():
 	await get_tree().create_timer(2).timeout
 	queue_free()
 
-func _process(delta):
+func _process(_delta):
 	if hand_to_seek:
 		global_position = hand_to_seek.global_position
 
