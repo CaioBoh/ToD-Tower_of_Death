@@ -29,7 +29,7 @@ const DEATH_PARTICLE_ATLAS = preload("res://game/particles/scene/death_particle_
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 var cont_moedas: int = 0
-var direction: int
+var looking_direction := 1
 var input_allowed := true
 var disable_physics := false
 var dashed_on_air := false
@@ -110,7 +110,7 @@ func handle_dash():
 		if not is_on_floor():
 			dashed_on_air = true
 		
-		knockback_vector = Vector2(direction * KNOCKBACK_DASH, 0)
+		knockback_vector = Vector2(looking_direction * KNOCKBACK_DASH, 0)
 		var knockback_tween = get_tree().create_tween()
 		knockback_tween.tween_property(self,"knockback_vector",Vector2.ZERO,0.2)
 		
@@ -178,7 +178,7 @@ func jump(delta):
 func move():
 	if not input_allowed or disable_physics:
 		return
-	direction = Input.get_axis("left", "right") as int
+	var direction = Input.get_axis("left", "right") as int
 	if Global.is_talking:
 		velocity.x = 0
 	elif knockback_vector != Vector2.ZERO:
@@ -188,18 +188,21 @@ func move():
 			velocity.x = direction * SPEED
 		else:
 			velocity.x = move_toward(velocity.x, 0, SLIPPERY)
+	
+	if direction != 0:
+		looking_direction = direction
 			
 func flip_nodes():
-	if direction == 1:
+	if looking_direction == 1:
 		animation.flip_h = false
-	elif direction == -1:
+	elif looking_direction == -1:
 		animation.flip_h = true
-	sword_area_side.scale.x = direction
-	actionable_seeker.position.x = 5.5 + direction * 24.5
-	max_height_stairs.position.x = 1.5 + direction * 12.5
-	max_height_stairs.scale.x = direction
-	is_there_stairs.scale.x = direction
-	is_touching_floor.scale.x = direction
+	sword_area_side.scale.x = looking_direction
+	actionable_seeker.position.x = 5.5 + looking_direction * 24.5
+	max_height_stairs.position.x = 1.5 + looking_direction * 12.5
+	max_height_stairs.scale.x = looking_direction
+	is_there_stairs.scale.x = looking_direction
+	is_touching_floor.scale.x = looking_direction
 
 func hurt(body,damage):
 	if can_be_hit and not Global.is_player_dead:
