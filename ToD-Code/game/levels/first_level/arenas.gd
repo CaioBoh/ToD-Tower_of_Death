@@ -101,8 +101,8 @@ func move_player_to_platform_center():
 		
 	var direction = Global.global_player.global_position.direction_to(platform_seeking_player.global_position).x
 	direction /= abs(direction)
-	Global.global_player.direction = int(direction)
-	Global.global_player.velocity.x = Global.global_player.direction * Global.global_player.SPEED
+	Global.global_player.looking_direction = int(direction)
+	Global.global_player.velocity.x = Global.global_player.looking_direction * Global.global_player.SPEED
 	while abs(Global.global_player.global_position.x - platform_seeking_player.global_position.x) > 10:
 		await get_tree().create_timer(0.05).timeout
 	

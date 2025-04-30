@@ -24,11 +24,11 @@ color_initial_ramp = SubResource("GradientTexture1D_ejwow")
 [node name="GPUParticles2D" type="GPUParticles2D"]
 emitting = false
 amount = 10
-process_material = SubResource("ParticleProcessMaterial_3gncw")
 texture = ExtResource("1_ddxe5")
 lifetime = 2.0
 one_shot = true
 speed_scale = 1.86
 explosiveness = 0.9
 randomness = 0.27
+process_material = SubResource("ParticleProcessMaterial_3gncw")
 script = ExtResource("2_saf67")
