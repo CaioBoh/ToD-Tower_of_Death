@@ -51,7 +51,6 @@ func _ready():
 
 func _physics_process(delta):
 	LifeBar.value = Global.player_health
-
 	handle_input(delta)
 	handle_animation()
 	handle_attack()

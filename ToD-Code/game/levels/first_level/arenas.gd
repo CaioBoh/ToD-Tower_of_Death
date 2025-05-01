@@ -30,19 +30,6 @@ func _physics_process(_delta: float) -> void:
 
 func check_platform():
 	platform.global_position = platform_path_follower.global_position
-#	if current_platform_status == PlatformStatus.DOWN:
-#		floor_1.disabled = true
-#		floor_2.disabled = true
-#		floor_3.disabled = true
-#		camera.limit_bottom = 100000000
-#		camera.limit_right = 100000000
-#		camera.limit_left = -100000000
-#		if platform_path_follower.progress_ratio > 0.001:
-#			platform_path_follower.progress_ratio -= 0.001
-#		else:
-#			platform_path_follower.progress_ratio = 0
-#			current_platform_status = PlatformStatus.WAITING
-	
 	if current_platform_status == PlatformStatus.UP:	
 		if platform_path_follower.progress_ratio <= platform_path_progress_per_arena[arenas_cleared]:
 			platform_path_follower.progress_ratio += 0.001
@@ -62,12 +49,7 @@ func check_platform():
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body == Global.global_player:
 		if current_platform_status == PlatformStatus.WAITING:
-			print("AAAAAAAAAAAAAAAAAAAA")
 			move_player_to_platform_center()
-			
-#func _on_area_2d_body_exited(body: Node2D) -> void:
-#	if body == Global.global_player and current_platform_status != PlatformStatus.STOP:
-#		current_platform_status = PlatformStatus.DOWN
 
 func _on_arena_1_arena_1_cleared() -> void:
 	arenas_cleared = 1
@@ -83,11 +65,12 @@ func _on_arena_2_arena_2_cleared() -> void:
 
 func _on_arena_3_timer_timeout() -> void:
 	arenas_cleared = 3
+	
 	for enemy in arena_3_enemies.get_children(false):
 		if enemy.has_method("hurt"):
 			enemy.hurt(Global.global_player, enemy.health)
+			
 	arena_3_spawn_timer.stop()
-	
 	current_platform_status = PlatformStatus.WAITING
 	platform_seeking_player.disabled = false
 	print("arena 3 cleared")

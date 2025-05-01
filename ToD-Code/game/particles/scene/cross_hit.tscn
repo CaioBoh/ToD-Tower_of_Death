@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://c5s67km22522a"]
 
 [ext_resource type="Texture2D" uid="uid://cg7hkqm7p2kiv" path="res://game/particles/texture/ball.png" id="1_pum76"]
-[ext_resource type="Script" uid="uid://cqmcv2kt6ige5" path="res://game/particles/script/cross_hit.gd" id="1_qlmgl"]
+[ext_resource type="Script" uid="uid://dn2e5kt2fqmru" path="res://game/particles/script/cross_hit.gd" id="1_qlmgl"]
 
 [sub_resource type="Gradient" id="Gradient_hmr0a"]
 offsets = PackedFloat32Array(0.235955, 0.382022, 0.977528)
@@ -60,25 +60,24 @@ scale_curve = SubResource("CurveTexture_6bmvg")
 color_ramp = SubResource("GradientTexture1D_033vo")
 
 [node name="CrossHit" type="Node2D"]
-position = Vector2(6, -9)
 script = ExtResource("1_qlmgl")
 
 [node name="Horizontal" type="GPUParticles2D" parent="."]
 emitting = false
 amount = 200
-process_material = SubResource("ParticleProcessMaterial_wio8d")
 texture = ExtResource("1_pum76")
 one_shot = true
 explosiveness = 0.76
 local_coords = true
+process_material = SubResource("ParticleProcessMaterial_wio8d")
 
 [node name="Vertical" type="GPUParticles2D" parent="."]
 position = Vector2(1, 33)
 emitting = false
 amount = 300
-process_material = SubResource("ParticleProcessMaterial_2fbsk")
 texture = ExtResource("1_pum76")
 one_shot = true
 explosiveness = 0.71
 randomness = 0.69
 local_coords = true
+process_material = SubResource("ParticleProcessMaterial_2fbsk")

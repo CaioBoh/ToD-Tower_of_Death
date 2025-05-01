@@ -514,6 +514,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_x8iou")
 value = 70.0
 rounded = true
 show_percentage = false
+metadata/_edit_use_anchors_ = true
 
 [node name="SwordSideArea" type="Area2D" parent="."]
 collision_layer = 4

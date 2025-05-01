@@ -17,8 +17,8 @@ color = Color(100, 100, 100, 1)
 [node name="DeathParticleAtlas" type="GPUParticles2D"]
 emitting = false
 amount = 50
-process_material = SubResource("ParticleProcessMaterial_iujqy")
 texture = ExtResource("1_vdu7f")
 lifetime = 3.0
 one_shot = true
 explosiveness = 0.9
+process_material = SubResource("ParticleProcessMaterial_iujqy")

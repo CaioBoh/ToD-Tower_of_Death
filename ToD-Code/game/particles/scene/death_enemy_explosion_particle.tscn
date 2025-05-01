@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://c6mddjrfwbpkr"]
 
 [ext_resource type="Texture2D" uid="uid://cg7hkqm7p2kiv" path="res://game/particles/texture/ball.png" id="1_rfumb"]
-[ext_resource type="Script" uid="uid://ddt77p0atqyrh" path="res://game/particles/script/death_enemy_explosion_particle.gd" id="2_jbyb5"]
+[ext_resource type="Script" uid="uid://bew5641sdtm54" path="res://game/particles/script/simple_oneshot_particle.gd" id="2_ejfen"]
 
 [sub_resource type="Gradient" id="Gradient_rklww"]
 offsets = PackedFloat32Array(0.0147059, 0.176471)
@@ -43,9 +43,9 @@ collision_use_scale = true
 [node name="GPUParticles2D" type="GPUParticles2D"]
 emitting = false
 amount = 30
-process_material = SubResource("ParticleProcessMaterial_0biw4")
 texture = ExtResource("1_rfumb")
 lifetime = 2.0
 one_shot = true
 explosiveness = 0.85
-script = ExtResource("2_jbyb5")
+process_material = SubResource("ParticleProcessMaterial_0biw4")
+script = ExtResource("2_ejfen")
