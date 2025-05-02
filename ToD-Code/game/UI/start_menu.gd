@@ -7,9 +7,8 @@ func _ready():
 	playButton.grab_focus()
 
 func _on_play_pressed() -> void:
-	SceneTransition.change_scene("res://game/levels/lobby/lobby.tscn")
+	SceneTransition.change_scene("res://game/levels/lobby/lobby.tscn", SceneTransition.menu_state.PLAYING)
 	Global.reset()
-	SceneTransition.current_menu_state = SceneTransition.menu_state.PLAYING
 	
 func _on_exit_pressed() -> void:
 	get_tree().quit()

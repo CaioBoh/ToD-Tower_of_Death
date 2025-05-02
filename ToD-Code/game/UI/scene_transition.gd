@@ -1,30 +1,71 @@
 extends CanvasLayer
 
-enum menu_state { START_MENU, PAUSE_MENU, PLAYING }
+enum menu_state { START_MENU, PAUSE_MENU, LOADING, PLAYING }
 
 var isTransitioning := false
 var current_menu_state := menu_state.START_MENU
+var is_there_any_input := false
 
+@onready var dissolve_screen: ColorRect = $DissolveScreenLayer/DissolveScreen
+@onready var loading_screen: CanvasLayer = $LoadingScreen
 @onready var animationPlayer: AnimationPlayer = $AnimationPlayer
+@onready var progress_bar: ProgressBar = $LoadingScreen/ProgressBar
+@onready var progress_percentage: Label = $LoadingScreen/ProgressPercentage
 
-func change_scene(target:String) -> void:
+func _input(event: InputEvent) -> void:
+	if event.is_pressed():
+		is_there_any_input = true
+	else:
+		is_there_any_input = false
+
+func change_scene(target:String, new_menu_state: menu_state) -> void:
 	if isTransitioning:
 		return
+		
 	isTransitioning = true
-	$CanvasLayer/ColorRect.visible = true
+	current_menu_state = menu_state.LOADING
+	
 	animationPlayer.play("dissolve")
 	await animationPlayer.animation_finished
-	get_tree().change_scene_to_file(target)
+	
+	animationPlayer.play_backwards("dissolve")
+	loading_screen.visible = true
+	
+	ResourceLoader.load_threaded_request(target)
+	var progress = []
+	var status = ResourceLoader.load_threaded_get_status(target, progress)
+	while status != ResourceLoader.ThreadLoadStatus.THREAD_LOAD_LOADED:
+		progress_bar.value = progress[0] * 100
+		progress_percentage.text = str(progress[0] * 100) + "%"
+		status = ResourceLoader.load_threaded_get_status(target, progress)
+		await get_tree().process_frame
+		
+	progress_bar.value = 100
+	progress_percentage.text = "100%"
+		
+	while not is_there_any_input:
+		await get_tree().process_frame
+	
+	animationPlayer.play("dissolve")
+	await animationPlayer.animation_finished
+	
+	loading_screen.visible = false
+	
+	var new_scene_resource = ResourceLoader.load_threaded_get(target)
+	var new_scene_instantiated = new_scene_resource.instantiate()
+	get_tree().root.add_child(new_scene_instantiated)
+	get_tree().current_scene.queue_free()
+	get_tree().current_scene = new_scene_instantiated
+	
 	animationPlayer.play_backwards("dissolve")
 	await animationPlayer.animation_finished
-	$CanvasLayer/ColorRect.visible = false
+	
 	isTransitioning = false
+	current_menu_state = new_menu_state
 	
 func resumeDissolve():
-	$CanvasLayer/ColorRect.visible = true
 	animationPlayer.play()
 func pauseDissolve():
 	animationPlayer.pause()
 func pauseDissolveAndMakeInvisible():
-	$CanvasLayer/ColorRect.visible = false
 	animationPlayer.pause()

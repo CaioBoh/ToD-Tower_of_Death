@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://d2kjnc6aamh1c"]
+[gd_scene load_steps=7 format=3 uid="uid://d2kjnc6aamh1c"]
 
 [ext_resource type="Script" uid="uid://rrmei3d8yi1d" path="res://game/UI/scene_transition.gd" id="1_j3iww"]
 
@@ -7,7 +7,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/0/path = NodePath("DissolveScreenLayer/DissolveScreen:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -22,7 +22,7 @@ resource_name = "dissolve"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/0/path = NodePath("DissolveScreenLayer/DissolveScreen:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -38,22 +38,58 @@ _data = {
 &"dissolve": SubResource("Animation_2l558")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b6jix"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b8dk2"]
+
 [node name="SceneTransition" type="CanvasLayer"]
 script = ExtResource("1_j3iww")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="DissolveScreenLayer" type="CanvasLayer" parent="."]
 layer = 4
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-visible = false
+[node name="DissolveScreen" type="ColorRect" parent="DissolveScreenLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0, 0, 0, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_55sc7")
 }
+
+[node name="LoadingScreen" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Background" type="ColorRect" parent="LoadingScreen"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="LoadingScreen"]
+offset_left = 1010.0
+offset_top = 684.0
+offset_right = 1249.87
+offset_bottom = 699.35
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_b6jix")
+theme_override_styles/fill = SubResource("StyleBoxFlat_b8dk2")
+show_percentage = false
+
+[node name="ProgressPercentage" type="Label" parent="LoadingScreen"]
+offset_left = 1052.0
+offset_top = 599.0
+offset_right = 1207.0
+offset_bottom = 682.75
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 60
+text = "0%"
+horizontal_alignment = 1

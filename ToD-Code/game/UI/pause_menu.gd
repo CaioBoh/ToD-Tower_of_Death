@@ -31,5 +31,5 @@ func _on_options_pressed() -> void:
 func _on_quit_pressed() -> void:
 	get_tree().paused = false
 	$CanvasLayer.visible = false
-	SceneTransition.current_menu_state = SceneTransition.menu_state.START_MENU
-	SceneTransition.change_scene("res://game/UI/start_menu.tscn")
+	if not SceneTransition.isTransitioning:
+		SceneTransition.change_scene("res://game/UI/start_menu.tscn", SceneTransition.menu_state.START_MENU)
