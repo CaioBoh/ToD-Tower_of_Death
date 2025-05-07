@@ -34,13 +34,13 @@ func transition():
 		throw_wave = true
 		#print("is touching floor")
 	if throw_wave and not already_waved:
-		Global.current_camera.shake(0.5,10,30)
+		Global.current_camera.start_shake(0.5,10,30)
 		#print("throwing a wave")
 		already_waved = true
 		throw_new_wave()
 
 
-func _on_animation_player_animation_finished(anim_name):
+func _on_animation_player_animation_finished(_anim_name):
 	attack_finished = true
 
 func throw_new_wave():

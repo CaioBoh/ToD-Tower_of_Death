@@ -17,22 +17,22 @@ var death_particle = preload("res://game/particles/scene/death_enemy_explosion_p
 @onready var dash_area: Area2D = $DashArea
 @onready var sprites: AnimatedSprite2D = $AnimatedSprite2D
 
+const DASH_SPEED = 3000
+const DASH_PREPARATION_SPEED = -200
+
 var bounce_tween: Tween
-
-
 
 func _ready():
 	player = Global.global_player
 	anim.play("RESET")
 
 func _physics_process(delta):
-	
+	print(gravity)
 	velocity.y += gravity
-	
-	if knockback_vector != Vector2.ZERO: #(0,0)
+	if knockback_vector != Vector2.ZERO:
 		velocity = knockback_vector * 25
 	elif dash_vector != Vector2.ZERO:
-		velocity = dash_vector * 10
+		velocity = dash_vector
 	elif chasing:
 		chase(delta)
 	move_and_slide()
@@ -43,13 +43,11 @@ func chase(delta):
 		velocity = dir * SPEED * delta
 		handle_animation(dir)
 
-
 func _on_sight_area_body_entered(body):
 	if body == player:
 		chasing = true
 
 func hurt(body, damage):
-	
 	create_bounce()
 	bounce_tween.tween_property(sprites,"scale", Vector2(0.56 * 1.35,0.56 * 1.35),0.2) \
 				.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
@@ -63,23 +61,19 @@ func hurt(body, damage):
 	$HurtSound.play()
 	knockback_vector = global_position - body.global_position
 	var soul_instance = soul_particle.instantiate()
+	soul_instance.rotation = (knockback_vector).angle()	
+	add_child(soul_instance)
 	soul_instance.global_position = global_position
-	soul_instance.rotation = (knockback_vector).angle()
-	soul_instance.emitting = true
+	var knockback_tween:= get_tree().create_tween()
 	if health - damage > 0:
-		health-=damage
+		health -= damage
 		anim.play("hurt")
-		add_child(soul_instance)
-		Global.freeze_time(0.0,0.1)
-		var knockback_tween:= get_tree().create_tween()
+		Global.change_time_scale_for_duration(0.0,0.1)
 		knockback_tween.tween_property(self,"knockback_vector", Vector2.ZERO,0.25)	
 	else:
-		add_child(soul_instance)
 		anim.play("death")
-		var knockback_tween:= get_tree().create_tween()
 		knockback_tween.tween_property(self,"knockback_vector", Vector2.ZERO,0.1)	
 		chasing = false
-
 
 func _on_dash_area_body_entered(body):
 	if body == player and not is_dashing and not dead:
@@ -87,20 +81,17 @@ func _on_dash_area_body_entered(body):
 		is_dashing = true
 		dash()
 
-
-
 func dash():
-	chasing = false
-	velocity = position.direction_to(player.global_position) * -200
+	var directionToPlayer := position.direction_to(player.global_position)
+	velocity = directionToPlayer * DASH_PREPARATION_SPEED
 	var player_last_pos = player.global_position
 	await get_tree().create_timer(0.7).timeout
-	dash_vector = player_last_pos - global_position
+	dash_vector = directionToPlayer * DASH_SPEED
 	var dash_tween:= get_tree().create_tween()
 	dash_tween.tween_property(self,"dash_vector",Vector2.ZERO, 0.2)
 	await get_tree().create_timer(0.5).timeout
 	chasing = true
 	is_dashing = false
-
 
 func _on_collision_area_body_entered(body):
 	if body==player:
@@ -136,6 +127,3 @@ func create_bounce():
 	if bounce_tween and bounce_tween.is_running():
 		bounce_tween.kill()
 	bounce_tween = create_tween()
-
-func play_death_sound():
-	$DeathSound.play()

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b15ao87wkybpx" path="res://game/boss/scene/first_boss.tscn" id="1_aymlm"]
 [ext_resource type="PackedScene" uid="uid://bgsoxr6nsjbrr" path="res://game/player/player.tscn" id="2_q5s4j"]
-[ext_resource type="Script" path="res://game/UI/Camera.gd" id="2_sliuw"]
+[ext_resource type="Script" uid="uid://b1qhlx75cvps4" path="res://game/UI/Camera.gd" id="2_sliuw"]
 [ext_resource type="Texture2D" uid="uid://d1gtwnw5a64cl" path="res://game/map/tileset.png" id="4_yfa2j"]
 [ext_resource type="Texture2D" uid="uid://bp557nlgxlpgp" path="res://game/map/column.png" id="5_cbyc8"]
 [ext_resource type="AudioStream" uid="uid://dklfqm5gs1fwg" path="res://game/sound/music/03-Heartless.mp3" id="5_ytr42"]

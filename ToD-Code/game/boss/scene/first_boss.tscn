@@ -1,11 +1,11 @@
 [gd_scene load_steps=15 format=3 uid="uid://b15ao87wkybpx"]
 
-[ext_resource type="Script" path="res://game/boss/scripts/first_boss.gd" id="1_21v6b"]
+[ext_resource type="Script" uid="uid://l6cydtwyhkm5" path="res://game/boss/scripts/first_boss.gd" id="1_21v6b"]
 [ext_resource type="Texture2D" uid="uid://lijbavn8s3mi" path="res://game/boss/sprites/Boss1.png" id="1_wj1q4"]
 [ext_resource type="Texture2D" uid="uid://crspjryfdho3i" path="res://game/boss/sprites/Boss2.png" id="2_lmuce"]
 [ext_resource type="Texture2D" uid="uid://orda6o4vaa8c" path="res://game/boss/sprites/Boss3.png" id="3_dn0gb"]
 [ext_resource type="Texture2D" uid="uid://dl0tncamekp7m" path="res://game/boss/sprites/Boss4.png" id="4_mdqaa"]
-[ext_resource type="Script" path="res://game/boss/scripts/boss_body.gd" id="5_ic5w6"]
+[ext_resource type="Script" uid="uid://dxdvo2g2viwgl" path="res://game/boss/scripts/boss_body.gd" id="5_ic5w6"]
 [ext_resource type="PackedScene" uid="uid://c1cm4q3gijxok" path="res://game/boss/scene/boss_hands.tscn" id="5_pwilx"]
 [ext_resource type="PackedScene" uid="uid://dcqgqtr04erq2" path="res://game/particles/scene/hit_particle_boss.tscn" id="8_qpvjk"]
 [ext_resource type="AudioStream" uid="uid://facj8dwk7al0" path="res://game/sound/boss/hurt_variant3.sfxr" id="9_lm6db"]

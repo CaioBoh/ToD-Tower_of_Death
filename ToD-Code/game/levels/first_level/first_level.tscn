@@ -1,4 +1,4 @@
-[gd_scene load_steps=125 format=3 uid="uid://owgvu4xqpji4"]
+[gd_scene load_steps=126 format=3 uid="uid://owgvu4xqpji4"]
 
 [ext_resource type="Texture2D" uid="uid://d1gtwnw5a64cl" path="res://game/map/tileset.png" id="1_nx72r"]
 [ext_resource type="PackedScene" uid="uid://bgsoxr6nsjbrr" path="res://game/player/player.tscn" id="2_j0sdp"]
@@ -33,6 +33,7 @@
 [ext_resource type="Script" path="res://game/levels/first_level/arena_3.gd" id="29_y4jbg"]
 [ext_resource type="PackedScene" uid="uid://7wlia6j3uw4f" path="res://game/enemies/standing_enemy/standing_enemy.tscn" id="31_ql4wn"]
 [ext_resource type="PackedScene" uid="uid://c2hcqohgaw0t5" path="res://game/enemies/flying_enemy/flying_enemy.tscn" id="32_nepk0"]
+[ext_resource type="AudioStream" path="res://game/sound/sfx-upgrade.wav" id="32_olhk6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x5ibj"]
 texture = ExtResource("3_3n3w6")
@@ -915,6 +916,21 @@ size = Vector2(220, 88)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tmvo4"]
 size = Vector2(199, 85)
 
+[sub_resource type="Animation" id="Animation_sm6i7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Reaper:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-725.959, 266.585)]
+}
+
 [sub_resource type="Animation" id="Animation_272ab"]
 resource_name = "reapers"
 length = 5.0
@@ -929,21 +945,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(-725.959, 266.585), Vector2(-725.959, 854.585), Vector2(-725.959, 266.585), Vector2(-725.959, 854.585), Vector2(-725.959, 266.585), Vector2(-725.959, 854.585), Vector2(-725.959, 266.585), Vector2(-725.959, 854.585)]
-}
-
-[sub_resource type="Animation" id="Animation_sm6i7"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Reaper:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-725.959, 266.585)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_n13qa"]
@@ -1700,6 +1701,9 @@ texture = ExtResource("24_tyfui")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DashUpgrade/PathFollow2D/DashUpgradeArea"]
 shape = SubResource("CircleShape2D_un7py")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="DashUpgrade/PathFollow2D/DashUpgradeArea"]
+stream = ExtResource("32_olhk6")
 
 [node name="Lights" type="Node2D" parent="."]
 

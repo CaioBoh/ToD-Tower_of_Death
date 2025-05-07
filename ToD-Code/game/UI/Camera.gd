@@ -12,9 +12,9 @@ var _previous_x = 0.0
 var _previous_y = 0.0
 var _last_offset = Vector2(0, 0)
 
-var target = null
+"""var target = null"""
 var objects = null
-#var max_dist = 2000.0
+
 @onready var max_dist: float = (get_viewport_rect().size / 2.0).distance_to(get_viewport_rect().size)
 
 @onready var normal_zoom = zoom
@@ -22,49 +22,40 @@ var objects = null
 @onready var normal_smoothing_speed = position_smoothing_speed
 
 func _ready():
-	set_process(true)
 	Global.current_camera = self
 
 # Shake with decreasing intensity while there's time remaining.
 func _process(delta):
-	if target:
-		follow_target(delta)
-	elif dynamic_enabled and objects != null:
-		# Check if objects are not in tree and return
-		var objects_are_in_tree: bool = true
-		for x in objects:
-			if not x.is_inside_tree():
-				objects_are_in_tree = false
-				break
+	"""
+	follow_target(delta)
+	dynamic_tracking()
+	"""
+	shake(delta)
 		
-		if objects_are_in_tree:
-			# Offset camera based on the ball position from the center
-			var center: Vector2 = get_viewport_rect().size / 2.0
-			var average_pos: Vector2 = Vector2.ZERO
-			for x in objects:
-				average_pos += x.global_position
-			average_pos /= objects.size()
-			
-#			var dist_from_center = center.distance_to(average_pos)
-			var dist_from_center = (average_pos - center) / center
-			drag_horizontal_offset = dist_from_center.x * dynamic_factor
-			drag_vertical_offset = dist_from_center.y * dynamic_factor
-			
-			# Zoom in or out camera depending on players position
-			var max_distance: float = 0.0
-			var distance = average_pos.distance_to(Vector2(center.x, get_viewport_rect().size.y))
-			
-#			print("Distance: ", distance)
-#			print("Max dist: ", max_dist)
-			zoom = lerp(Vector2(0.975, 0.975), Vector2(1.025, 1.025), 1 - (distance/max_dist))
-	else:
-		pass
+func reset_camera() -> void:
+	global_position = normal_position
+	zoom = normal_zoom
 	
+# Kick off a new screenshake effect.
+func start_shake(duration, frequency, amplitude):
+	if frequency == 0: return
+	# Initialize variables.
+	_duration = duration
+	_timer = duration
+	_period_in_ms = 1.0 / frequency
+	_amplitude = amplitude
+	_previous_x = randf_range(-1.0, 1.0)
+	_previous_y = randf_range(-1.0, 1.0)
+	# Reset previous offset, if any.
+	set_offset(get_offset() - _last_offset)
+	_last_offset = Vector2(0, 0)
+	
+func shake(delta):
 	# Only shake when there's shake time remaining.
 	if _timer == 0:
 		return
 	# Only shake on certain frames.
-	_last_shook_timer = _last_shook_timer + delta
+	_last_shook_timer += delta
 	# Be mathematically correct in the face of lag; usually only happens once.
 	while _last_shook_timer >= _period_in_ms:
 		_last_shook_timer = _last_shook_timer - _period_in_ms
@@ -86,17 +77,51 @@ func _process(delta):
 	if _timer <= 0:
 		_timer = 0
 		set_offset(get_offset() - _last_offset)
+	
+"""
+func dynamic_tracking():
+	# Check if objects are not in tree and return
+	if !dynamic_enabled or objects == null:
+		return
 		
-func follow_target(delta: float) -> void:
-	global_position = lerp(global_position, target.global_position, 12.0*delta)
-
-func reset_camera() -> void:
-	global_position = normal_position
-	zoom = normal_zoom
-
+	var objects_are_in_tree: bool = true
+	for x in objects:
+		if not x.is_inside_tree():
+			objects_are_in_tree = false
+			break
+			
+	if objects_are_in_tree:
+		# Offset camera based on the ball position from the center
+		var center: Vector2 = get_viewport_rect().size / 2.0
+		var average_pos: Vector2 = Vector2.ZERO
+		for x in objects:
+			average_pos += x.global_position
+		average_pos /= objects.size()
+		
+#			var dist_from_center = center.distance_to(average_pos)
+		var dist_from_center = (average_pos - center) / center
+		drag_horizontal_offset = dist_from_center.x * dynamic_factor
+		drag_vertical_offset = dist_from_center.y * dynamic_factor
+		
+		# Zoom in or out camera depending on players position
+		var max_distance: float = 0.0
+		var distance = average_pos.distance_to(Vector2(center.x, get_viewport_rect().size.y))
+		
+#			print("Distance: ", distance)
+#			print("Max dist: ", max_dist)
+		zoom = lerp(Vector2(0.975, 0.975), Vector2(1.025, 1.025), 1 - (distance/max_dist))
+		
+func _on_Timer_timeout() -> void:
+	if target == null or not is_instance_valid(target): return
+	$Tween.remove_all()
+	$Tween.interpolate_property(self, "zoom", zoom, Vector2(1, 1), 1.5, 
+		Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+	$Tween.start()
+	
 func start_tracking(new_target) -> void:
 	position_smoothing_enabled = false
 	target = new_target
+	print($Tween)
 	$Tween.remove_all()
 	$Tween.interpolate_property(self, "zoom", zoom, Vector2(0.8, 0.8), 0.8, 
 		Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
@@ -112,24 +137,9 @@ func stop_tracking() -> void:
 	$Tween.interpolate_property(self, "position", position, normal_position, 0.8, 
 		Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
 	$Tween.start()
-
-# Kick off a new screenshake effect.
-func shake(duration, frequency, amplitude):
-	if frequency == 0: return
-	# Initialize variables.
-	_duration = duration
-	_timer = duration
-	_period_in_ms = 1.0 / frequency
-	_amplitude = amplitude
-	_previous_x = randf_range(-1.0, 1.0)
-	_previous_y = randf_range(-1.0, 1.0)
-	# Reset previous offset, if any.
-	set_offset(get_offset() - _last_offset)
-	_last_offset = Vector2(0, 0)
-
-func _on_Timer_timeout() -> void:
-	if target == null or not is_instance_valid(target): return
-	$Tween.remove_all()
-	$Tween.interpolate_property(self, "zoom", zoom, Vector2(1, 1), 1.5, 
-		Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
-	$Tween.start()
+	
+func follow_target(delta: float) -> void:
+	if not target:
+		return
+	global_position = lerp(global_position, target.global_position, 12.0*delta)
+"""

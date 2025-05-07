@@ -78,5 +78,5 @@ else:
 	Dona Morte: ...
 	set Global.death_encounters +=1
 
-set Global.is_talking = false
+set Global.global_player.just_stopped_talking_timer.start()
 => END

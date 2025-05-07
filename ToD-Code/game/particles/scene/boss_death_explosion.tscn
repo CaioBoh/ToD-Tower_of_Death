@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://eog5b2p7g4y8"]
 
 [ext_resource type="Texture2D" uid="uid://cg7hkqm7p2kiv" path="res://game/particles/texture/ball.png" id="1_nv6qr"]
-[ext_resource type="Script" path="res://game/particles/script/boss_death_explosion.gd" id="2_j8v47"]
+[ext_resource type="Script" uid="uid://chjmpl6urpfvp" path="res://game/particles/script/boss_death_explosion.gd" id="2_j8v47"]
 [ext_resource type="AudioStream" uid="uid://c2e1mnan3uoi7" path="res://game/sound/boss/explosion_variant1.sfxr" id="3_r36be"]
 
 [sub_resource type="Gradient" id="Gradient_mxac3"]
@@ -19,7 +19,7 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.238095, 1, 1, 1, 0)
 gradient = SubResource("Gradient_vlfg1")
 
 [sub_resource type="Curve" id="Curve_5wlmt"]
-max_value = 137.53
+_limits = [0.0, 137.53, 0.0, 1.0]
 _data = [Vector2(1e-05, 0.018868), 0.0, 0.0, 0, 0, Vector2(0.0182927, 17.1264), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
@@ -40,7 +40,7 @@ color_ramp = SubResource("GradientTexture1D_5hvaj")
 color_initial_ramp = SubResource("GradientTexture1D_ejwow")
 
 [sub_resource type="Curve" id="Curve_ledqa"]
-max_value = 10.0
+_limits = [0.0, 10.0, 0.0, 1.0]
 _data = [Vector2(0, 2.15094), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
@@ -48,7 +48,7 @@ point_count = 2
 curve = SubResource("Curve_ledqa")
 
 [sub_resource type="Curve" id="Curve_16b2n"]
-max_value = 12.31
+_limits = [0.0, 12.31, 0.0, 1.0]
 _data = [Vector2(0, 5.62079), 0.0, 0.0, 0, 0, Vector2(1, 1.55094), 0.0, 0.0, 0, 0]
 point_count = 2
 
