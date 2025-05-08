@@ -14,7 +14,7 @@ func _process(delta: float) -> void:
 
 func _on_dash_upgrade_area_body_entered(body: Node2D) -> void:
 	sfx_upgrade.play()
-	Global.current_camera.shake(5,30,15)
+	Global.current_camera.start_shake(5,30,15	)
 	#self.visible = false;
 	dash_upgrade_particle.emitting = false
 	self.set_process(false)
