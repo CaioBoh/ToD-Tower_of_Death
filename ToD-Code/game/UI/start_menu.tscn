@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://bvhghigfoen7n"]
+[gd_scene load_steps=5 format=3 uid="uid://bvhghigfoen7n"]
 
 [ext_resource type="Script" uid="uid://cqsed016gptlf" path="res://game/UI/start_menu.gd" id="1_1kwvb"]
-[ext_resource type="Texture2D" uid="uid://cljiigss5i7tx" path="res://game/enemies/flying_enemy/sprites/flying_skull5.png" id="1_mpwk1"]
+[ext_resource type="Texture2D" uid="uid://dvhyexcpxjhog" path="res://game/UI/Menu.png" id="2_1kwvb"]
+
+[sub_resource type="SystemFont" id="SystemFont_xuwhi"]
+font_names = PackedStringArray("MS UI Gothic")
+
+[sub_resource type="SystemFont" id="SystemFont_bduwm"]
+font_names = PackedStringArray("MS UI Gothic")
 
 [node name="Control" type="Control" node_paths=PackedStringArray("playButton", "exitButton")]
 layout_mode = 3
@@ -9,49 +15,58 @@ anchors_preset = 0
 offset_right = 1280.0
 offset_bottom = 720.0
 script = ExtResource("1_1kwvb")
-playButton = NodePath("Buttons/Play")
-exitButton = NodePath("Buttons/Exit")
-
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+playButton = NodePath("CenterContainer/Buttons/Play")
+exitButton = NodePath("CenterContainer/Buttons/Exit")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1072, 568)
-texture = ExtResource("1_mpwk1")
+position = Vector2(641, 361)
+texture = ExtResource("2_1kwvb")
 
-[node name="Buttons" type="VBoxContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
-anchors_preset = 2
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 106.0
-offset_top = -278.0
-offset_right = 263.0
-offset_bottom = -90.0
+offset_left = -263.0
+offset_top = -265.0
+offset_right = -106.0
+offset_bottom = -77.0
+grow_horizontal = 0
 grow_vertical = 0
 
-[node name="Play" type="Button" parent="Buttons"]
-modulate = Color(0, 0, 0, 1)
+[node name="Buttons" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Play" type="Button" parent="CenterContainer/Buttons"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Exit")
 focus_neighbor_bottom = NodePath("../Exit")
 theme_override_constants/line_spacing = 0
-theme_override_font_sizes/font_size = 60
+theme_override_fonts/font = SubResource("SystemFont_xuwhi")
+theme_override_font_sizes/font_size = 90
 text = "Jogar"
 flat = true
 alignment = 0
 
-[node name="Exit" type="Button" parent="Buttons"]
-modulate = Color(0, 0, 0, 1)
+[node name="Options" type="Button" parent="CenterContainer/Buttons"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Exit")
+focus_neighbor_bottom = NodePath("../Exit")
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = SubResource("SystemFont_xuwhi")
+theme_override_font_sizes/font_size = 90
+text = "Opções"
+flat = true
+alignment = 0
+
+[node name="Exit" type="Button" parent="CenterContainer/Buttons"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Play")
 focus_neighbor_bottom = NodePath("../Play")
-theme_override_font_sizes/font_size = 60
+theme_override_fonts/font = SubResource("SystemFont_bduwm")
+theme_override_font_sizes/font_size = 90
 text = "Sair"
 flat = true
 alignment = 0
@@ -60,5 +75,6 @@ alignment = 0
 position = Vector2(641, 361)
 scale = Vector2(17.0061, 16.3162)
 
-[connection signal="pressed" from="Buttons/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="Buttons/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="CenterContainer/Buttons/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="CenterContainer/Buttons/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="CenterContainer/Buttons/Exit" to="." method="_on_exit_pressed"]

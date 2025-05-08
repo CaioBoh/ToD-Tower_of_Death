@@ -1,5 +1,6 @@
 extends Path2D
 
+@onready var ajdiesofnosgn: AudioStreamPlayer = $audio
 @onready var dash_upgrade_area: Area2D = $PathFollow2D/DashUpgradeArea
 @onready var path_follow_2d: PathFollow2D = $PathFollow2D
 @onready var collision_shape: CollisionShape2D = $PathFollow2D/DashUpgradeArea/CollisionShape2D

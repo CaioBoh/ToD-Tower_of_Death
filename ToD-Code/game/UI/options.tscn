@@ -1,0 +1,87 @@
+[gd_scene load_steps=4 format=3 uid="uid://dnt3mteolj5rl"]
+
+[ext_resource type="PackedScene" uid="uid://cdj1x2nrtlnvu" path="res://game/UI/audios_slider.tscn" id="1_6hxcx"]
+[ext_resource type="Script" uid="uid://cr234258io2nc" path="res://game/UI/options.gd" id="1_hr7dv"]
+
+[sub_resource type="SystemFont" id="SystemFont_6hxcx"]
+font_names = PackedStringArray("MS UI Gothic")
+
+[node name="Options" type="Control" node_paths=PackedStringArray("tab_container")]
+process_mode = 3
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 1.00185)
+script = ExtResource("1_hr7dv")
+tab_container = NodePath("CanvasLayer/TabContainer")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 3
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 1.00185)
+color = Color(0, 0, 0, 0.705882)
+
+[node name="TabContainer" type="TabContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_top = NodePath("Sons/VBoxContainer/AudioSlider3")
+focus_neighbor_bottom = NodePath("Sons/VBoxContainer/AudioSlider")
+current_tab = 0
+
+[node name="Sons" type="CenterContainer" parent="CanvasLayer/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TabContainer/Sons"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="AudioSlider" parent="CanvasLayer/TabContainer/Sons/VBoxContainer" instance=ExtResource("1_6hxcx")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../..")
+focus_neighbor_bottom = NodePath("../AudioSlider2")
+bus_name = "Master"
+
+[node name="AudioSlider2" parent="CanvasLayer/TabContainer/Sons/VBoxContainer" instance=ExtResource("1_6hxcx")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../AudioSlider")
+focus_neighbor_bottom = NodePath("../AudioSlider3")
+bus_name = "Music"
+
+[node name="AudioSlider3" parent="CanvasLayer/TabContainer/Sons/VBoxContainer" instance=ExtResource("1_6hxcx")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../AudioSlider2")
+focus_neighbor_bottom = NodePath("../../..")
+bus_name = "Sound Effect"
+
+[node name="Back" type="Button" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -78.0
+offset_right = 154.0
+grow_vertical = 0
+theme_override_fonts/font = SubResource("SystemFont_6hxcx")
+theme_override_font_sizes/font_size = 50
+text = "Voltar"
+
+[connection signal="pressed" from="CanvasLayer/Back" to="." method="_on_back_pressed"]

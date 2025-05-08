@@ -1,22 +1,15 @@
 extends CanvasLayer
 
-enum menu_state { START_MENU, PAUSE_MENU, LOADING, PLAYING }
+enum menu_state { START_MENU, PAUSE_MENU, OPTIONS, LOADING, PLAYING }
 
 var isTransitioning := false
 var current_menu_state := menu_state.START_MENU
-var is_there_any_input := false
 
 @onready var dissolve_screen: ColorRect = $DissolveScreenLayer/DissolveScreen
 @onready var loading_screen: CanvasLayer = $LoadingScreen
 @onready var animationPlayer: AnimationPlayer = $AnimationPlayer
 @onready var progress_bar: ProgressBar = $LoadingScreen/ProgressBar
 @onready var progress_percentage: Label = $LoadingScreen/ProgressPercentage
-
-func _input(event: InputEvent) -> void:
-	if event.is_pressed():
-		is_there_any_input = true
-	else:
-		is_there_any_input = false
 
 func change_scene(target:String, new_menu_state: menu_state) -> void:
 	if isTransitioning:
@@ -36,14 +29,14 @@ func change_scene(target:String, new_menu_state: menu_state) -> void:
 	var status = ResourceLoader.load_threaded_get_status(target, progress)
 	while status != ResourceLoader.ThreadLoadStatus.THREAD_LOAD_LOADED:
 		progress_bar.value = progress[0] * 100
-		progress_percentage.text = str(progress[0] * 100) + "%"
+		progress_percentage.text = str(int(progress[0]) * 100) + "%"
 		status = ResourceLoader.load_threaded_get_status(target, progress)
 		await get_tree().process_frame
 		
 	progress_bar.value = 100
 	progress_percentage.text = "100%"
 		
-	while not is_there_any_input:
+	while not Input.is_anything_pressed():
 		await get_tree().process_frame
 	
 	animationPlayer.play("dissolve")

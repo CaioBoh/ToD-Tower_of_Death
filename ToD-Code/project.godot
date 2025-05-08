@@ -20,7 +20,7 @@ Global="*res://global/global.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 SceneTransition="*res://game/UI/scene_transition.tscn"
 PauseMenu="*res://game/UI/pause_menu.tscn"
-GlobalInput="*res://global/input.gd"
+Options="*res://game/UI/options.tscn"
 
 [dialogue_manager]
 

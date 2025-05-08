@@ -88,7 +88,8 @@ func handle_attack():
 		damage_zone_up.disabled = true
 	else:
 		animation.play("Attack1")
-		var sound = [$SlashSound, $SlashSound2].pick_random()
+		var sound: AudioStreamPlayer = $SlashSound
+		sound.pitch_scale = 1 + randf_range(0, 1)
 		sound.play()
 		
 		await get_tree().create_timer(0.2).timeout

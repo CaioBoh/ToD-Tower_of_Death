@@ -968,6 +968,7 @@ collision_visibility_mode = 1
 
 [node name="Back" type="TileMapLayer" parent="Map"]
 z_index = -2
+texture_filter = 1
 use_parent_material = true
 position = Vector2(-141, -498)
 scale = Vector2(2.01792, 1.99056)
@@ -976,6 +977,7 @@ tile_set = SubResource("TileSet_e0rf3")
 
 [node name="Front" type="TileMapLayer" parent="Map"]
 z_index = -2
+texture_filter = 1
 use_parent_material = true
 position = Vector2(-141, -498)
 scale = Vector2(2.01792, 1.99056)
@@ -984,6 +986,7 @@ tile_set = SubResource("TileSet_e0rf3")
 
 [node name="AheadOfPlayer" type="TileMapLayer" parent="Map"]
 z_index = 16
+texture_filter = 1
 use_parent_material = true
 position = Vector2(-141, -498)
 scale = Vector2(2.01792, 1.99056)
@@ -991,6 +994,7 @@ tile_map_data = PackedByteArray("AAApAAcAAQAMAAYAAAApAAgAAQAMAAcAAAApAAkAAQAMAAg
 tile_set = SubResource("TileSet_e0rf3")
 
 [node name="player" parent="." instance=ExtResource("2_j0sdp")]
+texture_filter = 1
 position = Vector2(-1226, 1054)
 
 [node name="CameraGuide" type="Marker2D" parent="player"]
