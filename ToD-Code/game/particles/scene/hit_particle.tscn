@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dhl43v56fun4x"]
 
 [ext_resource type="Texture2D" uid="uid://cg7hkqm7p2kiv" path="res://game/particles/texture/ball.png" id="1_ddxe5"]
-[ext_resource type="Script" uid="uid://c5uor6fdffq4p" path="res://game/particles/script/hit_particle.gd" id="2_saf67"]
+[ext_resource type="Script" uid="uid://bew5641sdtm54" path="res://game/particles/script/simple_oneshot_particle.gd" id="2_3j5do"]
 
 [sub_resource type="Gradient" id="Gradient_mxac3"]
 offsets = PackedFloat32Array(0.380952, 0.761905, 1)
@@ -31,4 +31,4 @@ speed_scale = 1.86
 explosiveness = 0.9
 randomness = 0.27
 process_material = SubResource("ParticleProcessMaterial_3gncw")
-script = ExtResource("2_saf67")
+script = ExtResource("2_3j5do")

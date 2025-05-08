@@ -162,5 +162,5 @@ func summon_hurt_particle() -> void:
 	instance.position = Vector2.ZERO
 	instance.emitting = true
 	var direction_player = global_position.direction_to(player.global_position)
-	instance.rotation = (Vector2(direction_player.x, 0)*(-1)).angle()
+	instance.rotation = Vector2(-direction_player.x, 0).angle()
 	add_child(instance)

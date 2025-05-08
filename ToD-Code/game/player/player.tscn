@@ -514,6 +514,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_x8iou")
 value = 70.0
 rounded = true
 show_percentage = false
+metadata/_edit_use_anchors_ = true
 
 [node name="SwordSideArea" type="Area2D" parent="."]
 collision_layer = 4
@@ -583,22 +584,20 @@ debug_color = Color(0.702388, 0.490781, 1.92523e-07, 0.42)
 
 [node name="HurtSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("30_hop0w")
+bus = &"Sound Effect"
 
 [node name="SlashSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("31_yasg0")
 volume_db = -4.588
 pitch_scale = 1.41
-
-[node name="SlashSound2" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("31_yasg0")
-volume_db = -4.588
-pitch_scale = 1.12
+bus = &"Sound Effect"
 
 [node name="DashSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("32_0p8ua")
 volume_db = 3.059
 pitch_scale = 1.06
 max_polyphony = 5
+bus = &"Sound Effect"
 
 [node name="DashTimer" type="Timer" parent="."]
 wait_time = 0.2

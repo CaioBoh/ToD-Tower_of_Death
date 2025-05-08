@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=4 uid="uid://s2eb0658mlth"]
+[gd_scene load_steps=65 format=4 uid="uid://s2eb0658mlth"]
 
 [ext_resource type="PackedScene" uid="uid://bgsoxr6nsjbrr" path="res://game/player/player.tscn" id="1_i44mo"]
 [ext_resource type="Texture2D" uid="uid://qmsohnvdnmax" path="res://game/map/main.png" id="2_bmvu8"]
@@ -17,6 +17,7 @@
 [ext_resource type="Resource" uid="uid://dp753if1xlfuc" path="res://game/UI/Dialogue/death_dialog.dialogue" id="16_eh5lj"]
 [ext_resource type="Texture2D" uid="uid://ddfsnypsaw65k" path="res://game/levels/lobby/DeathSprites/Morte-Idle10.png" id="17_isxgg"]
 [ext_resource type="Texture2D" uid="uid://7mueh5av4ard" path="res://game/levels/lobby/DeathSprites/Morte-Idle11.png" id="18_4ugit"]
+[ext_resource type="Script" uid="uid://b1qhlx75cvps4" path="res://game/UI/Camera.gd" id="18_jmplq"]
 [ext_resource type="Texture2D" uid="uid://cojf3q1dsnqd8" path="res://game/levels/lobby/DeathSprites/Morte-Idle12.png" id="19_2qlwr"]
 [ext_resource type="Texture2D" uid="uid://3dwclntwir8f" path="res://game/levels/lobby/DeathSprites/Morte-Idle13.png" id="20_dgynv"]
 [ext_resource type="Texture2D" uid="uid://5dpdmgqoytqn" path="res://game/levels/lobby/DeathSprites/Morte-Idle14.png" id="21_gsh5p"]
@@ -747,6 +748,7 @@ zoom = Vector2(1.5, 1.5)
 limit_left = -70
 limit_right = 733
 position_smoothing_enabled = true
+script = ExtResource("18_jmplq")
 
 [node name="Portal" type="Area2D" parent="."]
 position = Vector2(741, 60)

@@ -747,32 +747,36 @@ one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_u0eui"),
-"MyLibrary": SubResource("AnimationLibrary_mtqvn")
+&"": SubResource("AnimationLibrary_u0eui"),
+&"MyLibrary": SubResource("AnimationLibrary_mtqvn")
 }
 
 [node name="JuiceAnimations" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_3b6fq")
+&"": SubResource("AnimationLibrary_3b6fq")
 }
 
 [node name="hit_ground_single_wave_sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("16_s22na")
 pitch_scale = 0.76
+bus = &"Sound Effect"
 
 [node name="hit_ground_double_wave_sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("16_7o6bd")
 volume_db = 15.68
 pitch_scale = 0.84
+bus = &"Sound Effect"
 
 [node name="hit_ground_single_sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("18_2c8bg")
 pitch_scale = 0.92
+bus = &"Sound Effect"
 
 [node name="hit_ground_double_sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("19_fwpva")
 pitch_scale = 0.76
 attenuation = 1.27456
+bus = &"Sound Effect"
 
 [connection signal="area_entered" from="Left_Hand/LeftDetector" to="." method="_on_left_detector_area_entered"]
 [connection signal="area_entered" from="Left_Hand/Hitbox" to="." method="_on_hitbox_area_entered"]

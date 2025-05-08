@@ -27,7 +27,6 @@ func _ready():
 	anim.play("RESET")
 
 func _physics_process(delta):
-	print(gravity)
 	velocity.y += gravity
 	if knockback_vector != Vector2.ZERO:
 		velocity = knockback_vector * 25
@@ -61,8 +60,8 @@ func hurt(body, damage):
 	$HurtSound.play()
 	knockback_vector = global_position - body.global_position
 	var soul_instance = soul_particle.instantiate()
-	soul_instance.rotation = (knockback_vector).angle()	
 	add_child(soul_instance)
+	soul_instance.rotation = (knockback_vector).angle()	
 	soul_instance.global_position = global_position
 	var knockback_tween:= get_tree().create_tween()
 	if health - damage > 0:
@@ -119,9 +118,8 @@ func get_invisible():
 
 func summon_death_particle():
 	var soul_instance = death_particle.instantiate()
+	add_child(soul_instance)
 	soul_instance.global_position = global_position
-	soul_instance.emitting = true
-	get_parent().add_child(soul_instance)
 	
 func create_bounce():
 	if bounce_tween and bounce_tween.is_running():

@@ -1,7 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://cumvpgfebedbj"]
+[gd_scene load_steps=11 format=3 uid="uid://cumvpgfebedbj"]
 
 [ext_resource type="Texture2D" uid="uid://cg7hkqm7p2kiv" path="res://game/particles/texture/ball.png" id="1_lrptg"]
-[ext_resource type="Script" uid="uid://b8lh1o5j2vsxo" path="res://game/particles/script/receiving_power_particle.gd" id="2_6s6jy"]
 
 [sub_resource type="CurveTexture" id="CurveTexture_dvpdi"]
 
@@ -70,7 +69,6 @@ lifetime = 3.1
 one_shot = true
 explosiveness = 0.85
 process_material = SubResource("ParticleProcessMaterial_g4d5n")
-script = ExtResource("2_6s6jy")
 
 [node name="exploding_after_receiving" type="GPUParticles2D" parent="."]
 emitting = false

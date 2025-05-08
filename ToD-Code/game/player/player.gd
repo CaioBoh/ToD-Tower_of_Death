@@ -51,7 +51,6 @@ func _ready():
 
 func _physics_process(delta):
 	LifeBar.value = Global.player_health
-
 	handle_input(delta)
 	handle_animation()
 	handle_attack()
@@ -65,7 +64,7 @@ func handle_input(delta: float):
 	move()
 		
 func handle_animation():
-	if input_allowed and not disable_physics:
+	if not disable_physics:
 		if velocity.x == 0:
 			if not is_attacking:
 				animation.play("Atlas_idle")
@@ -73,7 +72,7 @@ func handle_animation():
 			if not is_attacking:
 				animation.play("Atlas_run")
 
-		flip_nodes()
+	flip_nodes()
 
 func handle_attack():
 	if not Input.is_action_just_pressed("attack") or is_attacking or not input_allowed:
@@ -89,7 +88,8 @@ func handle_attack():
 		damage_zone_up.disabled = true
 	else:
 		animation.play("Attack1")
-		var sound = [$SlashSound, $SlashSound2].pick_random()
+		var sound: AudioStreamPlayer = $SlashSound
+		sound.pitch_scale = 1 + randf_range(0, 1)
 		sound.play()
 		
 		await get_tree().create_timer(0.2).timeout
@@ -249,7 +249,7 @@ func game_over():
 	await get_tree().create_timer(0.2).timeout
 	set_physics_process(false)
 	await animation_player.animation_finished
-	SceneTransition.change_scene("res://game/levels/lobby/lobby.tscn")
+	SceneTransition.change_scene("res://game/levels/lobby/lobby.tscn", SceneTransition.menu_state.PLAYING)
 	Global.player_health = 100
 
 func _on_dash_upgrade_dash_picked():

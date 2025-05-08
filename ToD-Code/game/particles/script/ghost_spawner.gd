@@ -9,7 +9,6 @@ func start_spawn():
 func stop_spawn():
 	$Timer.stop()
 
-
 func _on_timer_timeout():
 	var ghost_instance = ghost_scene.instantiate()
 	get_tree().get_current_scene().add_child(ghost_instance)
@@ -19,4 +18,3 @@ func _on_timer_timeout():
 	ghost_instance.scale = sprite.scale
 	ghost_instance.flip_h = sprite.flip_h
 	ghost_instance.z_index = -1
-	#print("ghost spawned!")
