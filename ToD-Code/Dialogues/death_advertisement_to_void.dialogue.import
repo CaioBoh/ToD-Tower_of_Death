@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_14"
+type="Resource"
+uid="uid://drcyt4hf2y5fm"
+path="res://.godot/imported/death_advertisement_to_void.dialogue-45cacfb034cd1ab57c56b249f4c08cb7.tres"
+
+[deps]
+
+source_file="res://Dialogues/death_advertisement_to_void.dialogue"
+dest_files=["res://.godot/imported/death_advertisement_to_void.dialogue-45cacfb034cd1ab57c56b249f4c08cb7.tres"]
+
+[params]
+
+defaults=true

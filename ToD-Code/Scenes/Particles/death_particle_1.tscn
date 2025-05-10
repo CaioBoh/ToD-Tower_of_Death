@@ -1,0 +1,44 @@
+[gd_scene load_steps=9 format=3 uid="uid://bsjkmdntn8p43"]
+
+[ext_resource type="Script" uid="uid://bew5641sdtm54" path="res://Scripts/Particles/simple_oneshot_particle.gd" id="1_1r0ts"]
+
+[sub_resource type="Gradient" id="Gradient_j0aoh"]
+offsets = PackedFloat32Array(0, 0.313726)
+colors = PackedColorArray(0, 1, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ypn6i"]
+gradient = SubResource("Gradient_j0aoh")
+
+[sub_resource type="Gradient" id="Gradient_tso3b"]
+offsets = PackedFloat32Array(0.470588, 0.764706, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.0980392, 1, 0.0980392, 1, 0, 1, 0.345098, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wpwhe"]
+gradient = SubResource("Gradient_tso3b")
+
+[sub_resource type="Curve" id="Curve_7cm6h"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_lrqak"]
+curve = SubResource("Curve_7cm6h")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fx4ph"]
+particle_flag_disable_z = true
+velocity_pivot = Vector3(49.935, 0, 0)
+spread = 180.0
+initial_velocity_min = 43.47
+initial_velocity_max = 65.21
+gravity = Vector3(0, 98, 0)
+scale_min = 2.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_lrqak")
+color = Color(1.25, 1.25, 1.25, 1)
+color_ramp = SubResource("GradientTexture1D_wpwhe")
+color_initial_ramp = SubResource("GradientTexture1D_ypn6i")
+
+[node name="DeathParticle_1" type="GPUParticles2D"]
+amount = 200
+explosiveness = 0.87
+process_material = SubResource("ParticleProcessMaterial_fx4ph")
+script = ExtResource("1_1r0ts")

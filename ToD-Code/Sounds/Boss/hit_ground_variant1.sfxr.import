@@ -1,0 +1,17 @@
+[remap]
+
+importer="com.timothyqiu.gdfxr.importer"
+type="AudioStreamWAV"
+uid="uid://b1vqu78ob30uq"
+path="res://.godot/imported/hit_ground_variant1.sfxr-154eb9b498cd334e33953bbc99fb552b.sample"
+
+[deps]
+
+source_file="res://Sounds/Boss/hit_ground_variant1.sfxr"
+dest_files=["res://.godot/imported/hit_ground_variant1.sfxr-154eb9b498cd334e33953bbc99fb552b.sample"]
+
+[params]
+
+loop=false
+bit_depth=0
+sample_rate=0

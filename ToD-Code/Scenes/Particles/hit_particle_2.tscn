@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://cwort4gur7eo2"]
+
+[ext_resource type="Texture2D" uid="uid://cg7hkqm7p2kiv" path="res://Sprites/Particles/ball.png" id="1_3ehpk"]
+[ext_resource type="Script" uid="uid://bew5641sdtm54" path="res://Scripts/Particles/simple_oneshot_particle.gd" id="2_v7v6s"]
+
+[sub_resource type="Gradient" id="Gradient_luq0n"]
+offsets = PackedFloat32Array(0, 0.412698, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.1309, 0.77, 0.471753, 1, 0.1309, 0.77, 0.184158, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_evl4p"]
+gradient = SubResource("Gradient_luq0n")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ob5cd"]
+particle_flag_disable_z = true
+direction = Vector3(3, -1, 0)
+initial_velocity_min = 135.14
+initial_velocity_max = 216.22
+angular_velocity_min = -1.60933e-05
+angular_velocity_max = 72.73
+gravity = Vector3(0, 98, 0)
+scale_min = 0.07
+scale_max = 0.5
+color_initial_ramp = SubResource("GradientTexture1D_evl4p")
+
+[node name="HitParticle2" type="GPUParticles2D"]
+emitting = false
+texture = ExtResource("1_3ehpk")
+one_shot = true
+explosiveness = 0.8
+process_material = SubResource("ParticleProcessMaterial_ob5cd")
+script = ExtResource("2_v7v6s")

@@ -1,0 +1,135 @@
+[gd_scene load_steps=6 format=3 uid="uid://bb1h7k4kk1f4o"]
+
+[ext_resource type="Script" uid="uid://b5ffbw17bu8aw" path="res://Scripts/Boss/wave.gd" id="1_p7gvv"]
+[ext_resource type="Texture2D" uid="uid://ig38txyrxhf8" path="res://Sprites/Particles/line.png" id="2_yh6ce"]
+
+[sub_resource type="Animation" id="Animation_blcmq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionPolygon2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_r6pw4"]
+resource_name = "new_animation"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(1, 0.9), Vector2(1.8, 0.7)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionPolygon2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(1, 0.9), Vector2(1.8, 0.7)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iaxny"]
+_data = {
+&"RESET": SubResource("Animation_blcmq"),
+&"new_animation": SubResource("Animation_r6pw4")
+}
+
+[node name="Wave" type="Area2D"]
+collision_layer = 4
+script = ExtResource("1_p7gvv")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-1, 1, -115, 1, -113, -121, -98, -37, -87, -22)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 6.326
+one_shot = true
+autostart = true
+
+[node name="Texture" type="Node2D" parent="."]
+
+[node name="Line" type="Sprite2D" parent="Texture"]
+position = Vector2(-108.667, -63.2)
+scale = Vector2(2, 2.15)
+texture = ExtResource("2_yh6ce")
+
+[node name="Line2" type="Sprite2D" parent="Texture"]
+position = Vector2(-103.333, -29)
+scale = Vector2(3.22917, 1)
+texture = ExtResource("2_yh6ce")
+
+[node name="Line3" type="Sprite2D" parent="Texture"]
+position = Vector2(-86.6667, -16)
+scale = Vector2(2.22222, 0.609375)
+texture = ExtResource("2_yh6ce")
+
+[node name="Line4" type="Sprite2D" parent="Texture"]
+position = Vector2(-74.25, -8.25)
+scale = Vector2(3.20139, 0.304688)
+texture = ExtResource("2_yh6ce")
+
+[node name="Line5" type="Sprite2D" parent="Texture"]
+position = Vector2(-63.3333, -6)
+scale = Vector2(2.11111, 0.265156)
+texture = ExtResource("2_yh6ce")
+
+[node name="Line6" type="Sprite2D" parent="Texture"]
+position = Vector2(-48, -5)
+scale = Vector2(2.63889, 0.1875)
+texture = ExtResource("2_yh6ce")
+
+[node name="Line7" type="Sprite2D" parent="Texture"]
+position = Vector2(-23.3333, -3)
+rotation = 1.55979
+scale = Vector2(0.820262, -0.489667)
+skew = -0.0137552
+texture = ExtResource("2_yh6ce")
+
+[node name="Line8" type="Sprite2D" parent="Texture"]
+position = Vector2(-118.667, -55)
+scale = Vector2(0.666667, 1.625)
+texture = ExtResource("2_yh6ce")
+
+[node name="Line9" type="Sprite2D" parent="Texture"]
+position = Vector2(-122, -52)
+scale = Vector2(0.666667, 1)
+texture = ExtResource("2_yh6ce")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_iaxny")
+}
+autoplay = "new_animation"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

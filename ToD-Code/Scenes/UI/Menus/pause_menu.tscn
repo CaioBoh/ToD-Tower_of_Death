@@ -1,0 +1,72 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddlkenvoeq67g"]
+
+[ext_resource type="Script" uid="uid://bdm5tvu6wl145" path="res://Scripts/UI/Menus/pause_menu.gd" id="1_qqc6r"]
+
+[sub_resource type="SystemFont" id="SystemFont_6bjwj"]
+font_names = PackedStringArray("MS UI Gothic")
+
+[node name="PauseMenu" type="Control" node_paths=PackedStringArray("continueButton", "optionsButton", "quitButton")]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qqc6r")
+continueButton = NodePath("CanvasLayer/CenterContainer/Buttons/Continue")
+optionsButton = NodePath("CanvasLayer/CenterContainer/Buttons/Options")
+quitButton = NodePath("CanvasLayer/CenterContainer/Buttons/Quit")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 3
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.196078, 0.196078, 0.211765, 0.705882)
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Buttons" type="VBoxContainer" parent="CanvasLayer/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Continue" type="Button" parent="CanvasLayer/CenterContainer/Buttons"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Quit")
+focus_neighbor_bottom = NodePath("../Options")
+theme_override_fonts/font = SubResource("SystemFont_6bjwj")
+theme_override_font_sizes/font_size = 90
+text = "Continuar"
+metadata/_edit_use_anchors_ = true
+
+[node name="Options" type="Button" parent="CanvasLayer/CenterContainer/Buttons"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Continue")
+focus_neighbor_bottom = NodePath("../Quit")
+theme_override_fonts/font = SubResource("SystemFont_6bjwj")
+theme_override_font_sizes/font_size = 90
+text = "Opções"
+metadata/_edit_use_anchors_ = true
+
+[node name="Quit" type="Button" parent="CanvasLayer/CenterContainer/Buttons"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Options")
+focus_neighbor_bottom = NodePath("../Continue")
+theme_override_fonts/font = SubResource("SystemFont_6bjwj")
+theme_override_font_sizes/font_size = 90
+text = "Sair"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="CanvasLayer/CenterContainer/Buttons/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="CanvasLayer/CenterContainer/Buttons/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="CanvasLayer/CenterContainer/Buttons/Quit" to="." method="_on_quit_pressed"]

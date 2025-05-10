@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dlgo1exiwsoba"]
+
+[ext_resource type="Script" uid="uid://cxmf532kxxpid" path="res://Scripts/Particles/ghost.gd" id="1_yuxsj"]
+
+[sub_resource type="Gradient" id="Gradient_c62oo"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pn5w2"]
+gradient = SubResource("Gradient_c62oo")
+fill = 1
+fill_from = Vector2(0.496296, 0.5)
+fill_to = Vector2(0.911111, 0.225926)
+
+[node name="Ghost" type="Sprite2D"]
+script = ExtResource("1_yuxsj")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-0.999992, -0.999992)
+scale = Vector2(3.03125, 3.03125)
+energy = 0.3
+range_layer_min = -512
+range_layer_max = 512
+texture = SubResource("GradientTexture2D_pn5w2")

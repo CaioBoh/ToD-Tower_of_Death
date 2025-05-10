@@ -14,17 +14,22 @@ config/name="Tower of Death"
 run/main_scene="uid://bvhghigfoen7n"
 config/features=PackedStringArray("4.4", "Forward Plus")
 
+[audio]
+
+buses/default_bus_layout="res://Sounds/default_bus_layout.tres"
+
 [autoload]
 
-Global="*res://global/global.gd"
-DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
-SceneTransition="*res://game/UI/scene_transition.tscn"
-PauseMenu="*res://game/UI/pause_menu.tscn"
-Options="*res://game/UI/options.tscn"
+Global="*res://Scripts/Global/global.gd"
+DialogueManager="*res://addon/dialogue_manager/dialogue_manager.gd"
+SceneTransition="*res://Scenes/UI/scene_transition.tscn"
+PauseMenu="*res://Scenes/UI/Menus/pause_menu.tscn"
+Options="*res://Scenes/UI/Menus/options.tscn"
 
 [dialogue_manager]
 
-runtime/balloon_path="res://game/UI/balloon.tscn"
+runtime/balloon_path="res://Scenes/UI/Dialogue/balloon.tscn"
+editor/advanced/custom_test_scene_path="res://addon/dialogue_manager/test_scene.tscn"
 
 [display]
 
@@ -82,7 +87,6 @@ dash={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194325,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
-
 "next dialogue"={
 "deadzone": 0.2,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":32,"key_label":0,"unicode":32,"location":0,"echo":false,"script":null)

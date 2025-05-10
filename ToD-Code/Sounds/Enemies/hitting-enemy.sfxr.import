@@ -1,0 +1,17 @@
+[remap]
+
+importer="com.timothyqiu.gdfxr.importer"
+type="AudioStreamWAV"
+uid="uid://bgda1pfpangi4"
+path="res://.godot/imported/hitting-enemy.sfxr-629a2bffe76a9862963de60ba834c81c.sample"
+
+[deps]
+
+source_file="res://Sounds/Enemies/hitting-enemy.sfxr"
+dest_files=["res://.godot/imported/hitting-enemy.sfxr-629a2bffe76a9862963de60ba834c81c.sample"]
+
+[params]
+
+loop=false
+bit_depth=0
+sample_rate=0

@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://n4ff4pi8fgu8"]
+
+[ext_resource type="Texture2D" uid="uid://cg7hkqm7p2kiv" path="res://Sprites/Particles/ball.png" id="1_vdu7f"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_iujqy"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(1, 50, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+spread = 180.0
+initial_velocity_max = 63.06
+gravity = Vector3(0, -300, 0)
+scale_min = 0.1
+scale_max = 0.3
+color = Color(100, 100, 100, 1)
+
+[node name="DeathParticleAtlas" type="GPUParticles2D"]
+emitting = false
+amount = 50
+texture = ExtResource("1_vdu7f")
+lifetime = 3.0
+one_shot = true
+explosiveness = 0.9
+process_material = SubResource("ParticleProcessMaterial_iujqy")

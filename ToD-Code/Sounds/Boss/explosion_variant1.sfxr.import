@@ -1,0 +1,17 @@
+[remap]
+
+importer="com.timothyqiu.gdfxr.importer"
+type="AudioStreamWAV"
+uid="uid://c2e1mnan3uoi7"
+path="res://.godot/imported/explosion_variant1.sfxr-ab1f97506a0dd10b9e6419a187b2dcb6.sample"
+
+[deps]
+
+source_file="res://Sounds/Boss/explosion_variant1.sfxr"
+dest_files=["res://.godot/imported/explosion_variant1.sfxr-ab1f97506a0dd10b9e6419a187b2dcb6.sample"]
+
+[params]
+
+loop=false
+bit_depth=0
+sample_rate=0

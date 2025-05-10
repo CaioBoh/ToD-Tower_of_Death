@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d4c2d23qet6ui"]
+
+[ext_resource type="Script" uid="uid://bj6h5yi8yq5tk" path="res://Scripts/Enemies/enemy_summoner.gd" id="1_c32qb"]
+
+[node name="EnemySummoner" type="Marker2D"]
+script = ExtResource("1_c32qb")

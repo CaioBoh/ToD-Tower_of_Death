@@ -1,0 +1,64 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdj1x2nrtlnvu"]
+
+[ext_resource type="Script" uid="uid://btvvg8oewkrm2" path="res://Scripts/UI/Menus/audio_slider.gd" id="1_up4w4"]
+
+[sub_resource type="SystemFont" id="SystemFont_ocks6"]
+font_names = PackedStringArray("MS UI Gothic")
+subpixel_positioning = 0
+
+[sub_resource type="SystemFont" id="SystemFont_up4w4"]
+font_names = PackedStringArray("MS UI Gothic")
+subpixel_positioning = 0
+
+[node name="AudioSlider" type="Control" node_paths=PackedStringArray("audio_label", "value_label", "audio_slider")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_up4w4")
+audio_label = NodePath("HBoxContainer/Audio Type Label")
+value_label = NodePath("HBoxContainer/Value Label")
+audio_slider = NodePath("HBoxContainer/Value Slider")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Audio Type Label" type="Label" parent="HBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_ocks6")
+theme_override_font_sizes/font_size = 50
+text = "Efeito Sonoro"
+
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="Value Slider" type="HSlider" parent="HBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(300, 10)
+layout_mode = 2
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.01
+
+[node name="VSeparator2" type="VSeparator" parent="HBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="Value Label" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_up4w4")
+theme_override_font_sizes/font_size = 60
+text = "99%"
+
+[connection signal="value_changed" from="HBoxContainer/Value Slider" to="." method="_on_value_slider_value_changed"]
