@@ -57,10 +57,10 @@ vignette_jump_timer = NodePath("../VignetteJumpTimer")
 position = Vector2(116, 604)
 sprite_frames = SubResource("SpriteFrames_ux5h0")
 autoplay = "default"
-frame_progress = 0.309451
+frame_progress = 0.895979
 script = ExtResource("6_ux5h0")
 
 [node name="VignetteJumpTimer" type="Timer" parent="CanvasLayer"]
 wait_time = 2.0
 
-[connection signal="timeout" from="CanvasLayer/VignetteJumpTimer" to="." method="_on_vignette_jump_timer_timeout"]
+[connection signal="timeout" from="CanvasLayer/VignetteJumpTimer" to="CanvasLayer/Vignette" method="_on_vignette_jump_timer_timeout"]
