@@ -57,7 +57,7 @@ vignette_jump_timer = NodePath("../VignetteJumpTimer")
 position = Vector2(116, 604)
 sprite_frames = SubResource("SpriteFrames_ux5h0")
 autoplay = "default"
-frame_progress = 0.895979
+frame_progress = 0.271255
 script = ExtResource("6_ux5h0")
 
 [node name="VignetteJumpTimer" type="Timer" parent="CanvasLayer"]

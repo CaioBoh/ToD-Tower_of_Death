@@ -507,6 +507,7 @@ position = Vector2(1.5, 1)
 shape = SubResource("RectangleShape2D_30y0u")
 
 [node name="LifeBar" type="ProgressBar" parent="."]
+visible = false
 offset_left = -23.0
 offset_top = -41.0
 offset_right = 23.0

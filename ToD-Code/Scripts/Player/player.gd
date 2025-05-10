@@ -4,7 +4,7 @@ extends CharacterBody2D
 @onready var animation: AnimatedSprite2D = $animation
 @onready var sword_area_side: Area2D = $SwordSideArea
 @onready var sword_area_up: Area2D = $SwordUpArea
-@onready var LifeBar: ProgressBar = $LifeBar
+#@onready var LifeBar: ProgressBar = $LifeBar
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 #@onready var label: Label = $"../HUD/Moedas"
 @onready var knockback_vector := Vector2.ZERO
@@ -45,14 +45,14 @@ signal health_changed
 
 func _ready():
 	Global.global_player = self
-	LifeBar.visible = false
+	#LifeBar.visible = false
 	animation_player.play("RESET")
 	Global.is_player_dead = false
 	can_be_hit = true
 	Global.death_encounters = 0
 
 func _physics_process(delta):
-	LifeBar.value = Global.player_health
+	#LifeBar.value = Global.player_health
 	handle_input(delta)
 	handle_animation()
 	handle_attack()
@@ -213,7 +213,7 @@ func hurt(body,damage):
 			
 			health_changed.emit()
 			
-			LifeBar.visible = true
+			#LifeBar.visible = true
 			can_be_hit = false
 			
 			print("now player is invencible")
@@ -237,7 +237,7 @@ func hurt(body,damage):
 			knockback_tween.tween_property(self, "knockback_vector", Vector2.ZERO,0.25)
 			
 		else:
-			LifeBar.value = 0
+			#LifeBar.value = 0
 			Global.player_health = 0
 			game_over()
 
