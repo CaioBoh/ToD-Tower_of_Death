@@ -5,7 +5,8 @@ var current_camera: Camera2D
 var key_picked: bool = true
 var dash_picked: bool = false
 var is_player_dead: bool = false
-var player_health: int = 100
+var max_player_health: int = 100
+var player_health := max_player_health
 var player_sword_damage = 10
 
 # ------------------------ #

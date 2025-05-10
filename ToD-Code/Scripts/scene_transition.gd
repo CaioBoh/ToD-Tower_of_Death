@@ -21,6 +21,8 @@ func change_scene(target:String, new_menu_state: menu_state) -> void:
 	animationPlayer.play("dissolve")
 	await animationPlayer.animation_finished
 	
+	get_tree().current_scene.queue_free()
+	
 	animationPlayer.play_backwards("dissolve")
 	loading_screen.visible = true
 	
@@ -47,7 +49,6 @@ func change_scene(target:String, new_menu_state: menu_state) -> void:
 	var new_scene_resource = ResourceLoader.load_threaded_get(target)
 	var new_scene_instantiated = new_scene_resource.instantiate()
 	get_tree().root.add_child(new_scene_instantiated)
-	get_tree().current_scene.queue_free()
 	get_tree().current_scene = new_scene_instantiated
 	
 	animationPlayer.play_backwards("dissolve")

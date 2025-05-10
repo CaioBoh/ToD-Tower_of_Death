@@ -41,6 +41,8 @@ var ledge_forgivess_active := false
 
 enum JumpState { GROUNDED, FIRST_JUMP, SECOND_JUMP }
 
+signal health_changed
+
 func _ready():
 	Global.global_player = self
 	LifeBar.visible = false
@@ -207,7 +209,9 @@ func flip_nodes():
 func hurt(body,damage):
 	if can_be_hit and not Global.is_player_dead:
 		if(Global.player_health > damage):
-			#Global.player_health -= damage
+			Global.player_health -= damage
+			
+			health_changed.emit()
 			
 			LifeBar.visible = true
 			can_be_hit = false

@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://bs3v70xkv1n55"]
+
+[ext_resource type="Shader" uid="uid://dg60wjdtftyeg" path="res://Shaders/vignette.gdshader" id="1_8glcj"]
+[ext_resource type="Texture2D" uid="uid://cl5a64cfcvy13" path="res://Sprites/UI/Health/Health 1.png" id="1_fdl0h"]
+[ext_resource type="Script" uid="uid://4yy0jnjytpc" path="res://Scripts/UI/low_health_vignette.gd" id="1_vsu76"]
+[ext_resource type="Texture2D" uid="uid://bmwenfk86pmat" path="res://Sprites/UI/Health/Health 2.png" id="2_8glcj"]
+[ext_resource type="Texture2D" uid="uid://cccc4e7wetny2" path="res://Sprites/UI/Health/Health 3.png" id="3_vsu76"]
+[ext_resource type="Script" uid="uid://crmn7wsybuo1g" path="res://Scripts/UI/health_sprite.gd" id="6_ux5h0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vsu76"]
+shader = ExtResource("1_8glcj")
+shader_parameter/outerRadius = 1.3
+shader_parameter/MainAlpha = 0.0
+shader_parameter/color = Color(1, 0, 0, 1)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ux5h0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_fdl0h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_8glcj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_vsu76")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_8glcj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Vignette" type="ColorRect" parent="CanvasLayer" node_paths=PackedStringArray("vignette_jump_timer")]
+material = SubResource("ShaderMaterial_vsu76")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vsu76")
+vignette_jump_timer = NodePath("../VignetteJumpTimer")
+
+[node name="Health" type="AnimatedSprite2D" parent="CanvasLayer"]
+position = Vector2(116, 604)
+sprite_frames = SubResource("SpriteFrames_ux5h0")
+autoplay = "default"
+frame_progress = 0.309451
+script = ExtResource("6_ux5h0")
+
+[node name="VignetteJumpTimer" type="Timer" parent="CanvasLayer"]
+wait_time = 2.0
+
+[connection signal="timeout" from="CanvasLayer/VignetteJumpTimer" to="." method="_on_vignette_jump_timer_timeout"]

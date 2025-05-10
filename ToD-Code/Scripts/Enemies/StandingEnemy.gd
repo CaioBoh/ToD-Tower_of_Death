@@ -137,7 +137,7 @@ func _on_attack_delay_timeout():
 
 func _on_hit_box_body_entered(body: Node2D) -> void:
 	if body.has_method("hurt"):
-		body.hurt(self,70)
+		body.hurt(self,30)
 
 func hurt(body,damage):
 	health-=damage

@@ -1,5 +1,6 @@
-[gd_scene load_steps=126 format=4 uid="uid://owgvu4xqpji4"]
+[gd_scene load_steps=127 format=4 uid="uid://owgvu4xqpji4"]
 
+[ext_resource type="PackedScene" uid="uid://bs3v70xkv1n55" path="res://Scenes/UI/hud.tscn" id="1_iht5x"]
 [ext_resource type="Texture2D" uid="uid://b5ffpxs4egn0a" path="res://Sprites/Levels/Level 1/backgrounds.png" id="1_yltcr"]
 [ext_resource type="Texture2D" uid="uid://d1gtwnw5a64cl" path="res://Sprites/Levels/Level 1/tileset.png" id="2_iht5x"]
 [ext_resource type="PackedScene" uid="uid://bgsoxr6nsjbrr" path="res://Scenes/Player/player.tscn" id="3_nuy1v"]
@@ -996,7 +997,7 @@ tile_set = SubResource("TileSet_e0rf3")
 
 [node name="player" parent="." instance=ExtResource("3_nuy1v")]
 texture_filter = 1
-position = Vector2(3750, 322)
+position = Vector2(2155, -1234)
 
 [node name="CameraGuide" type="Marker2D" parent="player"]
 script = ExtResource("4_xlpn7")
@@ -2125,6 +2126,8 @@ shape = SubResource("RectangleShape2D_tmvo4")
 libraries = {
 &"": SubResource("AnimationLibrary_n13qa")
 }
+
+[node name="HUD" parent="." instance=ExtResource("1_iht5x")]
 
 [connection signal="body_entered" from="AcidLake" to="AcidLake" method="_on_body_entered"]
 [connection signal="body_entered" from="CameraChangeArea/ShowUnderground" to="CameraChangeArea/ShowUnderground" method="_on_body_entered"]

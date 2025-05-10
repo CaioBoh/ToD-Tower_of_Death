@@ -40,7 +40,7 @@ window/stretch/aspect="ignore"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/gdfxr/plugin.cfg")
+enabled=PackedStringArray()
 
 [gui]
 
