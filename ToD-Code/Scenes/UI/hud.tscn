@@ -62,5 +62,6 @@ script = ExtResource("6_ux5h0")
 
 [node name="VignetteJumpTimer" type="Timer" parent="CanvasLayer"]
 wait_time = 2.0
+one_shot = true
 
 [connection signal="timeout" from="CanvasLayer/VignetteJumpTimer" to="CanvasLayer/Vignette" method="_on_vignette_jump_timer_timeout"]

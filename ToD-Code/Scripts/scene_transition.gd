@@ -31,7 +31,7 @@ func change_scene(target:String, new_menu_state: menu_state) -> void:
 	var status = ResourceLoader.load_threaded_get_status(target, progress)
 	while status != ResourceLoader.ThreadLoadStatus.THREAD_LOAD_LOADED:
 		progress_bar.value = progress[0] * 100
-		progress_percentage.text = str(int(progress[0]) * 100) + "%"
+		progress_percentage.text = str(int(progress[0] * 100)) + "%"
 		status = ResourceLoader.load_threaded_get_status(target, progress)
 		await get_tree().process_frame
 		

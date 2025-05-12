@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://c2hcqohgaw0t5"]
+[gd_scene load_steps=22 format=3 uid="uid://c2hcqohgaw0t5"]
 
 [ext_resource type="Script" uid="uid://cswxkbfqnikr5" path="res://Scripts/Enemies/flying_enemy.gd" id="1_riyx6"]
 [ext_resource type="Texture2D" uid="uid://cho3gamjywlvt" path="res://Sprites/Enemies/Flying Enemy/flying_skull2.png" id="2_gouph"]
@@ -12,12 +12,15 @@
 radius = 20.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qncv4"]
-radius = 576.014
+radius = 350.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gs42d"]
 radius = 158.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_18xk5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s5pxv"]
+radius = 490.0
 
 [sub_resource type="Animation" id="Animation_m2ynq"]
 length = 0.4
@@ -207,7 +210,6 @@ script = ExtResource("1_riyx6")
 shape = SubResource("CircleShape2D_eb0je")
 
 [node name="SightArea" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SightArea"]
 shape = SubResource("CircleShape2D_qncv4")
@@ -227,6 +229,11 @@ debug_color = Color(0.989781, 0, 0.286363, 0.42)
 position = Vector2(-1, 3)
 shape = SubResource("CircleShape2D_18xk5")
 debug_color = Color(0.668713, 0, 0.268887, 0.42)
+
+[node name="EscapeArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EscapeArea"]
+shape = SubResource("CircleShape2D_s5pxv")
 
 [node name="anim" type="AnimationPlayer" parent="."]
 libraries = {
@@ -252,3 +259,4 @@ volume_db = 9.905
 [connection signal="body_entered" from="DashArea" to="." method="_on_dash_area_body_entered"]
 [connection signal="body_exited" from="DashArea" to="." method="_on_dash_area_body_exited"]
 [connection signal="body_entered" from="CollisionArea" to="." method="_on_collision_area_body_entered"]
+[connection signal="body_exited" from="EscapeArea" to="." method="_on_escape_area_body_exited"]
