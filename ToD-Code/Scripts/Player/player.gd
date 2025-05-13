@@ -171,9 +171,8 @@ func jump(delta):
 			velocity.y += JUMP_VELOCITY
 			jump_state = JumpState.FIRST_JUMP
 			ledge_forgivess_active = false
-		elif jump_state == JumpState.FIRST_JUMP:
-			if velocity.y > 0:
-				velocity.y = 0
+		elif jump_state == JumpState.FIRST_JUMP && Global.double_jump_picked:
+			velocity.y = 0
 			velocity.y += JUMP_VELOCITY
 			jump_state = JumpState.SECOND_JUMP
 
@@ -256,7 +255,7 @@ func game_over():
 	SceneTransition.change_scene("res://Scenes/Levels/lobby.tscn", SceneTransition.menu_state.PLAYING)
 	Global.player_health = 100
 
-func _on_dash_upgrade_dash_picked():
+func on_upgrade_picked():
 	disable_physics = true
 	velocity = Vector2(0, 0)
 	animation_player.play("receiving_dash")

@@ -4,6 +4,7 @@ var global_player: CharacterBody2D
 var current_camera: Camera2D
 var key_picked: bool = true
 var dash_picked: bool = false
+var double_jump_picked: bool = false
 var is_player_dead: bool = false
 var max_player_health: int = 100
 var player_health := max_player_health
@@ -33,3 +34,10 @@ func reset():
 	is_player_dead = false
 	player_health = 100
 	player_sword_damage = 10
+	
+func receive_upgrade(upgrade: String):
+	match upgrade:
+		"dash":
+			dash_picked = true
+		"double_jump":
+			double_jump_picked = true

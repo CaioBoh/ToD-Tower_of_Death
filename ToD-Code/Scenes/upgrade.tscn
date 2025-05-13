@@ -1,0 +1,77 @@
+[gd_scene load_steps=13 format=3 uid="uid://yaal50vrvvmh"]
+
+[ext_resource type="Script" uid="uid://djesuoe875uan" path="res://Scripts/Levels/Level 1/UpgradeMovementPath.gd" id="1_o0s84"]
+[ext_resource type="Texture2D" uid="uid://cg7hkqm7p2kiv" path="res://Sprites/Particles/ball.png" id="2_d2ffm"]
+[ext_resource type="AudioStream" uid="uid://7pmav0j3qe4c" path="res://Sounds/Player/sfx-upgrade.wav" id="3_uudjn"]
+
+[sub_resource type="Curve2D" id="Curve2D_4decj"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 6414, -2306, 0, 0, 0, 0, 6407, -2268, 0, 0, 0, 0, 6436, -2241, 0, 0, 0, 0, 6465, -2245, 0, 0, 0, 0, 6487.9, -2270.02, 0, 0, 0, 0, 6506.52, -2290.5, 0, 0, 0, 0, 6522, -2305, 0, 0, 0, 0, 6558, -2297, 0, 0, 0, 0, 6577, -2264, 0, 0, 0, 0, 6571, -2243, 0, 0, 0, 0, 6538, -2235, 0, 0, 0, 0, 6521.42, -2234.64, 0, 0, 0, 0, 6497.21, -2238.36, 0, 0, 0, 0, 6449, -2307, 0, 0, 0, 0, 6414, -2306)
+}
+point_count = 15
+
+[sub_resource type="Gradient" id="Gradient_jjat2"]
+offsets = PackedFloat32Array(0, 0.367647)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xsch3"]
+gradient = SubResource("Gradient_jjat2")
+
+[sub_resource type="Gradient" id="Gradient_mfmi5"]
+colors = PackedColorArray(2, 2, 2, 1, 0.42, 0.42, 0.42, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_exc3b"]
+gradient = SubResource("Gradient_mfmi5")
+
+[sub_resource type="Curve" id="Curve_baluc"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.154717), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_iyiso"]
+curve = SubResource("Curve_baluc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_co5rv"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 31.909
+initial_velocity_max = 129.32
+gravity = Vector3(0, -50, 0)
+scale_min = 0.1
+scale_max = 0.3
+scale_curve = SubResource("CurveTexture_iyiso")
+color_ramp = SubResource("GradientTexture1D_exc3b")
+color_initial_ramp = SubResource("GradientTexture1D_xsch3")
+turbulence_enabled = true
+turbulence_noise_strength = 2.01
+turbulence_noise_scale = 10.0
+turbulence_influence_min = 0.0
+turbulence_influence_max = 0.08
+turbulence_initial_displacement_min = -32.8
+turbulence_initial_displacement_max = 14.4
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_un7py"]
+
+[node name="Upgrade" type="Path2D"]
+curve = SubResource("Curve2D_4decj")
+script = ExtResource("1_o0s84")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(6414, -2306)
+rotation = 1.75296
+
+[node name="UpgradeParticle" type="GPUParticles2D" parent="PathFollow2D"]
+position = Vector2(-1.9438, -1.10499)
+rotation = -1.5708
+amount = 40
+texture = ExtResource("2_d2ffm")
+process_material = SubResource("ParticleProcessMaterial_co5rv")
+
+[node name="UpgradeArea" type="Area2D" parent="PathFollow2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/UpgradeArea"]
+shape = SubResource("CircleShape2D_un7py")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="PathFollow2D/UpgradeArea"]
+stream = ExtResource("3_uudjn")
+
+[connection signal="body_entered" from="PathFollow2D/UpgradeArea" to="." method="_on_upgrade_area_body_entered"]

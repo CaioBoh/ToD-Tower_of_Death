@@ -1,5 +1,6 @@
-[gd_scene load_steps=14 format=4 uid="uid://d4coijn8kr066"]
+[gd_scene load_steps=15 format=4 uid="uid://d4coijn8kr066"]
 
+[ext_resource type="PackedScene" uid="uid://bs3v70xkv1n55" path="res://Scenes/UI/hud.tscn" id="1_0xo8n"]
 [ext_resource type="PackedScene" uid="uid://b15ao87wkybpx" path="res://Scenes/Boss/first_boss.tscn" id="1_aymlm"]
 [ext_resource type="PackedScene" uid="uid://bgsoxr6nsjbrr" path="res://Scenes/Player/player.tscn" id="2_q5s4j"]
 [ext_resource type="Script" uid="uid://b1qhlx75cvps4" path="res://Scripts/UI/Camera/Camera.gd" id="2_sliuw"]
@@ -222,6 +223,8 @@ sources/1 = SubResource("TileSetAtlasSource_7bf2g")
 
 [node name="BossRoom" type="Node2D"]
 position = Vector2(0, 3)
+
+[node name="HUD" parent="." instance=ExtResource("1_0xo8n")]
 
 [node name="TileMap" type="TileMapLayer" parent="."]
 z_index = 2
