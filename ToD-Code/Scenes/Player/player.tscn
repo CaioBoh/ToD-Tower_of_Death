@@ -499,8 +499,6 @@ position = Vector2(1, 0)
 sprite_frames = SubResource("SpriteFrames_xettt")
 animation = &"Upgrade"
 autoplay = "Atlas_idle"
-frame = 2
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.5, 1)

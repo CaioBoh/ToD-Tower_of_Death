@@ -3,12 +3,13 @@ extends Node
 var global_player: CharacterBody2D
 var current_camera: Camera2D
 var key_picked: bool = true
-var dash_picked: bool = false
-var double_jump_picked: bool = false
+var dash_picked: bool = true
+var double_jump_picked: bool = true
 var is_player_dead: bool = false
 var max_player_health: int = 100
 var player_health := max_player_health
 var player_sword_damage = 10
+var collectibles_found = 0
 
 # ------------------------ #
 # DEATH DIALOGUE VARIABLES #
@@ -30,7 +31,7 @@ func reset():
 	is_talking = false
 	talked_first_time = false
 	key_picked = true
-	dash_picked = false
+	dash_picked = true
 	is_player_dead = false
 	player_health = 100
 	player_sword_damage = 10

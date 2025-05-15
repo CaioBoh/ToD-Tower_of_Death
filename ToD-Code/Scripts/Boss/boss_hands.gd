@@ -17,7 +17,7 @@ const BOSS_DEATH_EXPLOSION = preload("res://Scenes/Particles/boss_death_explosio
 
 var hand_scale
 var direction : Vector2
-var speed = 1000
+var speed = 550
 var current_position
 var bounce_tween: Tween
 

@@ -224,8 +224,6 @@ sources/1 = SubResource("TileSetAtlasSource_7bf2g")
 [node name="BossRoom" type="Node2D"]
 position = Vector2(0, 3)
 
-[node name="HUD" parent="." instance=ExtResource("1_0xo8n")]
-
 [node name="TileMap" type="TileMapLayer" parent="."]
 z_index = 2
 position = Vector2(-127, -1231)
@@ -297,8 +295,10 @@ tile_set = SubResource("TileSet_7sybd")
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="BackGround"]
 
+[node name="HUD" parent="." instance=ExtResource("1_0xo8n")]
+
 [node name="ForeGround" type="ParallaxBackground" parent="."]
-layer = 10
+layer = 0
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ForeGround"]
 

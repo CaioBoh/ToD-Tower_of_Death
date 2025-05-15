@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b15ao87wkybpx"]
+[gd_scene load_steps=20 format=3 uid="uid://b15ao87wkybpx"]
 
 [ext_resource type="Script" uid="uid://l6cydtwyhkm5" path="res://Scripts/Boss/first_boss.gd" id="1_21v6b"]
 [ext_resource type="Texture2D" uid="uid://lijbavn8s3mi" path="res://Sprites/Boss/Boss1.png" id="1_wj1q4"]
@@ -46,6 +46,19 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nosqe"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nosqe"]
+bg_color = Color(0.392157, 0.4, 0.4, 0.658824)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v4tro"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v4tro"]
+bg_color = Color(0.470588, 0.486275, 0.486275, 0.603922)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2xite"]
+bg_color = Color(0, 1, 0, 1)
+
 [node name="FirstBoss" type="Node2D"]
 script = ExtResource("1_21v6b")
 lower_health_color = Color(0.969115, 0, 0.45412, 1)
@@ -69,6 +82,50 @@ wait_time = 0.085
 
 [node name="hurt_sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("9_lm6db")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="CenterContainer" type="CenterContainer" parent="HUD"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 1.0
+offset_bottom = 105.0
+grow_horizontal = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/CenterContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="HUD/CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 500
+theme_override_styles/separator = SubResource("StyleBoxEmpty_nosqe")
+
+[node name="PanelContainer" type="PanelContainer" parent="HUD/CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_nosqe")
+
+[node name="Label" type="Label" parent="HUD/CenterContainer/VBoxContainer/HBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Vida"
+horizontal_alignment = 1
+
+[node name="VSeparator2" type="VSeparator" parent="HUD/CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 500
+theme_override_styles/separator = SubResource("StyleBoxEmpty_v4tro")
+
+[node name="ProgressBar" type="ProgressBar" parent="HUD/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(1200, 50)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_v4tro")
+theme_override_styles/fill = SubResource("StyleBoxFlat_2xite")
+value = 100.0
+show_percentage = false
 
 [connection signal="dead" from="." to="Hands" method="_on_first_boss_dead"]
 [connection signal="damaged" from="Hands" to="." method="_on_hands_damaged"]

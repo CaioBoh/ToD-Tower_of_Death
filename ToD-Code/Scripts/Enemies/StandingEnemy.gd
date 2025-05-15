@@ -19,6 +19,10 @@ const HIT_PARTICLE = preload("res://Scenes/Particles/hit_particle_2.tscn")
 @onready var hit_box = $HitBox
 @onready var attack_delay = $AttackDelay
 @onready var animated_sprite_2d = $AnimatedSprite2D
+@onready var is_there_floor: RayCast2D = $"Raycasts/IsThereFloor"
+@onready var is_there_stairs: RayCast2D = $"Raycasts/IsThereStairs"
+@onready var max_height_stairs: RayCast2D = $"Raycasts/MaxHeightStairs"
+@onready var raycasts_parent: Node2D = $Raycasts
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -27,22 +31,34 @@ func _ready():
 	player = Global.global_player
 	is_chasing = false
 	is_attacking = false
+	handle_stairs()
 
 func _physics_process(delta):
+	if Global.is_talking || Global.global_player.disable_physics:
+		return
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
+
 
 	# Handle jump.
 	if knockback_vector != Vector2.ZERO:
 		velocity = knockback_vector
 	else:
-		velocity.x = dir * speed * delta * 5
+		if is_there_floor.is_colliding():
+			velocity.x = dir * speed * delta * 5
+		else:
+			velocity.x = 0
 	#print(velocity.x)
 	handle_movement()
 	handle_animation()
 	move_and_slide()
 
+func handle_stairs():
+	if is_there_stairs.is_colliding() and not max_height_stairs.is_colliding():
+			position.y -= 19
+	await get_tree().create_timer(0.5).timeout
+	handle_stairs()
 
 func _on_walk_time_timeout():
 	if !is_chasing and !is_attacking:
@@ -58,23 +74,25 @@ func choose(array):
 func handle_animation():
 #	print(velocity.x)
 
-	if dir == 1:
+	if dir > 0:
 		animated_sprite_2d.flip_h = false
-	elif dir == -1:
+	elif dir < 0:
 		animated_sprite_2d.flip_h = true
 	
-	if velocity.x < -1:
+	if dir < 0:
 		sight_ray_1.scale.x = -1
 		hit_box.scale.x = -1
 		spear_range.scale.x = -1
-	elif velocity.x > 1:
+		raycasts_parent.scale.x = -1
+	elif dir > 0:
 		sight_ray_1.scale.x = 1
 		hit_box.scale.x = 1
 		spear_range.scale.x = 1
-	if velocity.x < 1 and velocity.x > -1 and !is_chasing and not is_attacking:
+		raycasts_parent.scale.x = 1
+	if velocity.x < 1 and velocity.x > -1 and not is_chasing and not is_attacking:
 		if animated_sprite_2d.animation != "transition_to_attack":
 			animated_sprite_2d.play("idle")
-	elif !is_attacking: 
+	elif not is_attacking: 
 		if animated_sprite_2d.animation != "transition_to_attack":
 			if animated_sprite_2d.animation == "attack":
 				await animated_sprite_2d.animation_finished
@@ -93,8 +111,11 @@ func handle_movement():
 	
 	if is_chasing and !player_on_spear_range and !is_attacking and last_animation != "transition_to_attack":
 		
-		dir = position.direction_to(player.global_position).x
-		dir = dir / abs(dir)
+		if abs(global_position.x - player.global_position.x) < 10:
+			dir = 0
+		else:
+			dir = position.direction_to(player.global_position).x
+			dir = dir / abs(dir)
 		await animated_sprite_2d.animation_finished
 		if animated_sprite_2d.animation != "transition_to_attack":
 			animated_sprite_2d.play("walking")
@@ -164,3 +185,12 @@ func summon_hurt_particle() -> void:
 	var direction_player = global_position.direction_to(player.global_position)
 	instance.rotation = Vector2(-direction_player.x, 0).angle()
 	add_child(instance)
+
+
+
+func _on_chase_area_body_exited(body: Node2D) -> void:
+	if body == player:
+		is_chasing = false
+		velocity.x = 0
+		dir = 0
+		walk_time.start()

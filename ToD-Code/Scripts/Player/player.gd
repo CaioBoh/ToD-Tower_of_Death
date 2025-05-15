@@ -138,17 +138,17 @@ func talk() -> bool:
 		return false
 	var talked = false
 	var actionables := actionable_seeker.get_overlapping_areas()
-	var first_time_interaction := true
 	for actionable in actionables:
+		if not actionable.talkable:
+			continue
 		if actionable.get_meta("times_talked") == 0:
 			actionable.set_meta("times_talked", actionable.get_meta("times_talked") + 1)
 			actionable.action()
-			first_time_interaction = true
 			talked = true
-	if Input.is_action_just_pressed("interact") and actionables.size() > 0 and not Global.is_talking:	
-		if first_time_interaction:
-			actionables[0].action()
-			talked = true
+	if Input.is_action_just_pressed("interact") and actionables.size() > 0 \
+	and not Global.is_talking and actionables[0].talkable:	
+		actionables[0].action()
+		talked = true
 	return talked
 	
 func jump(delta):

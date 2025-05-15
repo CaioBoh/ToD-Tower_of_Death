@@ -24,6 +24,8 @@ var locals: Dictionary = {}
 
 var _locale: String = TranslationServer.get_locale()
 
+signal dialogue_finished
+
 ## The current line
 var dialogue_line: DialogueLine:
 	set(value):
@@ -32,6 +34,7 @@ var dialogue_line: DialogueLine:
 			apply_dialogue_line()
 		else:
 			# The dialogue has finished so close the balloon
+			dialogue_finished.emit()
 			queue_free()
 	get:
 		return dialogue_line

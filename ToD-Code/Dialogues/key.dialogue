@@ -1,0 +1,5 @@
+~ got_key
+set Global.is_talking = true
+Você achou uma chave!
+set Global.global_player.just_stopped_talking_timer.start()
+=> END

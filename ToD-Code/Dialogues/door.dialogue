@@ -1,0 +1,14 @@
+~ without_key
+set Global.is_talking = true
+A porta está trancada...
+Tente achar um jeito de abrí-la!
+set Global.global_player.just_stopped_talking_timer.start()
+=> END
+
+~ with_key
+set Global.is_talking = true
+Você abriu a porta com a chave!
+Você entra pela porta...
+set Global.global_player.just_stopped_talking_timer.start()
+do SceneTransition.change_scene("res://Scenes/Levels/boss_room.tscn", SceneTransition.menu_state.PLAYING)
+=> END

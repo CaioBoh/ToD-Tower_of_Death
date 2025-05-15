@@ -5,7 +5,7 @@ var max_health = 100
 var tremble_vect: Vector2 = Vector2.ZERO
 var is_dead = false
 @onready var hurt_sound: AudioStreamPlayer2D = $hurt_sound
-
+@onready var health_bar: ProgressBar = $"HUD/CenterContainer/VBoxContainer/ProgressBar"
 @export var lower_health_color: Color
 
 @onready var hands = $Hands
@@ -17,11 +17,13 @@ signal dead
 func _process(delta):
 	color_based_on_health()
 	if health <= 0 and not is_dead:
+		health = 0
 		is_dead = true
 		dead.emit()
 		await get_tree().create_timer(2).timeout
 		$TrembleTimer.start()
 	position+=tremble_vect * delta
+	health_bar.value = health
 func color_based_on_health():
 	if health > 0:
 		var value = remap(health,0,max_health,0,1)

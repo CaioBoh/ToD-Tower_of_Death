@@ -29,6 +29,8 @@ func _ready():
 	anim.play("RESET")
 
 func _physics_process(delta):
+	if Global.is_talking || Global.global_player.disable_physics:
+		return
 	velocity.y += gravity
 	if knockback_vector != Vector2.ZERO:
 		velocity = knockback_vector * 25

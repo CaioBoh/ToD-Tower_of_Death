@@ -21,7 +21,7 @@ buses/default_bus_layout="res://Sounds/default_bus_layout.tres"
 [autoload]
 
 Global="*res://Scripts/Global/global.gd"
-DialogueManager="*res://addon/dialogue_manager/dialogue_manager.gd"
+DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 SceneTransition="*res://Scenes/UI/scene_transition.tscn"
 PauseMenu="*res://Scenes/UI/Menus/pause_menu.tscn"
 Options="*res://Scenes/UI/Menus/options.tscn"
@@ -40,7 +40,7 @@ window/stretch/aspect="ignore"
 
 [editor_plugins]
 
-enabled=PackedStringArray()
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/gdfxr/plugin.cfg")
 
 [gui]
 
@@ -102,7 +102,7 @@ cancel={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://game/UI/Dialogue/death_dialog.dialogue", "res://game/UI/Dialogue/death_advertisement_to_void.dialogue")
+locale/translations_pot_files=PackedStringArray("res://Dialogues/death_advertisement_to_void.dialogue", "res://Dialogues/death_dialog.dialogue", "res://Dialogues/key.dialogue", "res://Dialogues/door.dialogue", "res://Dialogues/collectible.dialogue")
 
 [layer_names]
 
