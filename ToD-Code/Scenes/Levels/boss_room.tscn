@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://d4coijn8kr066"]
+[gd_scene load_steps=16 format=4 uid="uid://d4coijn8kr066"]
 
 [ext_resource type="PackedScene" uid="uid://bs3v70xkv1n55" path="res://Scenes/UI/hud.tscn" id="1_0xo8n"]
 [ext_resource type="PackedScene" uid="uid://b15ao87wkybpx" path="res://Scenes/Boss/first_boss.tscn" id="1_aymlm"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bp557nlgxlpgp" path="res://Sprites/Levels/Level 1/column.png" id="5_cbyc8"]
 [ext_resource type="AudioStream" uid="uid://dklfqm5gs1fwg" path="res://Sounds/Music/03-Heartless.mp3" id="5_ytr42"]
 [ext_resource type="Texture2D" uid="uid://b5ffpxs4egn0a" path="res://Sprites/Levels/Level 1/backgrounds.png" id="5_yyhwo"]
+[ext_resource type="Script" uid="uid://btm3dujaiyuli" path="res://Scripts/Demo/demo_boss.gd" id="9_imymo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tefdw"]
 texture = ExtResource("4_yfa2j")
@@ -318,3 +319,45 @@ texture = ExtResource("5_cbyc8")
 z_index = -1000
 color = Color(0.152941, 0.14902, 0.219608, 1)
 polygon = PackedVector2Array(199, -536, 1649, -523, 1645, -123, 1144, -258, 566, -385, 20, -296, -573, -159, -569, -559)
+
+[node name="Demo" type="Node2D" parent="." node_paths=PackedStringArray("agradecimentos", "coletaveis", "botaoVoltar")]
+script = ExtResource("9_imymo")
+agradecimentos = NodePath("CanvasLayer/CenterContainer/VBoxContainer/Agradecimentos")
+coletaveis = NodePath("CanvasLayer/CenterContainer/VBoxContainer/Coletaveis")
+botaoVoltar = NodePath("CanvasLayer/CenterContainer/VBoxContainer/Button")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Demo"]
+
+[node name="CenterContainer" type="CenterContainer" parent="Demo/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Demo/CanvasLayer/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Agradecimentos" type="Label" parent="Demo/CanvasLayer/CenterContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Obrigado por jogar a demo de Tower of Death!!"
+horizontal_alignment = 1
+
+[node name="Coletaveis" type="Label" parent="Demo/CanvasLayer/CenterContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "0/3 coletáveis obtidos"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="Demo/CanvasLayer/CenterContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+disabled = true
+text = "Pressione aqui para voltar ao menu"
+
+[connection signal="pressed" from="Demo/CanvasLayer/CenterContainer/VBoxContainer/Button" to="Demo" method="_on_button_pressed"]

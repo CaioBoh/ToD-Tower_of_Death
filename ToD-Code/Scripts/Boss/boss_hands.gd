@@ -126,15 +126,19 @@ func _on_hitbox_hitted():
 	#juice_anim.play("RESET")
 
 
-
 func _on_first_boss_dead():
 	attacks_anim.pause()
 	await get_tree().create_timer(10).timeout
 	var explosion_instance = BOSS_DEATH_EXPLOSION.instantiate()
 	explosion_instance.global_position = boss_body.global_position
-	explosion_instance.z_index = 10
+	explosion_instance.z_index = 4
 	get_parent().get_parent().add_child(explosion_instance)
 	Global.current_camera.start_shake(5,20,20)
+	
+	#Demo
+	print(get_tree().root.name)
+	
+	get_parent().get_parent().find_child("Demo").show_messages()
 	boss_body.get_parent().queue_free()
 	
 # Funcs below to access through animation

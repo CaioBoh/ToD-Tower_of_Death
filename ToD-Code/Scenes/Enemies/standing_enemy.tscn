@@ -326,7 +326,7 @@ target_position = Vector2(10, 0)
 collision_mask = 2
 
 [node name="MaxHeightStairs" type="RayCast2D" parent="Raycasts"]
-position = Vector2(46.555, 0)
+position = Vector2(46.5549, -14.8976)
 target_position = Vector2(0, 25)
 collision_mask = 2
 hit_from_inside = true

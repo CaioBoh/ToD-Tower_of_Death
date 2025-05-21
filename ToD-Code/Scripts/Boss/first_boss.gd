@@ -13,7 +13,6 @@ var is_dead = false
 
 signal dead
 
-
 func _process(delta):
 	color_based_on_health()
 	if health <= 0 and not is_dead:

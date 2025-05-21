@@ -57,17 +57,17 @@ theme_override_constants/separation = 100
 [node name="AudioSlider" parent="CanvasLayer/TabContainer/Sons/VBoxContainer" instance=ExtResource("1_6hxcx")]
 layout_mode = 2
 focus_mode = 2
-bus_name = "Master"
+bus_name = "Tudo"
 
 [node name="AudioSlider2" parent="CanvasLayer/TabContainer/Sons/VBoxContainer" instance=ExtResource("1_6hxcx")]
 layout_mode = 2
 focus_mode = 2
-bus_name = "Music"
+bus_name = "Música"
 
 [node name="AudioSlider3" parent="CanvasLayer/TabContainer/Sons/VBoxContainer" instance=ExtResource("1_6hxcx")]
 layout_mode = 2
 focus_mode = 2
-bus_name = "Sound Effect"
+bus_name = "Efeitos"
 
 [node name="Back" type="Button" parent="CanvasLayer"]
 anchors_preset = 2

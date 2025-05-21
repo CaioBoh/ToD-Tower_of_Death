@@ -11,6 +11,9 @@ var current_menu_state := menu_state.START_MENU
 @onready var progress_bar: ProgressBar = $LoadingScreen/ProgressBar
 @onready var progress_percentage: Label = $LoadingScreen/ProgressPercentage
 
+func _process(delta: float) -> void:
+	print(isTransitioning)
+
 func change_scene(target:String, new_menu_state: menu_state) -> void:
 	if isTransitioning:
 		return

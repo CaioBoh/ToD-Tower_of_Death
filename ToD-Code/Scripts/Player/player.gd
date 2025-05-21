@@ -118,9 +118,9 @@ func handle_dash():
 		
 		$DashSound.play()
 
-		self.set_collision_layer_value(1,false)
+		#self.set_collision_layer_value(1,false)
 		await spawn_dash_ghosts(0.2)
-		self.set_collision_layer_value(1,true)
+		#self.set_collision_layer_value(1,true)
 		
 func handle_stairs_up():
 	if velocity.x != 0 and is_touching_floor.is_colliding() and is_there_stairs.is_colliding() and not max_height_stairs.is_colliding():
@@ -138,13 +138,13 @@ func talk() -> bool:
 		return false
 	var talked = false
 	var actionables := actionable_seeker.get_overlapping_areas()
-	for actionable in actionables:
-		if not actionable.talkable:
-			continue
-		if actionable.get_meta("times_talked") == 0:
-			actionable.set_meta("times_talked", actionable.get_meta("times_talked") + 1)
-			actionable.action()
-			talked = true
+	#for actionable in actionables:
+	#	if not actionable.talkable:
+	#		continue
+	#	if actionable.get_meta("times_talked") == 0:
+	#		actionable.set_meta("times_talked", actionable.get_meta("times_talked") + 1)
+	#		actionable.action()
+	#		talked = true
 	if Input.is_action_just_pressed("interact") and actionables.size() > 0 \
 	and not Global.is_talking and actionables[0].talkable:	
 		actionables[0].action()

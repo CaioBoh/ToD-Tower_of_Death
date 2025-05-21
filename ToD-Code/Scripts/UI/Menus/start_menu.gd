@@ -2,13 +2,17 @@ extends Node
 
 @export var playButton: Button
 @export var exitButton: Button
+@export var optionsButton: Button
+@export var demoNewGame: Button
 
 func _ready():
 	reset_focus()
 
 func _on_play_pressed() -> void:
+	if not SceneTransition.isTransitioning:
+		toggleButtons(false)
 	SceneTransition.change_scene("res://Scenes/Levels/lobby.tscn", SceneTransition.menu_state.PLAYING)
-	Global.reset()
+	#Global.reset()
 	
 func _on_options_pressed() -> void:
 	SceneTransition.current_menu_state = SceneTransition.menu_state.OPTIONS
@@ -22,3 +26,16 @@ func _on_exit_pressed() -> void:
 func reset_focus():
 	playButton.grab_focus()
 	
+	
+func _on_demo_novo_jogo_pressed() -> void:
+	if not SceneTransition.isTransitioning:
+		toggleButtons(false)
+		
+	SceneTransition.change_scene("res://Scenes/Levels/lobby.tscn", SceneTransition.menu_state.PLAYING)
+	Global.reset()
+	
+func toggleButtons(enabled: bool):
+	playButton.disabled = not enabled
+	exitButton.disabled = not enabled
+	optionsButton.disabled = not enabled
+	demoNewGame.disabled = not enabled
