@@ -25,6 +25,7 @@ DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 SceneTransition="*res://Scenes/UI/scene_transition.tscn"
 PauseMenu="*res://Scenes/UI/Menus/pause_menu.tscn"
 Options="*res://Scenes/UI/Menus/options.tscn"
+ControlSoundEffects="*res://Scenes/UI/Menus/control_sound_effects.tscn"
 
 [dialogue_manager]
 

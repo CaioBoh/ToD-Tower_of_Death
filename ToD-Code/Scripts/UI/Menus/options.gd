@@ -3,7 +3,11 @@ extends Node
 @onready var options_canvas: CanvasLayer = $CanvasLayer
 
 @export var tab_container: TabContainer
+@export var change_focus_effect: AudioStreamPlayer
+@export var click_effect: AudioStreamPlayer
+@export var cancel_effect: AudioStreamPlayer
 
+var play_sound_effect: bool = false
 var menu_state_to_return := SceneTransition.menu_state.PAUSE_MENU
 
 func _ready() -> void:
@@ -26,6 +30,14 @@ func close_options():
 		SceneTransition.menu_state.PAUSE_MENU:
 			PauseMenu.pause_menu_canvas.visible = true
 			PauseMenu.reset_focus()
+	ControlSoundEffects.play_cancel()
+	play_sound_effect = false
 	
 func reset_focus():
 	tab_container.get_tab_bar().grab_focus()
+	play_sound_effect = true
+
+func _on_focus_entered() -> void:
+	if play_sound_effect:
+		ControlSoundEffects.play_change_focus()
+		

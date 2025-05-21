@@ -954,6 +954,35 @@ _data = {
 }
 
 [node name="FirstLevel" type="Node2D"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+position = Vector2(0, 0)
+rotation = 0.0
+scale = Vector2(1, 1)
+skew = 0.0
+script = null
 
 [node name="Map" type="Node" parent="."]
 
@@ -1032,6 +1061,35 @@ rendering_quadrant_size = 40
 format = 2
 
 [node name="Node2D" type="Node2D" parent="BackGround/Walls"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+position = Vector2(0, 0)
+rotation = 0.0
+scale = Vector2(1, 1)
+skew = 0.0
+script = null
 
 [node name="Back" type="TileMapLayer" parent="BackGround/Walls/Node2D"]
 z_index = -10
@@ -1496,6 +1554,34 @@ offset_bottom = 21.0
 color = Color(0.969333, 1, 0.08, 1)
 
 [node name="ARENAS" type="Node2D" parent="."]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+position = Vector2(0, 0)
+rotation = 0.0
+scale = Vector2(1, 1)
+skew = 0.0
 script = ExtResource("14_mb0hh")
 
 [node name="platform" type="AnimatableBody2D" parent="ARENAS"]
@@ -1540,6 +1626,35 @@ position = Vector2(-3.5, 18.5)
 shape = SubResource("RectangleShape2D_oji2h")
 
 [node name="EnemySummoners" type="Node2D" parent="ARENAS/Arena1"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+position = Vector2(0, 0)
+rotation = 0.0
+scale = Vector2(1, 1)
+skew = 0.0
+script = null
 
 [node name="EnemySummoner" parent="ARENAS/Arena1/EnemySummoners" instance=ExtResource("27_rr4bo")]
 position = Vector2(-223, 17)
@@ -1566,7 +1681,35 @@ position = Vector2(424, 9)
 enemy_type = 2
 
 [node name="Enemies" type="Node2D" parent="ARENAS/Arena1"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
 position = Vector2(1360, -209)
+rotation = 0.0
+scale = Vector2(1, 1)
+skew = 0.0
+script = null
 
 [node name="Arena2" type="Area2D" parent="ARENAS"]
 collision_layer = 5
@@ -1578,6 +1721,35 @@ position = Vector2(-1374, -731)
 shape = SubResource("RectangleShape2D_scpvs")
 
 [node name="Summoners" type="Node2D" parent="ARENAS/Arena2"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+position = Vector2(0, 0)
+rotation = 0.0
+scale = Vector2(1, 1)
+skew = 0.0
+script = null
 
 [node name="EnemySummoner" parent="ARENAS/Arena2/Summoners" instance=ExtResource("27_rr4bo")]
 position = Vector2(-1036, -728)
@@ -1620,11 +1792,97 @@ position = Vector2(-877, -585)
 enemy_type = 1
 
 [node name="Enemies" type="Node2D" parent="ARENAS/Arena2"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+position = Vector2(0, 0)
+rotation = 0.0
+scale = Vector2(1, 1)
+skew = 0.0
+script = null
 
 [node name="Arena3" type="Node2D" parent="ARENAS"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+position = Vector2(0, 0)
+rotation = 0.0
+scale = Vector2(1, 1)
+skew = 0.0
 script = ExtResource("29_y4jbg")
 
 [node name="Summoners" type="Node2D" parent="ARENAS/Arena3"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+position = Vector2(0, 0)
+rotation = 0.0
+scale = Vector2(1, 1)
+skew = 0.0
+script = null
 
 [node name="EnemySummoner" parent="ARENAS/Arena3/Summoners" instance=ExtResource("27_rr4bo")]
 position = Vector2(-988, -1639)
@@ -1659,6 +1917,35 @@ position = Vector2(-1823, -1541)
 enemy_type = 1
 
 [node name="Enemies" type="Node2D" parent="ARENAS/Arena3"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+position = Vector2(0, 0)
+rotation = 0.0
+scale = Vector2(1, 1)
+skew = 0.0
+script = null
 
 [node name="SpawnTimer" type="Timer" parent="ARENAS/Arena3"]
 wait_time = 0.001
@@ -1739,8 +2026,38 @@ shape = SubResource("CircleShape2D_un7py")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="DashUpgrade/PathFollow2D/DashUpgradeArea"]
 stream = ExtResource("32_40de0")
+bus = &"Sound Effects"
 
 [node name="Lights" type="Node2D" parent="."]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+position = Vector2(0, 0)
+rotation = 0.0
+scale = Vector2(1, 1)
+skew = 0.0
+script = null
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="Lights"]
 position = Vector2(341, -3610)
@@ -1757,6 +2074,35 @@ color = Color(0, 1, 0.05, 1)
 texture = SubResource("GradientTexture2D_jha1q")
 
 [node name="PlatformOcluders" type="Node2D" parent="Lights"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+position = Vector2(0, 0)
+rotation = 0.0
+scale = Vector2(1, 1)
+skew = 0.0
+script = null
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Lights/PlatformOcluders"]
 position = Vector2(2088, -1211)
@@ -1819,6 +2165,35 @@ position = Vector2(2250, -1529)
 occluder = SubResource("OccluderPolygon2D_7cwkq")
 
 [node name="CandleLights" type="Node2D" parent="Lights"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+position = Vector2(0, 0)
+rotation = 0.0
+scale = Vector2(1, 1)
+skew = 0.0
+script = null
 
 [node name="PointLight2D" type="PointLight2D" parent="Lights/CandleLights"]
 position = Vector2(1926, -1480)
@@ -2085,7 +2460,35 @@ position = Vector2(2053, -1798)
 position = Vector2(1996, -1139)
 
 [node name="Reapers" type="Node2D" parent="."]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
 position = Vector2(9415.96, -3220.59)
+rotation = 0.0
+scale = Vector2(1, 1)
+skew = 0.0
+script = null
 
 [node name="Reaper" type="Area2D" parent="Reapers"]
 position = Vector2(-725.959, 266.585)
@@ -2162,5 +2565,4 @@ libraries = {
 [connection signal="body_entered" from="ARENAS/enemy_spawn_trigger1" to="ARENAS/Arena1" method="_on_enemy_spawn_trigger_1_body_entered"]
 [connection signal="body_entered" from="ARENAS/enemy_spawn_trigger2" to="ARENAS/Arena2" method="_on_enemy_spawn_trigger_2_body_entered"]
 [connection signal="body_entered" from="ARENAS/enemy_spawn_trigger3" to="ARENAS/Arena3" method="_on_enemy_spawn_trigger_3_body_entered"]
-[connection signal="dash_picked" from="DashUpgrade" to="player" method="_on_dash_upgrade_dash_picked"]
 [connection signal="body_entered" from="DashUpgrade/PathFollow2D/DashUpgradeArea" to="DashUpgrade" method="_on_dash_upgrade_area_body_entered"]
