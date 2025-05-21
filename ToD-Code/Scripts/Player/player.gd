@@ -118,9 +118,9 @@ func handle_dash():
 		
 		$DashSound.play()
 
-		self.set_collision_layer_value(1,false)
+		#self.set_collision_layer_value(1,false)
 		await spawn_dash_ghosts(0.2)
-		self.set_collision_layer_value(1,true)
+		#self.set_collision_layer_value(1,true)
 		
 func handle_stairs_up():
 	if velocity.x != 0 and is_touching_floor.is_colliding() and is_there_stairs.is_colliding() and not max_height_stairs.is_colliding():
@@ -138,17 +138,17 @@ func talk() -> bool:
 		return false
 	var talked = false
 	var actionables := actionable_seeker.get_overlapping_areas()
-	var first_time_interaction := true
-	for actionable in actionables:
-		if actionable.get_meta("times_talked") == 0:
-			actionable.set_meta("times_talked", actionable.get_meta("times_talked") + 1)
-			actionable.action()
-			first_time_interaction = true
-			talked = true
-	if Input.is_action_just_pressed("interact") and actionables.size() > 0 and not Global.is_talking:	
-		if first_time_interaction:
-			actionables[0].action()
-			talked = true
+	#for actionable in actionables:
+	#	if not actionable.talkable:
+	#		continue
+	#	if actionable.get_meta("times_talked") == 0:
+	#		actionable.set_meta("times_talked", actionable.get_meta("times_talked") + 1)
+	#		actionable.action()
+	#		talked = true
+	if Input.is_action_just_pressed("interact") and actionables.size() > 0 \
+	and not Global.is_talking and actionables[0].talkable:	
+		actionables[0].action()
+		talked = true
 	return talked
 	
 func jump(delta):
@@ -171,9 +171,8 @@ func jump(delta):
 			velocity.y += JUMP_VELOCITY
 			jump_state = JumpState.FIRST_JUMP
 			ledge_forgivess_active = false
-		elif jump_state == JumpState.FIRST_JUMP:
-			if velocity.y > 0:
-				velocity.y = 0
+		elif jump_state == JumpState.FIRST_JUMP && Global.double_jump_picked:
+			velocity.y = 0
 			velocity.y += JUMP_VELOCITY
 			jump_state = JumpState.SECOND_JUMP
 
@@ -256,7 +255,7 @@ func game_over():
 	SceneTransition.change_scene("res://Scenes/Levels/lobby.tscn", SceneTransition.menu_state.PLAYING)
 	Global.player_health = 100
 
-func _on_dash_upgrade_dash_picked():
+func on_upgrade_picked():
 	disable_physics = true
 	velocity = Vector2(0, 0)
 	animation_player.play("receiving_dash")

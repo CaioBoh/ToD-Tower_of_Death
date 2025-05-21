@@ -5,8 +5,8 @@ var acceleration
 
 func _physics_process(delta):
 	if acceleration:
-		speed+=acceleration*delta
-	position.x+= speed * delta
+		speed += acceleration * delta
+	position.x += speed * delta
 
 
 func _on_timer_timeout():

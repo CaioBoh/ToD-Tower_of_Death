@@ -12,6 +12,8 @@ var knockback_vector = Vector2.ZERO
 var dash_vector = Vector2.ZERO
 var soul_particle = preload("res://Scenes/Particles/hit_particle.tscn")
 var death_particle = preload("res://Scenes/Particles/death_enemy_explosion_particle.tscn")
+var returning_to_spawn = false
+@onready var spawn_point = global_position
 @onready var sight_area = $SightArea
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var dash_area: Area2D = $DashArea
@@ -27,6 +29,8 @@ func _ready():
 	anim.play("RESET")
 
 func _physics_process(delta):
+	if Global.is_talking || Global.global_player.disable_physics:
+		return
 	velocity.y += gravity
 	if knockback_vector != Vector2.ZERO:
 		velocity = knockback_vector * 25
@@ -34,6 +38,14 @@ func _physics_process(delta):
 		velocity = dash_vector
 	elif chasing:
 		chase(delta)
+	elif returning_to_spawn:
+		if global_position.distance_to(spawn_point) <= 20:
+			global_position = spawn_point
+			velocity = Vector2.ZERO
+			returning_to_spawn = false
+		velocity = global_position.direction_to(spawn_point) * 300
+		var dir = global_position.direction_to(spawn_point)
+		handle_animation(dir)
 	move_and_slide()
 	
 func chase(delta):
@@ -45,6 +57,11 @@ func chase(delta):
 func _on_sight_area_body_entered(body):
 	if body == player:
 		chasing = true
+		
+func _on_escape_area_body_exited(body: Node2D) -> void:
+	if body == player:
+		chasing = false
+		returning_to_spawn = true
 
 func hurt(body, damage):
 	create_bounce()
@@ -89,7 +106,8 @@ func dash():
 	var dash_tween:= get_tree().create_tween()
 	dash_tween.tween_property(self,"dash_vector",Vector2.ZERO, 0.2)
 	await get_tree().create_timer(0.5).timeout
-	chasing = true
+	if not returning_to_spawn:
+		chasing = true
 	is_dashing = false
 
 func _on_collision_area_body_entered(body):

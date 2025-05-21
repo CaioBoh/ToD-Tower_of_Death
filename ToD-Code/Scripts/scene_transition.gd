@@ -11,6 +11,9 @@ var current_menu_state := menu_state.START_MENU
 @onready var progress_bar: ProgressBar = $LoadingScreen/ProgressBar
 @onready var progress_percentage: Label = $LoadingScreen/ProgressPercentage
 
+func _process(delta: float) -> void:
+	print(isTransitioning)
+
 func change_scene(target:String, new_menu_state: menu_state) -> void:
 	if isTransitioning:
 		return
@@ -31,7 +34,7 @@ func change_scene(target:String, new_menu_state: menu_state) -> void:
 	var status = ResourceLoader.load_threaded_get_status(target, progress)
 	while status != ResourceLoader.ThreadLoadStatus.THREAD_LOAD_LOADED:
 		progress_bar.value = progress[0] * 100
-		progress_percentage.text = str(int(progress[0]) * 100) + "%"
+		progress_percentage.text = str(int(progress[0] * 100)) + "%"
 		status = ResourceLoader.load_threaded_get_status(target, progress)
 		await get_tree().process_frame
 		

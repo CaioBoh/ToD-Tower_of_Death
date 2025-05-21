@@ -2157,5 +2157,4 @@ libraries = {
 [connection signal="body_entered" from="ARENAS/enemy_spawn_trigger1" to="ARENAS/Arena1" method="_on_enemy_spawn_trigger_1_body_entered"]
 [connection signal="body_entered" from="ARENAS/enemy_spawn_trigger2" to="ARENAS/Arena2" method="_on_enemy_spawn_trigger_2_body_entered"]
 [connection signal="body_entered" from="ARENAS/enemy_spawn_trigger3" to="ARENAS/Arena3" method="_on_enemy_spawn_trigger_3_body_entered"]
-[connection signal="dash_picked" from="DashUpgrade" to="player" method="_on_dash_upgrade_dash_picked"]
 [connection signal="body_entered" from="DashUpgrade/PathFollow2D/DashUpgradeArea" to="DashUpgrade" method="_on_dash_upgrade_area_body_entered"]

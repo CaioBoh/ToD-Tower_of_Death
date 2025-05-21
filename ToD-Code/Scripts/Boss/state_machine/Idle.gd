@@ -24,7 +24,7 @@ func transition():
 		var choice = randf_range(1,100)
 		var chance_changed = false
 		var current_chance = 0
-		var attack
+		var attack = "SincPunch"
 		var chance_removed
 		print("attack chance size : ", attack_chance.size())
 		#check for which attack is and remove its chance

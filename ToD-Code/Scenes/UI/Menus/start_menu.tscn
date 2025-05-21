@@ -9,48 +9,62 @@ font_names = PackedStringArray("MS UI Gothic")
 [sub_resource type="SystemFont" id="SystemFont_bduwm"]
 font_names = PackedStringArray("MS UI Gothic")
 
-[node name="Control" type="Control" node_paths=PackedStringArray("playButton", "exitButton")]
+[node name="Control" type="Control" node_paths=PackedStringArray("playButton", "exitButton", "optionsButton", "demoNewGame")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1280.0
 offset_bottom = 720.0
 script = ExtResource("1_58gni")
-playButton = NodePath("CenterContainer/Buttons/Play")
-exitButton = NodePath("CenterContainer/Buttons/Exit")
+playButton = NodePath("CanvasLayer/CenterContainer/Buttons/Play")
+exitButton = NodePath("CanvasLayer/CenterContainer/Buttons/Exit")
+optionsButton = NodePath("CanvasLayer/CenterContainer/Buttons/Options")
+demoNewGame = NodePath("CanvasLayer/CenterContainer/Buttons/Demo Novo jogo")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
 position = Vector2(641, 361)
 texture = ExtResource("2_dbo4v")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
-layout_mode = 1
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -263.0
-offset_top = -265.0
+offset_left = -515.0
+offset_top = -485.0
 offset_right = -106.0
 offset_bottom = -77.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="Buttons" type="VBoxContainer" parent="CenterContainer"]
+[node name="Buttons" type="VBoxContainer" parent="CanvasLayer/CenterContainer"]
 layout_mode = 2
 
-[node name="Play" type="Button" parent="CenterContainer/Buttons"]
+[node name="Demo Novo jogo" type="Button" parent="CanvasLayer/CenterContainer/Buttons"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Exit")
+focus_neighbor_bottom = NodePath("../Play")
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = SubResource("SystemFont_xuwhi")
+theme_override_font_sizes/font_size = 90
+text = "Novo Jogo"
+flat = true
+alignment = 0
+
+[node name="Play" type="Button" parent="CanvasLayer/CenterContainer/Buttons"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Demo Novo jogo")
 focus_neighbor_bottom = NodePath("../Options")
 theme_override_constants/line_spacing = 0
 theme_override_fonts/font = SubResource("SystemFont_xuwhi")
 theme_override_font_sizes/font_size = 90
-text = "Jogar"
+text = "Continuar"
 flat = true
 alignment = 0
 
-[node name="Options" type="Button" parent="CenterContainer/Buttons"]
+[node name="Options" type="Button" parent="CanvasLayer/CenterContainer/Buttons"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Play")
 focus_neighbor_bottom = NodePath("../Exit")
@@ -61,10 +75,10 @@ text = "Opções"
 flat = true
 alignment = 0
 
-[node name="Exit" type="Button" parent="CenterContainer/Buttons"]
+[node name="Exit" type="Button" parent="CanvasLayer/CenterContainer/Buttons"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Options")
-focus_neighbor_bottom = NodePath("../Play")
+focus_neighbor_bottom = NodePath("../Demo Novo jogo")
 theme_override_fonts/font = SubResource("SystemFont_bduwm")
 theme_override_font_sizes/font_size = 90
 text = "Sair"
@@ -75,6 +89,7 @@ alignment = 0
 position = Vector2(641, 361)
 scale = Vector2(17.0061, 16.3162)
 
-[connection signal="pressed" from="CenterContainer/Buttons/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="CenterContainer/Buttons/Options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="CenterContainer/Buttons/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="CanvasLayer/CenterContainer/Buttons/Demo Novo jogo" to="." method="_on_demo_novo_jogo_pressed"]
+[connection signal="pressed" from="CanvasLayer/CenterContainer/Buttons/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="CanvasLayer/CenterContainer/Buttons/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="CanvasLayer/CenterContainer/Buttons/Exit" to="." method="_on_exit_pressed"]

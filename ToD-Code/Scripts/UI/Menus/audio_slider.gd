@@ -3,7 +3,7 @@ extends Control
 @export var audio_label: Label
 @export var value_label: Label
 @export var audio_slider: Slider
-@export_enum("Master", "Music", "Sound Effect") var bus_name: String
+@export_enum("Tudo", "Música", "Efeitos") var bus_name: String
 
 var bus_index := 0
 

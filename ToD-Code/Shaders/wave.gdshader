@@ -7,9 +7,8 @@ uniform float amplitude_y = 50.0;
 uniform float amplitude_x = 25.0;
 uniform float inclination = 50.0;
 
-
 void vertex() {
 	VERTEX.y += sin((UV.x - TIME * speed) * frequency_y) * amplitude_y * UV.y;
-	VERTEX.x += cos((UV.y - TIME * speed) * frequency_x) * amplitude_x * UV.y;
-	VERTEX.x -= UV.y * inclination;
+	//VERTEX.x += cos((UV.y - TIME * speed) * frequency_x) * amplitude_x * UV.y;
+	//VERTEX.x -= UV.y * inclination;
 }
