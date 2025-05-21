@@ -90,4 +90,4 @@ process_material = SubResource("ParticleProcessMaterial_5kicj")
 [node name="ExplosionSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_r36be")
 pitch_scale = 0.69
-bus = &"Sound Effect"
+bus = &"Sound Effects"

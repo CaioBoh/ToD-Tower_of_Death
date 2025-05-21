@@ -67,6 +67,9 @@ theme_override_font_sizes/font_size = 90
 text = "Sair"
 metadata/_edit_use_anchors_ = true
 
+[connection signal="focus_entered" from="CanvasLayer/CenterContainer/Buttons/Continue" to="." method="_on_focus_entered"]
 [connection signal="pressed" from="CanvasLayer/CenterContainer/Buttons/Continue" to="." method="_on_continue_pressed"]
+[connection signal="focus_entered" from="CanvasLayer/CenterContainer/Buttons/Options" to="." method="_on_focus_entered"]
 [connection signal="pressed" from="CanvasLayer/CenterContainer/Buttons/Options" to="." method="_on_options_pressed"]
+[connection signal="focus_entered" from="CanvasLayer/CenterContainer/Buttons/Quit" to="." method="_on_focus_entered"]
 [connection signal="pressed" from="CanvasLayer/CenterContainer/Buttons/Quit" to="." method="_on_quit_pressed"]

@@ -3,12 +3,18 @@ extends Control
 @export var audio_label: Label
 @export var value_label: Label
 @export var audio_slider: Slider
-@export_enum("Tudo", "Música", "Efeitos") var bus_name: String
+@export_enum("Master", "Music", "Sound Effects") var bus_name: String
 
 var bus_index := 0
 
 func _ready() -> void:
-	audio_label.text = bus_name
+	match bus_name:
+		"Master":
+			audio_label.text = "Tudo"
+		"Music":
+			audio_label.text = "Música"
+		"Sound Effects":
+			audio_label.text = "Efeitos"
 	bus_index = AudioServer.get_bus_index(bus_name)
 	audio_slider.value = AudioServer.get_bus_volume_linear(bus_index)
 	value_label.text = str(int(audio_slider.value * 100)) + "%"

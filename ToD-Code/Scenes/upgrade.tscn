@@ -73,5 +73,6 @@ shape = SubResource("CircleShape2D_un7py")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="PathFollow2D/UpgradeArea"]
 stream = ExtResource("3_uudjn")
+bus = &"Sound Effects"
 
 [connection signal="body_entered" from="PathFollow2D/UpgradeArea" to="." method="_on_upgrade_area_body_entered"]

@@ -543,6 +543,34 @@ libraries = {
 }
 
 [node name="GhostSpawner" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("23_foyyw")]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+position = Vector2(0, 0)
+rotation = 0.0
+scale = Vector2(1, 1)
+skew = 0.0
 ghost_scene = ExtResource("24_sj6qy")
 sprite = NodePath("../animation")
 color = Color(50, 50, 50, 0.662745)
@@ -585,20 +613,20 @@ debug_color = Color(0.702388, 0.490781, 1.92523e-07, 0.42)
 
 [node name="HurtSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("30_hop0w")
-bus = &"Sound Effect"
+bus = &"Sound Effects"
 
 [node name="SlashSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("31_yasg0")
 volume_db = -4.588
 pitch_scale = 1.41
-bus = &"Sound Effect"
+bus = &"Sound Effects"
 
 [node name="DashSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("32_0p8ua")
 volume_db = 3.059
 pitch_scale = 1.06
 max_polyphony = 5
-bus = &"Sound Effect"
+bus = &"Sound Effects"
 
 [node name="DashTimer" type="Timer" parent="."]
 wait_time = 0.2

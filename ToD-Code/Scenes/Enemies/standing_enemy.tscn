@@ -303,9 +303,11 @@ one_shot = true
 
 [node name="HurtSound1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("20_ytvyy")
+bus = &"Sound Effects"
 
 [node name="HurtSound2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("21_otfbf")
+bus = &"Sound Effects"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -313,7 +315,35 @@ libraries = {
 }
 
 [node name="Raycasts" type="Node2D" parent="."]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
 position = Vector2(-3.72439, 7.44879)
+rotation = 0.0
+scale = Vector2(1, 1)
+skew = 0.0
+script = null
 
 [node name="IsThereFloor" type="RayCast2D" parent="Raycasts"]
 position = Vector2(16.7598, 29.7952)

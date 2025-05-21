@@ -6,7 +6,7 @@
 [sub_resource type="SystemFont" id="SystemFont_6hxcx"]
 font_names = PackedStringArray("MS UI Gothic")
 
-[node name="Options" type="Control" node_paths=PackedStringArray("tab_container")]
+[node name="Options" type="Control" node_paths=PackedStringArray("tab_container", "change_focus_effect", "click_effect", "cancel_effect")]
 process_mode = 3
 texture_filter = 1
 layout_mode = 3
@@ -18,6 +18,9 @@ grow_vertical = 2
 scale = Vector2(1, 1.00185)
 script = ExtResource("1_hr7dv")
 tab_container = NodePath("CanvasLayer/TabContainer")
+change_focus_effect = NodePath("")
+click_effect = NodePath("")
+cancel_effect = NodePath("")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 3
@@ -57,17 +60,17 @@ theme_override_constants/separation = 100
 [node name="AudioSlider" parent="CanvasLayer/TabContainer/Sons/VBoxContainer" instance=ExtResource("1_6hxcx")]
 layout_mode = 2
 focus_mode = 2
-bus_name = "Tudo"
+bus_name = "Master"
 
 [node name="AudioSlider2" parent="CanvasLayer/TabContainer/Sons/VBoxContainer" instance=ExtResource("1_6hxcx")]
 layout_mode = 2
 focus_mode = 2
-bus_name = "Música"
+bus_name = "Music"
 
 [node name="AudioSlider3" parent="CanvasLayer/TabContainer/Sons/VBoxContainer" instance=ExtResource("1_6hxcx")]
 layout_mode = 2
 focus_mode = 2
-bus_name = "Efeitos"
+bus_name = "Sound Effects"
 
 [node name="Back" type="Button" parent="CanvasLayer"]
 anchors_preset = 2
@@ -82,4 +85,7 @@ theme_override_fonts/font = SubResource("SystemFont_6hxcx")
 theme_override_font_sizes/font_size = 50
 text = "Voltar"
 
+[connection signal="focus_entered" from="CanvasLayer/TabContainer/Sons/VBoxContainer/AudioSlider" to="." method="_on_focus_entered"]
+[connection signal="focus_entered" from="CanvasLayer/TabContainer/Sons/VBoxContainer/AudioSlider2" to="." method="_on_focus_entered"]
+[connection signal="focus_entered" from="CanvasLayer/TabContainer/Sons/VBoxContainer/AudioSlider3" to="." method="_on_focus_entered"]
 [connection signal="pressed" from="CanvasLayer/Back" to="." method="_on_back_pressed"]

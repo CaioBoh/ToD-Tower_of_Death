@@ -250,10 +250,12 @@ frame_progress = 0.72064
 [node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_fketm")
 pitch_scale = 1.7
+bus = &"Sound Effects"
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_yglvq")
 volume_db = 9.905
+bus = &"Sound Effects"
 
 [connection signal="body_entered" from="SightArea" to="." method="_on_sight_area_body_entered"]
 [connection signal="body_entered" from="DashArea" to="." method="_on_dash_area_body_entered"]
