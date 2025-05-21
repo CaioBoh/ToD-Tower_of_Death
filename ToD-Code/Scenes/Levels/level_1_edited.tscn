@@ -1,4 +1,4 @@
-[gd_scene load_steps=123 format=4 uid="uid://csiohogmlkqv8"]
+[gd_scene load_steps=128 format=4 uid="uid://csiohogmlkqv8"]
 
 [ext_resource type="Texture2D" uid="uid://b5ffpxs4egn0a" path="res://Sprites/Levels/Level 1/backgrounds.png" id="1_ixmpu"]
 [ext_resource type="TileSet" uid="uid://bahhiea7m4vko" path="res://Resources/tile_set_level_1.tres" id="1_u0xl1"]
@@ -33,7 +33,11 @@
 [ext_resource type="PackedScene" uid="uid://d4c2d23qet6ui" path="res://Scenes/Enemies/enemy_summoner.tscn" id="27_8ej5h"]
 [ext_resource type="Script" uid="uid://bqvp55qlbfv0f" path="res://Scripts/Levels/Level 1/arena_2.gd" id="28_uu1fe"]
 [ext_resource type="Script" uid="uid://drj3gt2mtp60q" path="res://Scripts/Levels/Level 1/arena_3.gd" id="29_8sw77"]
+[ext_resource type="Texture2D" uid="uid://baqq3sgmqgoer" path="res://Sprites/Levels/Key/Chave 1.png" id="29_8ufbb"]
+[ext_resource type="Texture2D" uid="uid://bx124ni0o0xiw" path="res://Sprites/Levels/Key/Chave 2.png" id="30_avfu8"]
 [ext_resource type="PackedScene" uid="uid://yaal50vrvvmh" path="res://Scenes/upgrade.tscn" id="30_fmwy2"]
+[ext_resource type="Texture2D" uid="uid://dmp24piabt36d" path="res://Sprites/Levels/Key/Chave 3.png" id="31_44y5u"]
+[ext_resource type="Texture2D" uid="uid://ch70qhgwasvbq" path="res://Sprites/Levels/Key/Chave 4.png" id="32_88p8f"]
 [ext_resource type="PackedScene" uid="uid://7wlia6j3uw4f" path="res://Scenes/Enemies/standing_enemy.tscn" id="33_nurrv"]
 [ext_resource type="PackedScene" uid="uid://c2hcqohgaw0t5" path="res://Scenes/Enemies/flying_enemy.tscn" id="34_c1x4k"]
 [ext_resource type="PackedScene" uid="uid://bs3v70xkv1n55" path="res://Scenes/UI/hud.tscn" id="35_1d034"]
@@ -564,6 +568,26 @@ radius = 31.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ixmpu"]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_was8y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("29_8ufbb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_avfu8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_44y5u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_88p8f")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ysvpu"]
 size = Vector2(140, 122)
 
@@ -746,7 +770,7 @@ tile_set = ExtResource("1_u0xl1")
 
 [node name="player" parent="." instance=ExtResource("3_61jla")]
 texture_filter = 1
-position = Vector2(499, 396)
+position = Vector2(610, 405)
 
 [node name="CameraGuide" type="Marker2D" parent="player"]
 script = ExtResource("4_jeepl")
@@ -1260,13 +1284,6 @@ script = ExtResource("24_efwym")
 shape = SubResource("CircleShape2D_akb7d")
 debug_color = Color(0.713893, 0.76, 0.0684, 0.835294)
 
-[node name="ColorRect" type="ColorRect" parent="Key"]
-offset_left = -21.0
-offset_top = -19.0
-offset_right = 19.0
-offset_bottom = 21.0
-color = Color(0.969333, 1, 0.08, 1)
-
 [node name="Actionable" type="Area2D" parent="Key"]
 collision_layer = 16
 collision_mask = 0
@@ -1277,6 +1294,11 @@ talkable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Key/Actionable"]
 shape = SubResource("CircleShape2D_ixmpu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Key"]
+scale = Vector2(0.445, 0.445)
+sprite_frames = SubResource("SpriteFrames_was8y")
+autoplay = "default"
 
 [node name="ARENAS" type="Node2D" parent="."]
 script = ExtResource("25_2tfdw")
