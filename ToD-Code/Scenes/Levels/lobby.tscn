@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=4 uid="uid://s2eb0658mlth"]
+[gd_scene load_steps=67 format=4 uid="uid://s2eb0658mlth"]
 
 [ext_resource type="Texture2D" uid="uid://cf8sa3f5fdfu0" path="res://Sprites/Death/Morte-Idle1.png" id="1_aeugk"]
 [ext_resource type="Texture2D" uid="uid://dckbayivp44u6" path="res://Sprites/Death/Morte-Idle2.png" id="2_5yi86"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://k6m535oyg4tp" path="res://Scenes/UI/Dialogue/actionable.tscn" id="15_dxdry"]
 [ext_resource type="Resource" uid="uid://dp753if1xlfuc" path="res://Dialogues/death_dialog.dialogue" id="16_w3xfd"]
 [ext_resource type="PackedScene" uid="uid://bgsoxr6nsjbrr" path="res://Scenes/Player/player.tscn" id="17_ox6kx"]
+[ext_resource type="Texture2D" uid="uid://i2m4pjtxu4in" path="res://Sprites/UI/Balão-fala.png" id="17_x8l11"]
 [ext_resource type="Script" uid="uid://b1qhlx75cvps4" path="res://Scripts/UI/Camera/Camera.gd" id="18_qxjhj"]
 [ext_resource type="Script" uid="uid://0vdadhv31itf" path="res://Scripts/Levels/Lobby/portal.gd" id="19_76dow"]
 [ext_resource type="Resource" uid="uid://drcyt4hf2y5fm" path="res://Dialogues/death_advertisement_to_void.dialogue" id="20_k27id"]
@@ -24,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://d1gtwnw5a64cl" path="res://Sprites/Levels/Level 1/tileset.png" id="22_1iqn7"]
 [ext_resource type="PackedScene" uid="uid://c2hcqohgaw0t5" path="res://Scenes/Enemies/flying_enemy.tscn" id="23_ixact"]
 [ext_resource type="PackedScene" uid="uid://7wlia6j3uw4f" path="res://Scenes/Enemies/standing_enemy.tscn" id="24_v1va7"]
+[ext_resource type="AudioStream" uid="uid://xqgtsnbtdp0y" path="res://Sounds/Music/mus-dark-ambience.ogg" id="25_5yi86"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_00xam"]
 atlas = ExtResource("1_aeugk")
@@ -739,12 +741,10 @@ position = Vector2(-109.877, 8.38187)
 shape = SubResource("RectangleShape2D_012m1")
 debug_color = Color(0.831838, 0.391724, 0, 0.42)
 
-[node name="Feedback" type="ColorRect" parent="Death/Death Dialogue Actionable"]
+[node name="Feedback" type="Sprite2D" parent="Death/Death Dialogue Actionable"]
 visible = false
-offset_left = -13.3989
-offset_top = -237.638
-offset_right = 26.6011
-offset_bottom = -197.638
+position = Vector2(-3.75102, -208.695)
+texture = ExtResource("17_x8l11")
 
 [node name="Player" parent="." instance=ExtResource("17_ox6kx")]
 position = Vector2(393, 33)
@@ -778,13 +778,11 @@ position = Vector2(44.5, -2.5)
 shape = SubResource("RectangleShape2D_r75so")
 debug_color = Color(0.8225, 0.396102, 0.16138, 0.42)
 
-[node name="Feedback" type="ColorRect" parent="Void Dialogue Actionable"]
+[node name="Feedback" type="Sprite2D" parent="Void Dialogue Actionable"]
 visible = false
-offset_left = -6.0
-offset_top = -69.0
-offset_right = 34.0
-offset_bottom = -29.0
-scale = Vector2(0.479999, 0.48)
+position = Vector2(39, -59)
+scale = Vector2(0.31095, 0.31095)
+texture = ExtResource("17_x8l11")
 
 [node name="Lights" type="Node" parent="."]
 
@@ -877,6 +875,12 @@ offset_bottom = 746.0
 text = "  Moedas: 0"
 label_settings = SubResource("LabelSettings_sqdli")
 metadata/_edit_use_anchors_ = true
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("25_5yi86")
+volume_db = 15.0
+autoplay = true
+parameters/looping = true
 
 [connection signal="body_entered" from="Death/Death Dialogue Actionable" to="Death/Death Dialogue Actionable" method="_on_body_entered"]
 [connection signal="body_exited" from="Death/Death Dialogue Actionable" to="Death/Death Dialogue Actionable" method="_on_body_exited"]

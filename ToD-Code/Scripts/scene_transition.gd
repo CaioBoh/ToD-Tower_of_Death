@@ -10,6 +10,7 @@ var current_menu_state := menu_state.START_MENU
 @onready var animationPlayer: AnimationPlayer = $AnimationPlayer
 @onready var progress_bar: ProgressBar = $LoadingScreen/ProgressBar
 @onready var progress_percentage: Label = $LoadingScreen/ProgressPercentage
+@onready var press_any_button: Label = $"LoadingScreen/CenterContainer/Press Any Button"
 
 func change_scene(target:String, new_menu_state: menu_state) -> void:
 	if isTransitioning:
@@ -37,6 +38,7 @@ func change_scene(target:String, new_menu_state: menu_state) -> void:
 		
 	progress_bar.value = 100
 	progress_percentage.text = "100%"
+	press_any_button.visible = true
 		
 	while not Input.is_anything_pressed():
 		await get_tree().process_frame
@@ -45,6 +47,7 @@ func change_scene(target:String, new_menu_state: menu_state) -> void:
 	await animationPlayer.animation_finished
 	
 	loading_screen.visible = false
+	press_any_button.visible = false
 	
 	var new_scene_resource = ResourceLoader.load_threaded_get(target)
 	var new_scene_instantiated = new_scene_resource.instantiate()
@@ -59,7 +62,9 @@ func change_scene(target:String, new_menu_state: menu_state) -> void:
 	
 func resumeDissolve():
 	animationPlayer.play()
+	
 func pauseDissolve():
 	animationPlayer.pause()
+	
 func pauseDissolveAndMakeInvisible():
 	animationPlayer.pause()
