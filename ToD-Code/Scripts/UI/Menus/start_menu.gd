@@ -15,7 +15,7 @@ func _on_play_pressed() -> void:
 		toggleButtons(false)
 	SceneTransition.change_scene("res://Scenes/Levels/lobby.tscn", SceneTransition.menu_state.PLAYING)
 	ControlSoundEffects.play_play()
-	#Global.reset()
+	Global.reset()
 	
 func _on_options_pressed() -> void:
 	SceneTransition.current_menu_state = SceneTransition.menu_state.OPTIONS
@@ -38,7 +38,7 @@ func _on_demo_novo_jogo_pressed() -> void:
 		toggleButtons(false)
 		
 	SceneTransition.change_scene("res://Scenes/Levels/lobby.tscn", SceneTransition.menu_state.PLAYING)
-	Global.reset()
+	Global.reset_demo()
 	ControlSoundEffects.play_play()
 	
 func toggleButtons(enabled: bool):
