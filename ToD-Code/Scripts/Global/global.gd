@@ -2,9 +2,9 @@ extends Node
 
 var global_player: CharacterBody2D
 var current_camera: Camera2D
-var key_picked: bool = false
-var dash_picked: bool = false
-var double_jump_picked: bool = false
+var key_picked: bool = true
+var dash_picked: bool = true
+var double_jump_picked: bool = true
 var is_player_dead: bool = false
 var max_player_health: int = 100
 var player_health := max_player_health

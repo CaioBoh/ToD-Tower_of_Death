@@ -1,9 +1,8 @@
 extends AnimatedSprite2D
+
 @onready var hands = $"../Hands"
-var direction
+var speed: float = 2
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if hands:
-		global_position = lerp(global_position,hands.global_position,delta * 2)
+		global_position = lerp(global_position, hands.global_position, speed * delta)

@@ -9,11 +9,9 @@ func _ready():
 	previous_state = current_state
 	current_state.enter()
 	
-
 func change_state(state):
 	owner.set_physics_process(false)
 	current_state = find_child(state) as State
 	previous_state.exit()
-	owner.set_physics_process(false)
 	current_state.enter()
 	previous_state = current_state
