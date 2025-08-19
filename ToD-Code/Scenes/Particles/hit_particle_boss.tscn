@@ -33,8 +33,8 @@ color_initial_ramp = SubResource("GradientTexture1D_8dagd")
 [node name="Hit_particle_boss" type="GPUParticles2D"]
 emitting = false
 amount = 100
-process_material = SubResource("ParticleProcessMaterial_rryck")
 texture = ExtResource("1_nxwa1")
 one_shot = true
 explosiveness = 0.87
+process_material = SubResource("ParticleProcessMaterial_rryck")
 script = ExtResource("2_d20u8")
