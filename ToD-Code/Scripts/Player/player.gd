@@ -134,7 +134,7 @@ func spawn_dash_ghosts(amount_of_time_to_spawn_ghosts):
 	ghost_spawner.stop_spawn()
 	
 func talk() -> bool:
-	if not input_allowed:
+	if not input_allowed || SceneTransition.isTransitioning:
 		return false
 	var talked = false
 	var actionables := actionable_seeker.get_overlapping_areas()
