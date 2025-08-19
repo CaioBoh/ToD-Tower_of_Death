@@ -3,6 +3,8 @@ extends Node2D
 var health = 100
 var max_health = 100
 var tremble_vect: Vector2 = Vector2.ZERO
+var tremble_speed : float = 0
+var position_dead : Vector2
 var is_dead = false
 
 @onready var hurt_sound: AudioStreamPlayer2D = $hurt_sound
@@ -20,11 +22,18 @@ func _process(delta):
 		health = 0
 		is_dead = true
 		dead.emit()
-		await get_tree().create_timer(2).timeout
+		await get_tree().create_timer(1).timeout
+		position_dead = global_position
 		$TrembleTimer.start()
-	position+=tremble_vect * delta
+	
 	health_bar.value = health
 	
+func _physics_process(delta: float) -> void:
+	if is_dead:
+		global_position = global_position.move_toward(tremble_vect, tremble_speed * delta)
+		if global_position.distance_to(tremble_vect) < 20:
+			tremble_vect = position_dead + Vector2(randf_range(-20,20), randf_range(-20,20))
+			
 func color_based_on_health():
 	if health > 0:
 		var value = remap(health,0,max_health,0,1)
@@ -36,4 +45,5 @@ func _on_hands_damaged():
 	hurt_sound.play()
 
 func _on_tremble_timer_timeout():
-	tremble_vect = Vector2(randf_range(-100,100), randf_range(-100,100))
+	tremble_speed = 200
+	tremble_vect = position_dead + Vector2(randf_range(-40,40), randf_range(-40,40))

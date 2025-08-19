@@ -78,7 +78,8 @@ self_modulate = Color(0.8, 0.8, 0.8, 1)
 [node name="Hit_particle_boss" parent="." instance=ExtResource("8_qpvjk")]
 
 [node name="TrembleTimer" type="Timer" parent="."]
-wait_time = 0.085
+wait_time = 0.1
+one_shot = true
 
 [node name="hurt_sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("9_lm6db")
@@ -112,7 +113,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_nosqe")
 [node name="Label" type="Label" parent="HUD/CenterContainer/VBoxContainer/HBoxContainer/PanelContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
-text = "Vida"
+text = "Negação"
 horizontal_alignment = 1
 
 [node name="VSeparator2" type="VSeparator" parent="HUD/CenterContainer/VBoxContainer/HBoxContainer"]
