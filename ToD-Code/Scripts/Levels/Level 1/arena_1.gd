@@ -1,7 +1,7 @@
 extends Area2D
 
 @onready var enemies: Node2D = $Enemies
-@onready var enemy_summoners: Node = $EnemySummoners
+@onready var enemy_summoners: Node = $Summoners
 @onready var enemy_spawn_trigger_1: Area2D = $"../enemy_spawn_trigger1"
 
 var started: bool = false

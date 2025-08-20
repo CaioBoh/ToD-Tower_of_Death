@@ -14,6 +14,14 @@ func _on_spawn_timer_timeout() -> void:
 		summoner.already_spawned = false
 		summoner.spawn_enemy()
 
-func _on_enemy_spawn_trigger_3_body_entered(_body: Node2D) -> void:
-	enemy_spawn_trigger_3.get_node("CollisionShape2D").set_deferred("disabled", true)
-	spawn_timer.start()
+#func _on_enemy_spawn_trigger_3_body_entered(_body: Node2D) -> void:
+#	enemy_spawn_trigger_3.get_node("CollisionShape2D").set_deferred("disabled", true)
+#	spawn_timer.start()
+
+func _on_dialogue_actionable_body_entered(body: Node2D) -> void:
+	if body == Global.global_player:
+		$"Dialogue Actionable".set_deferred("monitoring", false)
+		var balloon = $"Dialogue Actionable".action()
+		await balloon.dialogue_finished
+		$Arena3_Timer.start()
+		spawn_timer.start()

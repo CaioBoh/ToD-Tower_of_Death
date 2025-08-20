@@ -1,0 +1,8 @@
+~ start
+set Global.is_talking = true
+Parabéns por chegar até aqui!
+Já que você conseguiu testar a sua força, aqui vai um bônus.
+Sobreviva por 1 minuto e você será o grande vencedor.
+Boa sorte!
+set Global.global_player.just_stopped_talking_timer.start()
+=> END

@@ -1,4 +1,4 @@
-[gd_scene load_steps=131 format=4 uid="uid://csiohogmlkqv8"]
+[gd_scene load_steps=133 format=4 uid="uid://csiohogmlkqv8"]
 
 [ext_resource type="Texture2D" uid="uid://b5ffpxs4egn0a" path="res://Sprites/Levels/Level 1/backgrounds.png" id="1_ixmpu"]
 [ext_resource type="TileSet" uid="uid://bahhiea7m4vko" path="res://Resources/tile_set_level_1.tres" id="1_u0xl1"]
@@ -44,6 +44,7 @@
 [ext_resource type="PackedScene" uid="uid://c2hcqohgaw0t5" path="res://Scenes/Enemies/flying_enemy.tscn" id="34_c1x4k"]
 [ext_resource type="PackedScene" uid="uid://bs3v70xkv1n55" path="res://Scenes/UI/hud.tscn" id="35_1d034"]
 [ext_resource type="PackedScene" uid="uid://djr5nvclwf3q5" path="res://Scenes/collectible.tscn" id="37_61jla"]
+[ext_resource type="Resource" uid="uid://dl61i7jhaqvu2" path="res://Dialogues/arena3.dialogue" id="40_was8y"]
 [ext_resource type="AudioStream" uid="uid://cm1610tf5ljq8" path="res://Sounds/Music/04.2-Running_Through_Darkness.mp3" id="44_44y5u"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eccly"]
@@ -640,6 +641,9 @@ size = Vector2(1565, 737)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_scpvs"]
 size = Vector2(1556, 642)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3qgkc"]
+size = Vector2(1420, 82)
+
 [sub_resource type="Curve2D" id="Curve2D_2lxul"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -1368, 1167, 0, 0, 0, 0, -1364, 765, 0, 0, 0, 0, -1365, 561, 0, 0, 0, 0, -1364, -448, 0, 0, 0, 0, -1366, -1398, 0, 0, 0, 0, -1366, -2444)
@@ -773,7 +777,7 @@ tile_set = ExtResource("1_u0xl1")
 
 [node name="player" parent="." instance=ExtResource("3_61jla")]
 texture_filter = 1
-position = Vector2(3240, -340)
+position = Vector2(-1342, 1003)
 
 [node name="CameraGuide" type="Marker2D" parent="player"]
 script = ExtResource("4_jeepl")
@@ -1344,31 +1348,24 @@ script = ExtResource("26_qptwn")
 position = Vector2(-3.5, 18.5)
 shape = SubResource("RectangleShape2D_oji2h")
 
-[node name="EnemySummoners" type="Node2D" parent="ARENAS/Arena1"]
+[node name="Summoners" type="Node2D" parent="ARENAS/Arena1"]
+position = Vector2(-8, 36)
 
-[node name="EnemySummoner" parent="ARENAS/Arena1/EnemySummoners" instance=ExtResource("27_8ej5h")]
-position = Vector2(-223, 17)
+[node name="EnemySummoner7" parent="ARENAS/Arena1/Summoners" instance=ExtResource("27_8ej5h")]
+position = Vector2(383, 53)
 enemy_type = 2
 
-[node name="EnemySummoner2" parent="ARENAS/Arena1/EnemySummoners" instance=ExtResource("27_8ej5h")]
-position = Vector2(333, 186)
+[node name="EnemySummoner8" parent="ARENAS/Arena1/Summoners" instance=ExtResource("27_8ej5h")]
+position = Vector2(-373, 207)
 enemy_type = 1
 
-[node name="EnemySummoner3" parent="ARENAS/Arena1/EnemySummoners" instance=ExtResource("27_8ej5h")]
-position = Vector2(220, -51)
+[node name="EnemySummoner9" parent="ARENAS/Arena1/Summoners" instance=ExtResource("27_8ej5h")]
+position = Vector2(-373, 53)
 enemy_type = 2
 
-[node name="EnemySummoner4" parent="ARENAS/Arena1/EnemySummoners" instance=ExtResource("27_8ej5h")]
-position = Vector2(-513, -34)
-enemy_type = 2
-
-[node name="EnemySummoner5" parent="ARENAS/Arena1/EnemySummoners" instance=ExtResource("27_8ej5h")]
-position = Vector2(-449, 170)
+[node name="EnemySummoner10" parent="ARENAS/Arena1/Summoners" instance=ExtResource("27_8ej5h")]
+position = Vector2(383, 205)
 enemy_type = 1
-
-[node name="EnemySummoner6" parent="ARENAS/Arena1/EnemySummoners" instance=ExtResource("27_8ej5h")]
-position = Vector2(424, 9)
-enemy_type = 2
 
 [node name="Enemies" type="Node2D" parent="ARENAS/Arena1"]
 position = Vector2(1360, -209)
@@ -1382,47 +1379,32 @@ script = ExtResource("28_uu1fe")
 position = Vector2(-1374, -731)
 shape = SubResource("RectangleShape2D_scpvs")
 
-[node name="Summoners" type="Node2D" parent="ARENAS/Arena2"]
+[node name="EnemySummoners" type="Node2D" parent="ARENAS/Arena2"]
+position = Vector2(-1363, -747)
 
-[node name="EnemySummoner" parent="ARENAS/Arena2/Summoners" instance=ExtResource("27_8ej5h")]
-position = Vector2(-1036, -728)
+[node name="EnemySummoner" parent="ARENAS/Arena2/EnemySummoners" instance=ExtResource("27_8ej5h")]
+position = Vector2(-223, 17)
 enemy_type = 2
 
-[node name="EnemySummoner2" parent="ARENAS/Arena2/Summoners" instance=ExtResource("27_8ej5h")]
-position = Vector2(-1656, -784)
-enemy_type = 2
-
-[node name="EnemySummoner3" parent="ARENAS/Arena2/Summoners" instance=ExtResource("27_8ej5h")]
-position = Vector2(-895, -857)
-enemy_type = 2
-
-[node name="EnemySummoner4" parent="ARENAS/Arena2/Summoners" instance=ExtResource("27_8ej5h")]
-position = Vector2(-1068, -610)
+[node name="EnemySummoner2" parent="ARENAS/Arena2/EnemySummoners" instance=ExtResource("27_8ej5h")]
+position = Vector2(333, 186)
 enemy_type = 1
 
-[node name="EnemySummoner5" parent="ARENAS/Arena2/Summoners" instance=ExtResource("27_8ej5h")]
-position = Vector2(-1847, -602)
-enemy_type = 1
-
-[node name="EnemySummoner6" parent="ARENAS/Arena2/Summoners" instance=ExtResource("27_8ej5h")]
-position = Vector2(-1890, -847)
+[node name="EnemySummoner3" parent="ARENAS/Arena2/EnemySummoners" instance=ExtResource("27_8ej5h")]
+position = Vector2(220, -51)
 enemy_type = 2
 
-[node name="EnemySummoner7" parent="ARENAS/Arena2/Summoners" instance=ExtResource("27_8ej5h")]
-position = Vector2(-801, -771)
+[node name="EnemySummoner4" parent="ARENAS/Arena2/EnemySummoners" instance=ExtResource("27_8ej5h")]
+position = Vector2(-513, -34)
 enemy_type = 2
 
-[node name="EnemySummoner8" parent="ARENAS/Arena2/Summoners" instance=ExtResource("27_8ej5h")]
-position = Vector2(-1625, -673)
+[node name="EnemySummoner5" parent="ARENAS/Arena2/EnemySummoners" instance=ExtResource("27_8ej5h")]
+position = Vector2(-449, 170)
 enemy_type = 1
 
-[node name="EnemySummoner9" parent="ARENAS/Arena2/Summoners" instance=ExtResource("27_8ej5h")]
-position = Vector2(-1913, -716)
+[node name="EnemySummoner6" parent="ARENAS/Arena2/EnemySummoners" instance=ExtResource("27_8ej5h")]
+position = Vector2(424, 9)
 enemy_type = 2
-
-[node name="EnemySummoner10" parent="ARENAS/Arena2/Summoners" instance=ExtResource("27_8ej5h")]
-position = Vector2(-877, -585)
-enemy_type = 1
 
 [node name="Enemies" type="Node2D" parent="ARENAS/Arena2"]
 
@@ -1471,6 +1453,17 @@ wait_time = 0.001
 [node name="Arena3_Timer" type="Timer" parent="ARENAS/Arena3"]
 wait_time = 10.0
 one_shot = true
+
+[node name="Dialogue Actionable" type="Area2D" parent="ARENAS/Arena3"]
+position = Vector2(-1368, -1466)
+monitoring = false
+script = ExtResource("25_ixmpu")
+dialogue_resource = ExtResource("40_was8y")
+talkable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ARENAS/Arena3/Dialogue Actionable"]
+position = Vector2(-2, -2)
+shape = SubResource("RectangleShape2D_3qgkc")
 
 [node name="Arena1_enemies" type="Node" parent="ARENAS"]
 
@@ -2002,6 +1995,6 @@ parameters/looping = true
 [connection signal="arena_2_cleared" from="ARENAS/Arena2" to="ARENAS" method="_on_arena_2_arena_2_cleared"]
 [connection signal="timeout" from="ARENAS/Arena3/SpawnTimer" to="ARENAS/Arena3" method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="ARENAS/Arena3/Arena3_Timer" to="ARENAS" method="_on_arena_3_timer_timeout"]
+[connection signal="body_entered" from="ARENAS/Arena3/Dialogue Actionable" to="ARENAS/Arena3" method="_on_dialogue_actionable_body_entered"]
 [connection signal="body_entered" from="ARENAS/enemy_spawn_trigger1" to="ARENAS/Arena1" method="_on_enemy_spawn_trigger_1_body_entered"]
 [connection signal="body_entered" from="ARENAS/enemy_spawn_trigger2" to="ARENAS/Arena2" method="_on_enemy_spawn_trigger_2_body_entered"]
-[connection signal="body_entered" from="ARENAS/enemy_spawn_trigger3" to="ARENAS/Arena3" method="_on_enemy_spawn_trigger_3_body_entered"]

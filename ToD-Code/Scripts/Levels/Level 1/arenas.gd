@@ -41,7 +41,7 @@ func check_platform():
 				floors[arenas_cleared].disabled = false
 				platform_seeking_player.disabled = true
 				if arenas_cleared == 2:
-					arena_3_timer.start()
+					$"Arena3/Dialogue Actionable".set_deferred("monitoring", true)
 				print($"floor %d turned on", arenas_cleared + 1)
 			else:
 				self.set_physics_process(false)
