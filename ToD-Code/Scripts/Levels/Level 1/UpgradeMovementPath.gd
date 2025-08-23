@@ -8,6 +8,12 @@ extends Path2D
 
 @export var upgradeType: String
 
+func _ready() -> void:
+	if upgradeType == "dash" && Global.dash_picked:
+		queue_free()
+	elif upgradeType == "double_jump" && Global.double_jump_picked:
+		queue_free()
+
 func _process(delta: float) -> void:
 	path_follow_2d.progress_ratio+=0.008
 

@@ -202,7 +202,6 @@ animations = [{
 [node name="FlyingEnemy" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 0
-motion_mode = 1
 floor_max_angle = 1.01404
 script = ExtResource("1_riyx6")
 

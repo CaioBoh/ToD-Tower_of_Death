@@ -10,12 +10,17 @@ var play_sound_effect: bool = false
 func _ready():
 	reset_focus()
 
+func _on_new_game_pressed() -> void:
+	SaveLoad.delete_game_data()
+	_on_play_pressed()
+
 func _on_play_pressed() -> void:
 	if not SceneTransition.isTransitioning:
 		toggleButtons(false)
-	SceneTransition.change_scene("res://Scenes/Levels/lobby.tscn", SceneTransition.menu_state.PLAYING)
-	ControlSoundEffects.play_play()
+	SaveLoad.load_game_data()
 	Global.reset()
+	SceneTransition.change_scene(Global.current_level_path, SceneTransition.menu_state.PLAYING)
+	ControlSoundEffects.play_play()
 	
 func _on_options_pressed() -> void:
 	SceneTransition.current_menu_state = SceneTransition.menu_state.OPTIONS
@@ -32,14 +37,6 @@ func _on_exit_pressed() -> void:
 func reset_focus():
 	playButton.grab_focus()
 	play_sound_effect = true
-	
-func _on_demo_novo_jogo_pressed() -> void:
-	if not SceneTransition.isTransitioning:
-		toggleButtons(false)
-		
-	SceneTransition.change_scene("res://Scenes/Levels/lobby.tscn", SceneTransition.menu_state.PLAYING)
-	Global.reset_demo()
-	ControlSoundEffects.play_play()
 	
 func toggleButtons(enabled: bool):
 	playButton.disabled = not enabled

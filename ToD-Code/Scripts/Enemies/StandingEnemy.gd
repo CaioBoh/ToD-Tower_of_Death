@@ -11,6 +11,7 @@ var health = 60
 var player_on_spear_range = false
 var knockback_vector: Vector2 = Vector2.ZERO
 var stop_attacking: bool = false
+var is_waiting_to_attack: bool = false
 
 const HIT_PARTICLE = preload("res://Scenes/Particles/hit_particle_2.tscn")
 
@@ -46,7 +47,7 @@ func _physics_process(delta):
 	if knockback_vector != Vector2.ZERO:
 		velocity = knockback_vector
 	else:
-		if is_there_floor.is_colliding():
+		if is_there_floor.is_colliding() and not player_on_spear_range and not is_attacking:
 			velocity.x = dir * speed * delta * 5
 		else:
 			velocity.x = 0
@@ -54,6 +55,9 @@ func _physics_process(delta):
 	handle_movement()
 	handle_animation()
 	move_and_slide()
+	
+	if player_on_spear_range:
+		print("player_on_spear_range")
 
 func handle_stairs():
 	if is_there_stairs.is_colliding() and not max_height_stairs.is_colliding():
@@ -97,7 +101,6 @@ func handle_animation():
 			animated_sprite_2d.play("walking")
 
 func handle_movement():
-	var last_animation = animated_sprite_2d.animation
 	if sight_ray_1.is_colliding():
 		if sight_ray_1.get_collider() == player:
 			is_chasing = true
@@ -107,22 +110,13 @@ func handle_movement():
 	if Global.is_player_dead:
 		is_chasing = false
 	
-	if is_chasing and !player_on_spear_range and !is_attacking and last_animation != "transition_to_attack":
-		
-		if abs(global_position.x - player.global_position.x) < 10:
-			dir = 0
-		else:
-			dir = position.direction_to(player.global_position).x
-			dir = dir / abs(dir)
-		await animated_sprite_2d.animation_finished
-		if animated_sprite_2d.animation != "transition_to_attack":
-			animated_sprite_2d.play("walking")
-	elif player_on_spear_range:
-		dir = 0;
+	if is_chasing and not is_attacking:
+		look_to_player()
 
 func _on_spear_range_body_entered(body):
 	if body == player:
 		if is_attacking:
+			is_waiting_to_attack = true
 			return
 		walk_time.stop()
 		player_on_spear_range = true
@@ -148,7 +142,9 @@ func _on_attack_delay_timeout():
 		stop_attacking = false
 		if not player_on_spear_range:
 			is_attacking = false
-		else:
+		elif player_on_spear_range or is_waiting_to_attack:
+			is_waiting_to_attack = false
+			look_to_player()
 			attack_delay.start()
 		return
 			
@@ -161,14 +157,18 @@ func _on_attack_delay_timeout():
 		stop_attacking = false
 		if not player_on_spear_range:
 			is_attacking = false
-		else:
+		elif player_on_spear_range or is_waiting_to_attack:
+			is_waiting_to_attack = false
+			look_to_player()
 			attack_delay.start()
 		return
 	await animated_sprite_2d.animation_finished
-	if not player_on_spear_range:
+	if player_on_spear_range or is_waiting_to_attack:
+			is_waiting_to_attack = false
+			look_to_player()
+			attack_delay.start()
+	elif not player_on_spear_range:
 		is_attacking = false
-	else:
-		attack_delay.start()
 
 
 func _on_hit_box_body_entered(body: Node2D) -> void:
@@ -209,3 +209,10 @@ func _on_chase_area_body_exited(body: Node2D) -> void:
 		velocity.x = 0
 		dir = 0
 		walk_time.start()
+
+func look_to_player():
+	if abs(global_position.x - player.global_position.x) < 10:
+		dir = 0
+	else:
+		dir = position.direction_to(player.global_position).x
+		dir = dir / abs(dir)

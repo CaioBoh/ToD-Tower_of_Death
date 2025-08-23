@@ -19,7 +19,7 @@ script = ExtResource("1_58gni")
 playButton = NodePath("CanvasLayer/CenterContainer/Buttons/Play")
 exitButton = NodePath("CanvasLayer/CenterContainer/Buttons/Exit")
 optionsButton = NodePath("CanvasLayer/CenterContainer/Buttons/Options")
-demoNewGame = NodePath("CanvasLayer/CenterContainer/Buttons/Demo Novo jogo")
+demoNewGame = NodePath("CanvasLayer/CenterContainer/Buttons/New Game")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -43,7 +43,7 @@ grow_vertical = 0
 [node name="Buttons" type="VBoxContainer" parent="CanvasLayer/CenterContainer"]
 layout_mode = 2
 
-[node name="Demo Novo jogo" type="Button" parent="CanvasLayer/CenterContainer/Buttons"]
+[node name="New Game" type="Button" parent="CanvasLayer/CenterContainer/Buttons"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Exit")
 focus_neighbor_bottom = NodePath("../Play")
@@ -56,7 +56,7 @@ alignment = 0
 
 [node name="Play" type="Button" parent="CanvasLayer/CenterContainer/Buttons"]
 layout_mode = 2
-focus_neighbor_top = NodePath("../Demo Novo jogo")
+focus_neighbor_top = NodePath("../New Game")
 focus_neighbor_bottom = NodePath("../Options")
 theme_override_constants/line_spacing = 0
 theme_override_fonts/font = SubResource("SystemFont_xuwhi")
@@ -79,7 +79,7 @@ alignment = 0
 [node name="Exit" type="Button" parent="CanvasLayer/CenterContainer/Buttons"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Options")
-focus_neighbor_bottom = NodePath("../Demo Novo jogo")
+focus_neighbor_bottom = NodePath("../New Game")
 theme_override_fonts/font = SubResource("SystemFont_bduwm")
 theme_override_font_sizes/font_size = 90
 text = "Sair"
@@ -96,8 +96,8 @@ autoplay = true
 bus = &"Music"
 parameters/looping = true
 
-[connection signal="focus_entered" from="CanvasLayer/CenterContainer/Buttons/Demo Novo jogo" to="." method="_on_focus_entered"]
-[connection signal="pressed" from="CanvasLayer/CenterContainer/Buttons/Demo Novo jogo" to="." method="_on_demo_novo_jogo_pressed"]
+[connection signal="focus_entered" from="CanvasLayer/CenterContainer/Buttons/New Game" to="." method="_on_focus_entered"]
+[connection signal="pressed" from="CanvasLayer/CenterContainer/Buttons/New Game" to="." method="_on_new_game_pressed"]
 [connection signal="focus_entered" from="CanvasLayer/CenterContainer/Buttons/Play" to="." method="_on_focus_entered"]
 [connection signal="pressed" from="CanvasLayer/CenterContainer/Buttons/Play" to="." method="_on_play_pressed"]
 [connection signal="focus_entered" from="CanvasLayer/CenterContainer/Buttons/Options" to="." method="_on_focus_entered"]
