@@ -10,6 +10,7 @@ var player
 var health = 60
 var player_on_spear_range = false
 var knockback_vector: Vector2 = Vector2.ZERO
+var stop_attacking: bool = false
 
 const HIT_PARTICLE = preload("res://Scenes/Particles/hit_particle_2.tscn")
 
@@ -36,10 +37,10 @@ func _ready():
 func _physics_process(delta):
 	if Global.is_talking || Global.global_player.disable_physics:
 		return
+		
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
-
 
 	# Handle jump.
 	if knockback_vector != Vector2.ZERO:
@@ -49,7 +50,7 @@ func _physics_process(delta):
 			velocity.x = dir * speed * delta * 5
 		else:
 			velocity.x = 0
-	#print(velocity.x)
+
 	handle_movement()
 	handle_animation()
 	move_and_slide()
@@ -72,30 +73,27 @@ func choose(array):
 	return array.front()
 	
 func handle_animation():
-#	print(velocity.x)
-
 	if dir > 0:
 		animated_sprite_2d.flip_h = false
-	elif dir < 0:
-		animated_sprite_2d.flip_h = true
-	
-	if dir < 0:
-		sight_ray_1.scale.x = -1
-		hit_box.scale.x = -1
-		spear_range.scale.x = -1
-		raycasts_parent.scale.x = -1
-	elif dir > 0:
 		sight_ray_1.scale.x = 1
 		hit_box.scale.x = 1
 		spear_range.scale.x = 1
 		raycasts_parent.scale.x = 1
-	if velocity.x < 1 and velocity.x > -1 and not is_chasing and not is_attacking:
+	elif dir < 0:
+		animated_sprite_2d.flip_h = true
+		sight_ray_1.scale.x = -1
+		hit_box.scale.x = -1
+		spear_range.scale.x = -1
+		raycasts_parent.scale.x = -1
+
+	if is_attacking:
+		return
+		
+	if velocity.x < 1 and velocity.x > -1 and not is_chasing:
 		if animated_sprite_2d.animation != "transition_to_attack":
 			animated_sprite_2d.play("idle")
-	elif not is_attacking: 
+	else: 
 		if animated_sprite_2d.animation != "transition_to_attack":
-			if animated_sprite_2d.animation == "attack":
-				await animated_sprite_2d.animation_finished
 			animated_sprite_2d.play("walking")
 
 func handle_movement():
@@ -124,36 +122,53 @@ func handle_movement():
 
 func _on_spear_range_body_entered(body):
 	if body == player:
+		if is_attacking:
+			return
 		walk_time.stop()
 		player_on_spear_range = true
 		animated_sprite_2d.play("transition_to_attack")
 		await animated_sprite_2d.animation_finished
+		if stop_attacking:
+			stop_attacking = false
+			animated_sprite_2d.play("idle")
+			return
 		attack_delay.start()
 		is_attacking = true
 
 func _on_spear_range_body_exited(body):
 	if body == player:
 		player_on_spear_range = false
-		is_chasing = true
-
 
 func _on_attack_delay_timeout():
-	if is_attacking:
-#		print("attack delay finished")
-		walk_time.stop()
-		var collision_shape = hit_box.get_node("CollisionShape2D")
-		animated_sprite_2d.play("attack")
-		await get_tree().create_timer(.2).timeout
-		collision_shape.disabled = false
-		if Global.is_player_dead:
-			return
-		await get_tree().create_timer(.1).timeout
-		collision_shape.disabled = true
-		if !player_on_spear_range:
+	walk_time.stop()
+	var collision_shape = hit_box.get_node("CollisionShape2D")
+	animated_sprite_2d.play("attack")
+	await get_tree().create_timer(.2).timeout
+	if stop_attacking:
+		stop_attacking = false
+		if not player_on_spear_range:
 			is_attacking = false
 		else:
-			await animated_sprite_2d.animation_finished
 			attack_delay.start()
+		return
+			
+	collision_shape.disabled = false
+	if Global.is_player_dead:
+		return
+	await get_tree().create_timer(.1).timeout
+	collision_shape.disabled = true
+	if stop_attacking:
+		stop_attacking = false
+		if not player_on_spear_range:
+			is_attacking = false
+		else:
+			attack_delay.start()
+		return
+	await animated_sprite_2d.animation_finished
+	if not player_on_spear_range:
+		is_attacking = false
+	else:
+		attack_delay.start()
 
 
 func _on_hit_box_body_entered(body: Node2D) -> void:
@@ -161,6 +176,8 @@ func _on_hit_box_body_entered(body: Node2D) -> void:
 		body.hurt(self,30)
 
 func hurt(body,damage):
+	if is_attacking:
+		stop_attacking = true
 	health-=damage
 	knockback_vector = body.global_position.direction_to(global_position) * 1000 + Vector2(0,-100)
 	var knockback_tween:= get_tree().create_tween()
@@ -185,8 +202,6 @@ func summon_hurt_particle() -> void:
 	var direction_player = global_position.direction_to(player.global_position)
 	instance.rotation = Vector2(-direction_player.x, 0).angle()
 	add_child(instance)
-
-
 
 func _on_chase_area_body_exited(body: Node2D) -> void:
 	if body == player:

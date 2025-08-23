@@ -777,7 +777,7 @@ tile_set = ExtResource("1_u0xl1")
 
 [node name="player" parent="." instance=ExtResource("3_61jla")]
 texture_filter = 1
-position = Vector2(-1342, 1003)
+position = Vector2(407, 384)
 
 [node name="CameraGuide" type="Marker2D" parent="player"]
 script = ExtResource("4_jeepl")
