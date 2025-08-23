@@ -1962,6 +1962,9 @@ autoplay = true
 bus = &"Music"
 parameters/looping = true
 
+[node name="FlyingEnemy" parent="." instance=ExtResource("34_c1x4k")]
+position = Vector2(219, 238)
+
 [connection signal="body_entered" from="AcidLake" to="AcidLake" method="_on_body_entered"]
 [connection signal="body_entered" from="AcidLake2" to="AcidLake2" method="_on_body_entered"]
 [connection signal="body_entered" from="CameraChangeArea/ShowUnderground" to="CameraChangeArea/ShowUnderground" method="_on_body_entered"]
