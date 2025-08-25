@@ -262,10 +262,10 @@ texture_filter = 1
 position = Vector2(0, 1.86244)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_cehwy")
-animation = &"attack"
+animation = &"transition_to_attack"
 autoplay = "idle"
-frame = 3
-frame_progress = 0.308429
+frame = 5
+frame_progress = 1.0
 
 [node name="SightRay1" type="RayCast2D" parent="."]
 position = Vector2(0, -36)
@@ -342,6 +342,7 @@ visible = false
 shape = SubResource("CircleShape2D_c0kgv")
 
 [connection signal="animation_changed" from="AnimatedSprite2D" to="." method="_on_animation_changed"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="SpearRange" to="." method="_on_spear_range_body_entered"]
 [connection signal="body_exited" from="SpearRange" to="." method="_on_spear_range_body_exited"]
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

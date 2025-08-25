@@ -51,3 +51,30 @@ static func load_game_data():
 static func delete_game_data():
 	if ResourceLoader.exists("user://game_data.tres", "GameData"):
 		DirAccess.remove_absolute("user://game_data.tres");
+		
+static func save_sound_data():
+	var sound_data := SoundData.new()
+	for audio_slider in Options.audios_sliders:
+		match audio_slider.bus_name:
+			"Master":
+				sound_data.master_volume = audio_slider.audio_slider.value
+			"Music":
+				sound_data.music_volume = audio_slider.audio_slider.value
+			"Sound Effects":
+				sound_data.sound_effects_volume = audio_slider.audio_slider.value
+	
+	ResourceSaver.save(sound_data, "user://sound_data.tres")
+	
+static func load_sound_data(audio_slider: AudioSlider):
+	if not ResourceLoader.exists("user://sound_data.tres", "SoundData"):
+		return
+	
+	var sound_data: SoundData = load("user://sound_data.tres")
+	
+	match audio_slider.bus_name:
+		"Master":
+			audio_slider.audio_slider.value = sound_data.master_volume
+		"Music":
+			audio_slider.audio_slider.value = sound_data.music_volume
+		"Sound Effects":
+			audio_slider.audio_slider.value = sound_data.sound_effects_volume

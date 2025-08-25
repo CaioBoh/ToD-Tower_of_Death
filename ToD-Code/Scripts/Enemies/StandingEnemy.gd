@@ -12,6 +12,7 @@ var player_on_spear_range = false
 var knockback_vector: Vector2 = Vector2.ZERO
 var stop_attacking: bool = false
 var is_waiting_to_attack: bool = false
+var animation_ended: bool = false
 
 const HIT_PARTICLE = preload("res://Scenes/Particles/hit_particle_2.tscn")
 
@@ -20,7 +21,7 @@ const HIT_PARTICLE = preload("res://Scenes/Particles/hit_particle_2.tscn")
 @onready var spear_range = $SpearRange
 @onready var hit_box = $HitBox
 @onready var attack_delay = $AttackDelay
-@onready var animated_sprite_2d = $AnimatedSprite2D
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var is_there_floor: RayCast2D = $"Raycasts/IsThereFloor"
 @onready var is_there_stairs: RayCast2D = $"Raycasts/IsThereStairs"
 @onready var max_height_stairs: RayCast2D = $"Raycasts/MaxHeightStairs"
@@ -47,7 +48,7 @@ func _physics_process(delta):
 	if knockback_vector != Vector2.ZERO:
 		velocity = knockback_vector
 	else:
-		if is_there_floor.is_colliding() and not player_on_spear_range and not is_attacking:
+		if is_there_floor.is_colliding() and not player_on_spear_range and not is_attacking and animated_sprite_2d.animation != "transition_to_attack":
 			velocity.x = dir * speed * delta * 5
 		else:
 			velocity.x = 0
@@ -55,9 +56,6 @@ func _physics_process(delta):
 	handle_movement()
 	handle_animation()
 	move_and_slide()
-	
-	if player_on_spear_range:
-		print("player_on_spear_range")
 
 func handle_stairs():
 	if is_there_stairs.is_colliding() and not max_height_stairs.is_colliding():
@@ -110,22 +108,24 @@ func handle_movement():
 	if Global.is_player_dead:
 		is_chasing = false
 	
-	if is_chasing and not is_attacking:
+	if is_chasing and not is_attacking and animated_sprite_2d.animation != "transition_to_attack":
 		look_to_player()
 
 func _on_spear_range_body_entered(body):
 	if body == player:
+		player_on_spear_range = true
 		if is_attacking:
 			is_waiting_to_attack = true
 			return
 		walk_time.stop()
-		player_on_spear_range = true
 		animated_sprite_2d.play("transition_to_attack")
-		await animated_sprite_2d.animation_finished
-		if stop_attacking:
-			stop_attacking = false
-			animated_sprite_2d.play("idle")
-			return
+		
+		while not animation_ended:
+			if stop_attack():
+				return
+			await get_tree().create_timer(0.05).timeout
+			
+		animation_ended = false
 		attack_delay.start()
 		is_attacking = true
 
@@ -136,16 +136,14 @@ func _on_spear_range_body_exited(body):
 func _on_attack_delay_timeout():
 	walk_time.stop()
 	var collision_shape = hit_box.get_node("CollisionShape2D")
+	
+	if stop_attack():
+		return
+		
 	animated_sprite_2d.play("attack")
 	await get_tree().create_timer(.2).timeout
-	if stop_attacking:
-		stop_attacking = false
-		if not player_on_spear_range:
-			is_attacking = false
-		elif player_on_spear_range or is_waiting_to_attack:
-			is_waiting_to_attack = false
-			look_to_player()
-			attack_delay.start()
+	
+	if stop_attack():
 		return
 			
 	collision_shape.disabled = false
@@ -153,31 +151,29 @@ func _on_attack_delay_timeout():
 		return
 	await get_tree().create_timer(.1).timeout
 	collision_shape.disabled = true
-	if stop_attacking:
-		stop_attacking = false
-		if not player_on_spear_range:
-			is_attacking = false
-		elif player_on_spear_range or is_waiting_to_attack:
-			is_waiting_to_attack = false
-			look_to_player()
-			attack_delay.start()
-		return
-	await animated_sprite_2d.animation_finished
+	
+	while not animation_ended:
+		if stop_attack():
+			return
+		await get_tree().create_timer(0.05).timeout
+		
+	animation_ended = false
+	
 	if player_on_spear_range or is_waiting_to_attack:
-			is_waiting_to_attack = false
-			look_to_player()
-			attack_delay.start()
+		is_attacking = true
+		is_waiting_to_attack = false
+		look_to_player()
+		attack_delay.start()
 	elif not player_on_spear_range:
 		is_attacking = false
-
 
 func _on_hit_box_body_entered(body: Node2D) -> void:
 	if body.has_method("hurt"):
 		body.hurt(self,30)
 
 func hurt(body,damage):
-	if is_attacking:
-		stop_attacking = true
+	stop_attacking = true
+	animated_sprite_2d.play("idle")
 	health-=damage
 	knockback_vector = body.global_position.direction_to(global_position) * 1000 + Vector2(0,-100)
 	var knockback_tween:= get_tree().create_tween()
@@ -216,3 +212,16 @@ func look_to_player():
 	else:
 		dir = position.direction_to(player.global_position).x
 		dir = dir / abs(dir)
+		
+func _on_animated_sprite_2d_animation_finished() -> void:
+	if animated_sprite_2d.animation == "transition_to_attack" or is_attacking:
+		animation_ended = true
+		
+func stop_attack():
+	if stop_attacking:
+		stop_attacking = false
+		is_waiting_to_attack = false
+		is_attacking = false
+		animated_sprite_2d.play("idle")
+		return true
+	return false

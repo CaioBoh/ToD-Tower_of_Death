@@ -21,6 +21,7 @@ script = ExtResource("1_up4w4")
 audio_label = NodePath("HBoxContainer/Audio Type Label")
 value_label = NodePath("HBoxContainer/Value Label")
 audio_slider = NodePath("HBoxContainer/Value Slider")
+bus_name = null
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1

@@ -9,14 +9,18 @@ var play_sound_effect: bool = false
 
 func _ready():
 	reset_focus()
+	
+func _process(delta: float) -> void:
+	if SceneTransition.isTransitioning:
+		toggleButtons(false)
+	else:
+		toggleButtons(true)
 
 func _on_new_game_pressed() -> void:
 	SaveLoad.delete_game_data()
 	_on_play_pressed()
 
 func _on_play_pressed() -> void:
-	if not SceneTransition.isTransitioning:
-		toggleButtons(false)
 	SaveLoad.load_game_data()
 	Global.reset()
 	SceneTransition.change_scene(Global.current_level_path, SceneTransition.menu_state.PLAYING)
