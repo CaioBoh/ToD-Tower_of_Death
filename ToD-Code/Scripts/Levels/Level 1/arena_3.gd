@@ -4,9 +4,16 @@ extends Node2D
 @onready var enemies: Node2D = $Enemies
 @onready var spawn_timer: Timer = $SpawnTimer
 @onready var enemy_spawn_trigger_3: Area2D = $"../enemy_spawn_trigger3"
+@onready var timer_label: Label = get_tree().root.get_node("FirstLevel/HUD").timer_countdown_label
 
 var started: bool = false
 var finished: bool = false
+
+func _process(delta: float) -> void:
+	var arena_3_timer: Timer = $Arena3_Timer
+	if not arena_3_timer.is_stopped():
+		var time_left = "%.2f" %arena_3_timer.time_left
+		timer_label.text = time_left
 
 func _on_spawn_timer_timeout() -> void:
 	spawn_timer.wait_time = 5
