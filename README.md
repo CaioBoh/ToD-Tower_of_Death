@@ -3,7 +3,7 @@
 [![Godot Engine](https://img.shields.io/badge/Made%20with-Godot-blue?logo=godot-engine&logoColor=white)](https://godotengine.org)  
 
 Bem-vindo ao **Tower of Death**, um projeto desenvolvido em **Godot Engine**.  
-Este é um jogo de **ação e aventura, Metroidvania com elementos rogue-lite**.
+Este é um jogo de **ação e aventura, metroidvania com elementos rogue-lite**.
 
 ---
 
