@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bvhghigfoen7n"]
+[gd_scene format=3 uid="uid://bvhghigfoen7n"]
 
 [ext_resource type="Script" uid="uid://cqsed016gptlf" path="res://Scripts/UI/Menus/start_menu.gd" id="1_58gni"]
 [ext_resource type="Texture2D" uid="uid://dvhyexcpxjhog" path="res://Sprites/UI/Menu/Menu.png" id="2_dbo4v"]
@@ -10,7 +10,7 @@ font_names = PackedStringArray("MS UI Gothic")
 [sub_resource type="SystemFont" id="SystemFont_bduwm"]
 font_names = PackedStringArray("MS UI Gothic")
 
-[node name="Control" type="Control" node_paths=PackedStringArray("playButton", "exitButton", "optionsButton", "demoNewGame")]
+[node name="Control" type="Control" unique_id=741203162 node_paths=PackedStringArray("playButton", "exitButton", "optionsButton", "demoNewGame")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1280.0
@@ -21,13 +21,13 @@ exitButton = NodePath("CanvasLayer/CenterContainer/Buttons/Exit")
 optionsButton = NodePath("CanvasLayer/CenterContainer/Buttons/Options")
 demoNewGame = NodePath("CanvasLayer/CenterContainer/Buttons/Demo Novo jogo")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=280249103]
 
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer" unique_id=1394213136]
 position = Vector2(641, 361)
 texture = ExtResource("2_dbo4v")
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer" unique_id=2023644939]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -40,10 +40,10 @@ offset_bottom = -77.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="Buttons" type="VBoxContainer" parent="CanvasLayer/CenterContainer"]
+[node name="Buttons" type="VBoxContainer" parent="CanvasLayer/CenterContainer" unique_id=1307812808]
 layout_mode = 2
 
-[node name="Demo Novo jogo" type="Button" parent="CanvasLayer/CenterContainer/Buttons"]
+[node name="Demo Novo jogo" type="Button" parent="CanvasLayer/CenterContainer/Buttons" unique_id=757896396]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Exit")
 focus_neighbor_bottom = NodePath("../Play")
@@ -54,7 +54,7 @@ text = "Novo Jogo"
 flat = true
 alignment = 0
 
-[node name="Play" type="Button" parent="CanvasLayer/CenterContainer/Buttons"]
+[node name="Play" type="Button" parent="CanvasLayer/CenterContainer/Buttons" unique_id=1825090950]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Demo Novo jogo")
 focus_neighbor_bottom = NodePath("../Options")
@@ -65,7 +65,7 @@ text = "Continuar"
 flat = true
 alignment = 0
 
-[node name="Options" type="Button" parent="CanvasLayer/CenterContainer/Buttons"]
+[node name="Options" type="Button" parent="CanvasLayer/CenterContainer/Buttons" unique_id=663270687]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Play")
 focus_neighbor_bottom = NodePath("../Exit")
@@ -76,7 +76,7 @@ text = "Opções"
 flat = true
 alignment = 0
 
-[node name="Exit" type="Button" parent="CanvasLayer/CenterContainer/Buttons"]
+[node name="Exit" type="Button" parent="CanvasLayer/CenterContainer/Buttons" unique_id=241725838]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Options")
 focus_neighbor_bottom = NodePath("../Demo Novo jogo")
@@ -86,11 +86,11 @@ text = "Sair"
 flat = true
 alignment = 0
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1692760921]
 position = Vector2(641, 361)
 scale = Vector2(17.0061, 16.3162)
 
-[node name="Menu Music" type="AudioStreamPlayer" parent="."]
+[node name="Menu Music" type="AudioStreamPlayer" parent="." unique_id=1509379534]
 stream = ExtResource("3_dbo4v")
 autoplay = true
 bus = &"Music"

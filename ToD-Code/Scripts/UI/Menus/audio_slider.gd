@@ -16,10 +16,17 @@ func _ready() -> void:
 		"Sound Effects":
 			audio_label.text = "Efeitos"
 	bus_index = AudioServer.get_bus_index(bus_name)
-	audio_slider.value = AudioServer.get_bus_volume_linear(bus_index)
+	# Pega volume em dB e converte pra linear (0.0 - 1.0)
+	var db := AudioServer.get_bus_volume_db(bus_index)
+	audio_slider.value = db_to_linear(db)
+
 	value_label.text = str(int(audio_slider.value * 100)) + "%"
 
+
 func _on_value_slider_value_changed(value: float) -> void:
-	AudioServer.set_bus_volume_linear(bus_index, value)
+	# Converte linear (0.0 - 1.0) pra dB
+	var db := linear_to_db(value)
+	AudioServer.set_bus_volume_db(bus_index, db)
+
 	value_label.text = str(int(audio_slider.value * 100)) + "%"
 	

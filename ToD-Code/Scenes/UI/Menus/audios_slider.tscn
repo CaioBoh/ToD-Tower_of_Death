@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cdj1x2nrtlnvu"]
 
-[ext_resource type="Script" uid="uid://btvvg8oewkrm2" path="res://Scripts/UI/Menus/audio_slider.gd" id="1_up4w4"]
+[ext_resource type="Script" path="res://Scripts/UI/Menus/audio_slider.gd" id="1_up4w4"]
 
 [sub_resource type="SystemFont" id="SystemFont_ocks6"]
 font_names = PackedStringArray("MS UI Gothic")
