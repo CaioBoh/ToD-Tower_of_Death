@@ -1,0 +1,12 @@
+[gd_resource type="Theme" format=3 uid="uid://cda7vr10c41ws"]
+
+[ext_resource type="SystemFont" uid="uid://ufyjaiof0h16" path="res://Themes/SystemFont.tres" id="1_p7blt"]
+[ext_resource type="StyleBox" uid="uid://bn51wmamasuvk" path="res://Themes/new_style_box_empty.tres" id="1_sb3rf"]
+
+[resource]
+Button/colors/font_focus_color = Color(0.19470239, 0.36108404, 0.08437423, 1)
+Button/fonts/font = ExtResource("1_p7blt")
+Button/styles/disabled = ExtResource("1_sb3rf")
+Button/styles/focus = ExtResource("1_sb3rf")
+Button/styles/hover = ExtResource("1_sb3rf")
+Button/styles/pressed = ExtResource("1_sb3rf")

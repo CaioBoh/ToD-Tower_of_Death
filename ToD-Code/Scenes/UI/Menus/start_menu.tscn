@@ -1,29 +1,32 @@
 [gd_scene format=3 uid="uid://bvhghigfoen7n"]
 
 [ext_resource type="Script" uid="uid://cqsed016gptlf" path="res://Scripts/UI/Menus/start_menu.gd" id="1_58gni"]
+[ext_resource type="Theme" uid="uid://cda7vr10c41ws" path="res://Themes/menu_theme.tres" id="1_hl0aw"]
 [ext_resource type="Texture2D" uid="uid://dvhyexcpxjhog" path="res://Sprites/UI/Menu/Menu.png" id="2_dbo4v"]
 [ext_resource type="AudioStream" uid="uid://dvvf7tjh1swv8" path="res://Sounds/Music/mus-title-screen-guitar-plus-ambiences.ogg" id="3_dbo4v"]
+[ext_resource type="Texture2D" uid="uid://do4fmesrtmgkk" path="res://Sprites/UI/Menu/SelectIcon.png" id="4_yewvc"]
 
 [sub_resource type="SystemFont" id="SystemFont_xuwhi"]
-font_names = PackedStringArray("MS UI Gothic")
+font_names = PackedStringArray("Pristina")
 
 [sub_resource type="SystemFont" id="SystemFont_bduwm"]
-font_names = PackedStringArray("MS UI Gothic")
+font_names = PackedStringArray("Pristina")
 
-[node name="Control" type="Control" unique_id=741203162 node_paths=PackedStringArray("playButton", "exitButton", "optionsButton", "demoNewGame")]
+[node name="StartMenu" type="Control" unique_id=741203162 node_paths=PackedStringArray("playButton", "exitButton", "optionsButton", "demoNewGame")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1280.0
 offset_bottom = 720.0
+theme = ExtResource("1_hl0aw")
 script = ExtResource("1_58gni")
-playButton = NodePath("CanvasLayer/CenterContainer/Buttons/Play")
+playButton = NodePath("CanvasLayer/CenterContainer/Buttons/Continue")
 exitButton = NodePath("CanvasLayer/CenterContainer/Buttons/Exit")
 optionsButton = NodePath("CanvasLayer/CenterContainer/Buttons/Options")
-demoNewGame = NodePath("CanvasLayer/CenterContainer/Buttons/Demo Novo jogo")
+demoNewGame = NodePath("CanvasLayer/CenterContainer/Buttons/New_game")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=280249103]
 
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer" unique_id=1394213136]
+[node name="Background" type="Sprite2D" parent="CanvasLayer" unique_id=1394213136]
 position = Vector2(641, 361)
 texture = ExtResource("2_dbo4v")
 
@@ -33,31 +36,36 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -515.0
-offset_top = -485.0
-offset_right = -106.0
-offset_bottom = -77.0
+offset_left = -482.0
+offset_top = -526.0
+offset_right = -73.0
+offset_bottom = -46.0
 grow_horizontal = 0
 grow_vertical = 0
 
 [node name="Buttons" type="VBoxContainer" parent="CanvasLayer/CenterContainer" unique_id=1307812808]
 layout_mode = 2
+focus_mode = 2
+theme = ExtResource("1_hl0aw")
 
-[node name="Demo Novo jogo" type="Button" parent="CanvasLayer/CenterContainer/Buttons" unique_id=757896396]
+[node name="New_game" type="Button" parent="CanvasLayer/CenterContainer/Buttons" unique_id=757896396]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Exit")
-focus_neighbor_bottom = NodePath("../Play")
-theme_override_constants/line_spacing = 0
+focus_neighbor_bottom = NodePath("../Continue")
+mouse_filter = 1
+mouse_default_cursor_shape = 2
 theme_override_fonts/font = SubResource("SystemFont_xuwhi")
 theme_override_font_sizes/font_size = 90
 text = "Novo Jogo"
 flat = true
 alignment = 0
 
-[node name="Play" type="Button" parent="CanvasLayer/CenterContainer/Buttons" unique_id=1825090950]
+[node name="Continue" type="Button" parent="CanvasLayer/CenterContainer/Buttons" unique_id=1825090950]
 layout_mode = 2
-focus_neighbor_top = NodePath("../Demo Novo jogo")
+focus_neighbor_top = NodePath("../New_game")
 focus_neighbor_bottom = NodePath("../Options")
+mouse_filter = 1
+mouse_default_cursor_shape = 2
 theme_override_constants/line_spacing = 0
 theme_override_fonts/font = SubResource("SystemFont_xuwhi")
 theme_override_font_sizes/font_size = 90
@@ -67,8 +75,10 @@ alignment = 0
 
 [node name="Options" type="Button" parent="CanvasLayer/CenterContainer/Buttons" unique_id=663270687]
 layout_mode = 2
-focus_neighbor_top = NodePath("../Play")
+focus_neighbor_top = NodePath("../Continue")
 focus_neighbor_bottom = NodePath("../Exit")
+mouse_filter = 1
+mouse_default_cursor_shape = 2
 theme_override_constants/line_spacing = 0
 theme_override_fonts/font = SubResource("SystemFont_xuwhi")
 theme_override_font_sizes/font_size = 90
@@ -79,12 +89,21 @@ alignment = 0
 [node name="Exit" type="Button" parent="CanvasLayer/CenterContainer/Buttons" unique_id=241725838]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Options")
-focus_neighbor_bottom = NodePath("../Demo Novo jogo")
+focus_neighbor_bottom = NodePath("../New_game")
+mouse_filter = 1
+mouse_default_cursor_shape = 2
 theme_override_fonts/font = SubResource("SystemFont_bduwm")
 theme_override_font_sizes/font_size = 90
 text = "Sair"
 flat = true
 alignment = 0
+
+[node name="Cursor" type="Sprite2D" parent="CanvasLayer" unique_id=1829123840]
+position = Vector2(814, 238)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_yewvc")
+offset = Vector2(-80, 20)
+flip_h = true
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1692760921]
 position = Vector2(641, 361)
@@ -96,10 +115,10 @@ autoplay = true
 bus = &"Music"
 parameters/looping = true
 
-[connection signal="focus_entered" from="CanvasLayer/CenterContainer/Buttons/Demo Novo jogo" to="." method="_on_focus_entered"]
-[connection signal="pressed" from="CanvasLayer/CenterContainer/Buttons/Demo Novo jogo" to="." method="_on_demo_novo_jogo_pressed"]
-[connection signal="focus_entered" from="CanvasLayer/CenterContainer/Buttons/Play" to="." method="_on_focus_entered"]
-[connection signal="pressed" from="CanvasLayer/CenterContainer/Buttons/Play" to="." method="_on_play_pressed"]
+[connection signal="focus_entered" from="CanvasLayer/CenterContainer/Buttons/New_game" to="." method="_on_focus_entered"]
+[connection signal="pressed" from="CanvasLayer/CenterContainer/Buttons/New_game" to="." method="_on_demo_novo_jogo_pressed"]
+[connection signal="focus_entered" from="CanvasLayer/CenterContainer/Buttons/Continue" to="." method="_on_focus_entered"]
+[connection signal="pressed" from="CanvasLayer/CenterContainer/Buttons/Continue" to="." method="_on_play_pressed"]
 [connection signal="focus_entered" from="CanvasLayer/CenterContainer/Buttons/Options" to="." method="_on_focus_entered"]
 [connection signal="pressed" from="CanvasLayer/CenterContainer/Buttons/Options" to="." method="_on_options_pressed"]
 [connection signal="focus_entered" from="CanvasLayer/CenterContainer/Buttons/Exit" to="." method="_on_focus_entered"]
