@@ -38,10 +38,6 @@ func change_scene(target:String, new_menu_state: menu_state) -> void:
 		
 	progress_bar.value = 100
 	progress_percentage.text = "100%"
-	press_any_button.visible = true
-		
-	while not Input.is_anything_pressed():
-		await get_tree().process_frame
 	
 	animationPlayer.play("dissolve")
 	await animationPlayer.animation_finished
