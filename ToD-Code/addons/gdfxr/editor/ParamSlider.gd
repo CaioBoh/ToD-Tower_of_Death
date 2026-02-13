@@ -57,4 +57,3 @@ func _on_Reset_pressed():
 
 func _on_HSlider_value_submitted():
 	param_submitted.emit(parameter)
-

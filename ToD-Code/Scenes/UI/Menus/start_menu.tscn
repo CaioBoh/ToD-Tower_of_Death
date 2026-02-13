@@ -54,6 +54,7 @@ focus_neighbor_top = NodePath("../Exit")
 focus_neighbor_bottom = NodePath("../Continue")
 mouse_filter = 1
 mouse_default_cursor_shape = 2
+theme = ExtResource("1_hl0aw")
 theme_override_fonts/font = SubResource("SystemFont_xuwhi")
 theme_override_font_sizes/font_size = 90
 text = "Novo Jogo"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d2kjnc6aamh1c"]
+[gd_scene format=3 uid="uid://d2kjnc6aamh1c"]
 
 [ext_resource type="Script" uid="uid://rrmei3d8yi1d" path="res://Scripts/scene_transition.gd" id="1_j3iww"]
 
@@ -43,13 +43,13 @@ bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b8dk2"]
 
-[node name="SceneTransition" type="CanvasLayer"]
+[node name="SceneTransition" type="CanvasLayer" unique_id=1699172534]
 script = ExtResource("1_j3iww")
 
-[node name="DissolveScreenLayer" type="CanvasLayer" parent="."]
+[node name="DissolveScreenLayer" type="CanvasLayer" parent="." unique_id=2125338760]
 layer = 4
 
-[node name="DissolveScreen" type="ColorRect" parent="DissolveScreenLayer"]
+[node name="DissolveScreen" type="ColorRect" parent="DissolveScreenLayer" unique_id=1397463294]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -58,22 +58,20 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_55sc7")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=418000583]
+libraries/ = SubResource("AnimationLibrary_55sc7")
 
-[node name="LoadingScreen" type="CanvasLayer" parent="."]
+[node name="LoadingScreen" type="CanvasLayer" parent="." unique_id=1873330542]
 visible = false
 
-[node name="Background" type="ColorRect" parent="LoadingScreen"]
+[node name="Background" type="ColorRect" parent="LoadingScreen" unique_id=360011257]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ProgressBar" type="ProgressBar" parent="LoadingScreen"]
+[node name="ProgressBar" type="ProgressBar" parent="LoadingScreen" unique_id=1413254360]
 offset_left = 1010.0
 offset_top = 684.0
 offset_right = 1249.87
@@ -84,7 +82,7 @@ theme_override_styles/background = SubResource("StyleBoxFlat_b6jix")
 theme_override_styles/fill = SubResource("StyleBoxFlat_b8dk2")
 show_percentage = false
 
-[node name="ProgressPercentage" type="Label" parent="LoadingScreen"]
+[node name="ProgressPercentage" type="Label" parent="LoadingScreen" unique_id=1530673031]
 offset_left = 1052.0
 offset_top = 599.0
 offset_right = 1207.0
@@ -94,14 +92,14 @@ theme_override_font_sizes/font_size = 60
 text = "0%"
 horizontal_alignment = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="LoadingScreen"]
+[node name="CenterContainer" type="CenterContainer" parent="LoadingScreen" unique_id=398932815]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Press Any Button" type="Label" parent="LoadingScreen/CenterContainer"]
+[node name="Press Any Button" type="Label" parent="LoadingScreen/CenterContainer" unique_id=201301838]
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)

@@ -100,7 +100,6 @@ func _on_dash_area_body_entered(body):
 func dash():
 	var directionToPlayer := position.direction_to(player.global_position)
 	velocity = directionToPlayer * DASH_PREPARATION_SPEED
-	var player_last_pos = player.global_position
 	await get_tree().create_timer(0.7).timeout
 	dash_vector = directionToPlayer * DASH_SPEED
 	var dash_tween:= get_tree().create_tween()
