@@ -44,6 +44,9 @@ enum JumpState { GROUNDED, FIRST_JUMP, SECOND_JUMP }
 signal health_changed
 
 func _ready():
+	if Global.first_time_spawning:
+		Global.first_time_spawning = false
+		global_position = Global.initial_player_position
 	Global.global_player = self
 	#LifeBar.visible = false
 	animation_player.play("RESET")
@@ -96,7 +99,8 @@ func handle_attack():
 		
 		await get_tree().create_timer(0.2).timeout
 		damage_zone_side.disabled = false
-		await animation.animation_finished
+		var animation_duration := animation.sprite_frames.get_frame_count("Attack1") / animation.sprite_frames.get_animation_speed("Attack1")
+		await get_tree().create_timer(animation_duration - 0.2).timeout
 		damage_zone_side.disabled = true
 		
 	is_attacking = false
@@ -134,7 +138,7 @@ func spawn_dash_ghosts(amount_of_time_to_spawn_ghosts):
 	ghost_spawner.stop_spawn()
 	
 func talk() -> bool:
-	if not input_allowed:
+	if not input_allowed || SceneTransition.isTransitioning:
 		return false
 	var talked = false
 	var actionables := actionable_seeker.get_overlapping_areas()
@@ -256,10 +260,12 @@ func game_over():
 	Global.player_health = 100
 
 func on_upgrade_picked():
+	input_allowed = false
 	disable_physics = true
 	velocity = Vector2(0, 0)
 	animation_player.play("receiving_dash")
 	await animation_player.animation_finished
+	input_allowed = true
 	disable_physics = false
 		
 func spawn_death_particle():

@@ -2,7 +2,7 @@ extends Area2D
 
 signal arena_2_cleared
 
-@onready var summoners: Node2D = $Summoners
+@onready var summoners: Node2D = $EnemySummoners
 @onready var enemies: Node2D = $Enemies
 @onready var enemy_spawn_trigger_2: Area2D = $"../enemy_spawn_trigger2"
 
