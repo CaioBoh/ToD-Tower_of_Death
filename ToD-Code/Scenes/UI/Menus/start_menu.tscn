@@ -4,7 +4,7 @@
 [ext_resource type="Theme" uid="uid://cda7vr10c41ws" path="res://Themes/menu_theme.tres" id="1_hl0aw"]
 [ext_resource type="Texture2D" uid="uid://dvhyexcpxjhog" path="res://Sprites/UI/Menu/Menu.png" id="2_dbo4v"]
 [ext_resource type="AudioStream" uid="uid://dvvf7tjh1swv8" path="res://Sounds/Music/mus-title-screen-guitar-plus-ambiences.ogg" id="3_dbo4v"]
-[ext_resource type="Texture2D" uid="uid://do4fmesrtmgkk" path="res://Sprites/UI/Menu/SelectIcon.png" id="4_yewvc"]
+[ext_resource type="Texture2D" uid="uid://3m27b1fmsjoq" path="res://Sprites/UI/Menu/SelectIcon-v2.png" id="4_yewvc"]
 
 [sub_resource type="SystemFont" id="SystemFont_xuwhi"]
 font_names = PackedStringArray("Pristina")
