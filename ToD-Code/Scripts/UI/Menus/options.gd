@@ -6,6 +6,7 @@ extends Node
 @export var change_focus_effect: AudioStreamPlayer
 @export var click_effect: AudioStreamPlayer
 @export var cancel_effect: AudioStreamPlayer
+@export var audios_sliders: Array[AudioSlider]
 
 var play_sound_effect: bool = false
 var menu_state_to_return := SceneTransition.menu_state.PAUSE_MENU
@@ -22,6 +23,7 @@ func _on_back_pressed() -> void:
 	close_options()
 	
 func close_options():
+	SaveLoad.save_sound_data()
 	SceneTransition.current_menu_state = menu_state_to_return
 	$CanvasLayer.visible = false
 	match menu_state_to_return:

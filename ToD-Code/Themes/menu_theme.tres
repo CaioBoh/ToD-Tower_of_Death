@@ -10,3 +10,5 @@ Button/styles/disabled = ExtResource("1_sb3rf")
 Button/styles/focus = ExtResource("1_sb3rf")
 Button/styles/hover = ExtResource("1_sb3rf")
 Button/styles/pressed = ExtResource("1_sb3rf")
+Label/font_sizes/font_size = 30
+Label/fonts/font = ExtResource("1_p7blt")

@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bs3v70xkv1n55"]
+[gd_scene load_steps=11 format=3 uid="uid://bs3v70xkv1n55"]
 
 [ext_resource type="Shader" uid="uid://dg60wjdtftyeg" path="res://Shaders/vignette.gdshader" id="1_8glcj"]
 [ext_resource type="Texture2D" uid="uid://cl5a64cfcvy13" path="res://Sprites/UI/Health/Health 1.png" id="1_fdl0h"]
+[ext_resource type="Script" uid="uid://bhu7xokk563sy" path="res://Scripts/UI/hud.gd" id="1_mqf2c"]
 [ext_resource type="Script" uid="uid://4yy0jnjytpc" path="res://Scripts/UI/low_health_vignette.gd" id="1_vsu76"]
 [ext_resource type="Texture2D" uid="uid://bmwenfk86pmat" path="res://Sprites/UI/Health/Health 2.png" id="2_8glcj"]
 [ext_resource type="Texture2D" uid="uid://cccc4e7wetny2" path="res://Sprites/UI/Health/Health 3.png" id="3_vsu76"]
@@ -33,13 +34,18 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="HUD" type="Control"]
+[sub_resource type="LabelSettings" id="LabelSettings_mqf2c"]
+font_size = 50
+
+[node name="HUD" type="Control" node_paths=PackedStringArray("timer_countdown_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_mqf2c")
+timer_countdown_label = NodePath("CanvasLayer/CenterContainer/TimerCountdown")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -63,5 +69,13 @@ script = ExtResource("6_ux5h0")
 [node name="VignetteJumpTimer" type="Timer" parent="CanvasLayer"]
 wait_time = 2.0
 one_shot = true
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+offset_right = 1281.0
+offset_bottom = 201.0
+
+[node name="TimerCountdown" type="Label" parent="CanvasLayer/CenterContainer"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_mqf2c")
 
 [connection signal="timeout" from="CanvasLayer/VignetteJumpTimer" to="CanvasLayer/Vignette" method="_on_vignette_jump_timer_timeout"]

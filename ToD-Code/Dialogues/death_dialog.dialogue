@@ -7,7 +7,6 @@ if Global.death_encounters == 0 and Global.dead_count == 0:
 	Dona Morte : Tudo bem, use essa sua espadinha pra tentar atravessar meu castelo.
 	Dona Morte : Mas ja aviso desde já que não será simples.
 	set Global.death_encounters +=1
-	set Global.talked_first_time = true
 elif Global.death_encounters == 1 and Global.dead_count == 0:
 	Dona Morte : Certo, ja pode ir já
 	set Global.death_encounters +=1
