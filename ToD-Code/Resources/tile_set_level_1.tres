@@ -1,10 +1,11 @@
-[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://bahhiea7m4vko"]
+[gd_resource type="TileSet" format=3 uid="uid://bahhiea7m4vko"]
 
-[ext_resource type="Texture2D" uid="uid://b5ffpxs4egn0a" path="res://Sprites/Levels/Level 1/backgrounds.png" id="1_2a46s"]
 [ext_resource type="Texture2D" uid="uid://d1gtwnw5a64cl" path="res://Sprites/Levels/Level 1/tileset.png" id="2_ko0e6"]
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_l73la"]
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x5ibj"]
-texture = ExtResource("1_2a46s")
+texture = SubResource("ViewportTexture_l73la")
 0:0/size_in_atlas = Vector2i(10, 12)
 0:0/0 = 0
 11:0/size_in_atlas = Vector2i(8, 12)
