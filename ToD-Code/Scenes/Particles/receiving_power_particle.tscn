@@ -1,6 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://cumvpgfebedbj"]
+[gd_scene format=3 uid="uid://cumvpgfebedbj"]
 
-[ext_resource type="Texture2D" uid="uid://cg7hkqm7p2kiv" path="res://Sprites/Particles/ball.png" id="1_lrptg"]
+[ext_resource type="Texture2D" uid="uid://c361ypjjaueeq" path="res://Sprites/Particles/hit.png" id="1_lrptg"]
 
 [sub_resource type="CurveTexture" id="CurveTexture_dvpdi"]
 
@@ -60,7 +60,7 @@ scale_min = 0.1
 scale_max = 0.3
 scale_curve = SubResource("CurveTexture_qt7lc")
 
-[node name="receiving_power_particle" type="GPUParticles2D"]
+[node name="receiving_power_particle" type="GPUParticles2D" unique_id=498292879]
 position = Vector2(2, -6)
 emitting = false
 amount = 40
@@ -70,7 +70,7 @@ one_shot = true
 explosiveness = 0.85
 process_material = SubResource("ParticleProcessMaterial_g4d5n")
 
-[node name="exploding_after_receiving" type="GPUParticles2D" parent="."]
+[node name="exploding_after_receiving" type="GPUParticles2D" parent="." unique_id=534412093]
 emitting = false
 amount = 40
 texture = ExtResource("1_lrptg")

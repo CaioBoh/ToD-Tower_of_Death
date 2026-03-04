@@ -1,3 +1,4 @@
+class_name AudioSlider
 extends Control
 
 @export var audio_label: Label
@@ -16,10 +17,7 @@ func _ready() -> void:
 		"Sound Effects":
 			audio_label.text = "Efeitos"
 	bus_index = AudioServer.get_bus_index(bus_name)
-	# Pega volume em dB e converte pra linear (0.0 - 1.0)
-	var db := AudioServer.get_bus_volume_db(bus_index)
-	audio_slider.value = db_to_linear(db)
-
+	SaveLoad.load_sound_data(self)
 	value_label.text = str(int(audio_slider.value * 100)) + "%"
 
 

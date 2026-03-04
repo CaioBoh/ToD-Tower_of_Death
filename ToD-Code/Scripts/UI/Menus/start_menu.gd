@@ -22,6 +22,8 @@ func _ready():
 	if buttons.get_child_count() > 0:
 		var first_button := buttons.get_child(0) as Button
 		first_button.grab_focus()
+		
+	SaveLoad.load_game_data()
 
 func _on_demo_novo_jogo_pressed() -> void:
 	if not SceneTransition.isTransitioning:
@@ -66,12 +68,8 @@ func _on_focus_entered() -> void:
 	if not button:
 		return
 
-	var rect := button.get_global_rect()
-	var target_y := rect.position.y + rect.size.y * 0.5
-
-	cursor.global_position.y = target_y
-
-	var screen_pos := button.get_screen_position()
-	cursor.position.y = screen_pos.y + button.size.y * 0.5
+	var position_to_move : Marker2D = button.find_child("Marker2D")
+	cursor.global_position = position_to_move.global_position
+	
 	if play_sound_effect:
 		ControlSoundEffects.play_change_focus()

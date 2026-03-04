@@ -78,3 +78,5 @@ static func load_sound_data(audio_slider: AudioSlider):
 			audio_slider.audio_slider.value = sound_data.music_volume
 		"Sound Effects":
 			audio_slider.audio_slider.value = sound_data.sound_effects_volume
+	print("Slider: " + str(audio_slider.bus_name) + ", value: " + 
+	str(audio_slider.audio_slider.value))
