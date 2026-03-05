@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://c6mddjrfwbpkr"]
+[gd_scene load_steps=10 format=3 uid="uid://c6mddjrfwbpkr"]
 
-[ext_resource type="Texture2D" uid="uid://c361ypjjaueeq" path="res://Sprites/Particles/hit.png" id="1_nqlte"]
+[ext_resource type="Texture2D" uid="uid://cg7hkqm7p2kiv" path="res://Sprites/Particles/ball.png" id="1_rfumb"]
 [ext_resource type="Script" uid="uid://bew5641sdtm54" path="res://Scripts/Particles/simple_oneshot_particle.gd" id="2_ejfen"]
 
 [sub_resource type="Gradient" id="Gradient_rklww"]
@@ -40,10 +40,10 @@ collision_friction = 0.0
 collision_bounce = 0.59
 collision_use_scale = true
 
-[node name="GPUParticles2D" type="GPUParticles2D" unique_id=1871978011]
+[node name="GPUParticles2D" type="GPUParticles2D"]
 emitting = false
 amount = 30
-texture = ExtResource("1_nqlte")
+texture = ExtResource("1_rfumb")
 lifetime = 2.0
 one_shot = true
 explosiveness = 0.85

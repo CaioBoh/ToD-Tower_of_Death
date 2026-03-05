@@ -38,6 +38,10 @@ func change_scene(target:String, new_menu_state: menu_state) -> void:
 		
 	progress_bar.value = 100
 	progress_percentage.text = "100%"
+	press_any_button.visible = true
+		
+	while not Input.is_anything_pressed():
+		await get_tree().process_frame
 	
 	animationPlayer.play("dissolve")
 	await animationPlayer.animation_finished
@@ -46,10 +50,9 @@ func change_scene(target:String, new_menu_state: menu_state) -> void:
 	press_any_button.visible = false
 	
 	var new_scene_resource = ResourceLoader.load_threaded_get(target)
-	var new_scene_instantiated: Node = new_scene_resource.instantiate()
+	var new_scene_instantiated = new_scene_resource.instantiate()
 	get_tree().root.add_child(new_scene_instantiated)
 	get_tree().current_scene = new_scene_instantiated
-	Global.current_level_path = target
 	
 	animationPlayer.play_backwards("dissolve")
 	await animationPlayer.animation_finished

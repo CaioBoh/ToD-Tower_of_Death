@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://dcqgqtr04erq2"]
+[gd_scene load_steps=8 format=3 uid="uid://dcqgqtr04erq2"]
 
-[ext_resource type="Texture2D" uid="uid://c361ypjjaueeq" path="res://Sprites/Particles/hit.png" id="1_nxwa1"]
+[ext_resource type="Texture2D" uid="uid://cg7hkqm7p2kiv" path="res://Sprites/Particles/ball.png" id="1_nxwa1"]
 [ext_resource type="Script" uid="uid://bo25fa6muvha" path="res://Scripts/Particles/hit_particle_boss.gd" id="2_d20u8"]
 
 [sub_resource type="Gradient" id="Gradient_b6opd"]
@@ -30,7 +30,7 @@ scale_max = 0.3
 scale_curve = SubResource("CurveTexture_t38ft")
 color_initial_ramp = SubResource("GradientTexture1D_8dagd")
 
-[node name="Hit_particle_boss" type="GPUParticles2D" unique_id=1486770290]
+[node name="Hit_particle_boss" type="GPUParticles2D"]
 emitting = false
 amount = 100
 texture = ExtResource("1_nxwa1")

@@ -41,7 +41,7 @@ func check_platform():
 				floors[arenas_cleared].disabled = false
 				platform_seeking_player.disabled = true
 				if arenas_cleared == 2:
-					$"Arena3/Dialogue Actionable".set_deferred("monitoring", true)
+					arena_3_timer.start()
 				print($"floor %d turned on", arenas_cleared + 1)
 			else:
 				self.set_physics_process(false)
@@ -64,8 +64,8 @@ func _on_arena_2_arena_2_cleared() -> void:
 	print("arena 2 cleared")
 
 func _on_arena_3_timer_timeout() -> void:
-	$Arena3.timer_label.text = "0"
 	arenas_cleared = 3
+	
 	for enemy in arena_3_enemies.get_children(false):
 		if enemy.has_method("hurt"):
 			enemy.hurt(Global.global_player, enemy.health)
@@ -74,8 +74,6 @@ func _on_arena_3_timer_timeout() -> void:
 	current_platform_status = PlatformStatus.WAITING
 	platform_seeking_player.disabled = false
 	print("arena 3 cleared")
-	await get_tree().create_timer(3).timeout
-	$Arena3.timer_label.text = ""
 	
 func move_player_to_platform_center():
 	Global.global_player.input_allowed = false

@@ -8,18 +8,10 @@ extends Path2D
 
 @export var upgradeType: String
 
-func _ready() -> void:
-	if upgradeType == "dash" && Global.dash_picked:
-		queue_free()
-	elif upgradeType == "double_jump" && Global.double_jump_picked:
-		queue_free()
-
 func _process(delta: float) -> void:
 	path_follow_2d.progress_ratio+=0.008
 
 func _on_upgrade_area_body_entered(body: Node2D) -> void:
-	if Global.global_player.animation_player.current_animation == "hurt_animation":
-		return
 	sfx_upgrade.play()
 	Global.current_camera.start_shake(5,30,15)
 	#self.visible = false;
