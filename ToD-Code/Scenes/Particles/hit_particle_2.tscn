@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://cwort4gur7eo2"]
+[gd_scene format=3 uid="uid://cwort4gur7eo2"]
 
-[ext_resource type="Texture2D" uid="uid://cg7hkqm7p2kiv" path="res://Sprites/Particles/ball.png" id="1_3ehpk"]
+[ext_resource type="Texture2D" uid="uid://c361ypjjaueeq" path="res://Sprites/Particles/hit.png" id="1_ad3lk"]
 [ext_resource type="Script" uid="uid://bew5641sdtm54" path="res://Scripts/Particles/simple_oneshot_particle.gd" id="2_v7v6s"]
 
 [sub_resource type="Gradient" id="Gradient_luq0n"]
@@ -21,11 +21,15 @@ gravity = Vector3(0, 98, 0)
 scale_min = 0.07
 scale_max = 0.5
 color_initial_ramp = SubResource("GradientTexture1D_evl4p")
+turbulence_enabled = true
 
-[node name="HitParticle2" type="GPUParticles2D"]
+[node name="HitParticle2" type="GPUParticles2D" unique_id=328137669]
 emitting = false
-texture = ExtResource("1_3ehpk")
+amount = 5
+texture = ExtResource("1_ad3lk")
+lifetime = 0.64
 one_shot = true
 explosiveness = 0.8
+randomness = 0.51
 process_material = SubResource("ParticleProcessMaterial_ob5cd")
 script = ExtResource("2_v7v6s")

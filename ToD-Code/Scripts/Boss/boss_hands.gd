@@ -100,7 +100,7 @@ func _on_hitbox_hitted():
 
 func _on_first_boss_dead():
 	attacks_anim.pause()
-	await get_tree().create_timer(10).timeout
+	await get_tree().create_timer(5).timeout
 	var explosion_instance = BOSS_DEATH_EXPLOSION.instantiate()
 	get_parent().get_parent().add_child(explosion_instance)
 	explosion_instance.global_position = boss_body.global_position

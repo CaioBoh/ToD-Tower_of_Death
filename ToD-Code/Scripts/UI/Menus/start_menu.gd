@@ -5,11 +5,34 @@ extends Node
 @export var optionsButton: Button
 @export var demoNewGame: Button
 
-var play_sound_effect: bool = false
+@onready var cursor = $CanvasLayer/Cursor
+@onready var buttons = $CanvasLayer/CenterContainer/Buttons
+
+var play_sound_effect: bool = true
+
 
 func _ready():
-	reset_focus()
+	# Garante que os botões aceitam foco por teclado/controle
+	for child in buttons.get_children():
+		if child is Button:
+			child.focus_mode = Control.FOCUS_ALL
 
+	# Dá foco inicial no primeiro botão
+	await get_tree().process_frame
+	if buttons.get_child_count() > 0:
+		var first_button := buttons.get_child(0) as Button
+		first_button.grab_focus()
+		
+	SaveLoad.load_game_data()
+
+func _on_demo_novo_jogo_pressed() -> void:
+	if not SceneTransition.isTransitioning:
+		toggleButtons(false)
+		
+	SceneTransition.change_scene("res://Scenes/Levels/lobby.tscn", SceneTransition.menu_state.PLAYING)
+	Global.reset_demo()
+	ControlSoundEffects.play_play()
+	
 func _on_play_pressed() -> void:
 	if not SceneTransition.isTransitioning:
 		toggleButtons(false)
@@ -32,15 +55,7 @@ func _on_exit_pressed() -> void:
 func reset_focus():
 	playButton.grab_focus()
 	play_sound_effect = true
-	
-func _on_demo_novo_jogo_pressed() -> void:
-	if not SceneTransition.isTransitioning:
-		toggleButtons(false)
-		
-	SceneTransition.change_scene("res://Scenes/Levels/lobby.tscn", SceneTransition.menu_state.PLAYING)
-	Global.reset_demo()
-	ControlSoundEffects.play_play()
-	
+
 func toggleButtons(enabled: bool):
 	playButton.disabled = not enabled
 	exitButton.disabled = not enabled
@@ -49,5 +64,12 @@ func toggleButtons(enabled: bool):
 
 
 func _on_focus_entered() -> void:
+	var button := get_viewport().gui_get_focus_owner() as Control
+	if not button:
+		return
+
+	var position_to_move : Marker2D = button.find_child("Marker2D")
+	cursor.global_position = position_to_move.global_position
+	
 	if play_sound_effect:
 		ControlSoundEffects.play_change_focus()
