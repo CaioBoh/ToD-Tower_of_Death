@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bsjkmdntn8p43"]
+[gd_scene format=3 uid="uid://bsjkmdntn8p43"]
 
 [ext_resource type="Script" uid="uid://bew5641sdtm54" path="res://Scripts/Particles/simple_oneshot_particle.gd" id="1_1r0ts"]
 
@@ -37,7 +37,7 @@ color = Color(1.25, 1.25, 1.25, 1)
 color_ramp = SubResource("GradientTexture1D_wpwhe")
 color_initial_ramp = SubResource("GradientTexture1D_ypn6i")
 
-[node name="DeathParticle_1" type="GPUParticles2D"]
+[node name="DeathParticle_1" type="GPUParticles2D" unique_id=889733336]
 amount = 200
 explosiveness = 0.87
 process_material = SubResource("ParticleProcessMaterial_fx4ph")

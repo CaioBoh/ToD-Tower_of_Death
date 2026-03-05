@@ -31,8 +31,7 @@ func _ready():
 func _physics_process(delta):
 	if Global.is_talking || Global.global_player.disable_physics:
 		return
-	velocity.y += gravity
-	if knockback_vector != Vector2.ZERO:
+	if knockback_vector != Vector2.ZERO: 
 		velocity = knockback_vector * 25
 	elif dash_vector != Vector2.ZERO:
 		velocity = dash_vector
@@ -46,6 +45,9 @@ func _physics_process(delta):
 		velocity = global_position.direction_to(spawn_point) * 300
 		var dir = global_position.direction_to(spawn_point)
 		handle_animation(dir)
+	elif dead:
+		velocity.x = 0
+	velocity.y += gravity * delta
 	move_and_slide()
 	
 func chase(delta):
@@ -64,6 +66,8 @@ func _on_escape_area_body_exited(body: Node2D) -> void:
 		returning_to_spawn = true
 
 func hurt(body, damage):
+	dash_vector = Vector2.ZERO
+	
 	create_bounce()
 	bounce_tween.tween_property(sprites,"scale", Vector2(0.56 * 1.35,0.56 * 1.35),0.2) \
 				.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
@@ -87,8 +91,8 @@ func hurt(body, damage):
 		Global.change_time_scale_for_duration(0.0,0.1)
 		knockback_tween.tween_property(self,"knockback_vector", Vector2.ZERO,0.25)	
 	else:
-		anim.play("death")
 		knockback_tween.tween_property(self,"knockback_vector", Vector2.ZERO,0.1)	
+		anim.play("death")
 		chasing = false
 
 func _on_dash_area_body_entered(body):
@@ -100,7 +104,6 @@ func _on_dash_area_body_entered(body):
 func dash():
 	var directionToPlayer := position.direction_to(player.global_position)
 	velocity = directionToPlayer * DASH_PREPARATION_SPEED
-	var player_last_pos = player.global_position
 	await get_tree().create_timer(0.7).timeout
 	dash_vector = directionToPlayer * DASH_SPEED
 	var dash_tween:= get_tree().create_tween()
@@ -125,11 +128,14 @@ func handle_animation(dir):
 
 func death_properties():
 	dead = true
-	gravity = 10
+	gravity = 1000
 	animated_sprite.stop()
 	sight_area.monitoring = false
 	dash_area.monitoring = false
 	chasing = false
+	$CollisionArea.set_deferred("monitoring", false)
+	velocity = Vector2.ZERO
+	collision_mask = 2
 
 func get_invisible():
 	animated_sprite.visible = false

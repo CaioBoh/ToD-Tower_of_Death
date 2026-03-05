@@ -1,6 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://eog5b2p7g4y8"]
+[gd_scene format=3 uid="uid://eog5b2p7g4y8"]
 
-[ext_resource type="Texture2D" uid="uid://cg7hkqm7p2kiv" path="res://Sprites/Particles/ball.png" id="1_nv6qr"]
+[ext_resource type="Texture2D" uid="uid://c361ypjjaueeq" path="res://Sprites/Particles/hit.png" id="1_nv6qr"]
 [ext_resource type="Script" uid="uid://chjmpl6urpfvp" path="res://Scripts/Particles/boss_death_explosion.gd" id="2_j8v47"]
 [ext_resource type="AudioStream" uid="uid://c2e1mnan3uoi7" path="res://Sounds/Boss/explosion_variant1.sfxr" id="3_r36be"]
 

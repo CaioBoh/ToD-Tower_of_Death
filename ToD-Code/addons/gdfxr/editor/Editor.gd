@@ -399,4 +399,3 @@ func _on_Extra_id_pressed(id: int) -> void:
 			var recent: RecentEntry = _config_recents[i]
 			_restore_from_config(recent.config)
 			_on_Play_pressed()
-
