@@ -17,7 +17,11 @@ func _ready() -> void:
 		"Sound Effects":
 			audio_label.text = "Efeitos"
 	bus_index = AudioServer.get_bus_index(bus_name)
+	
 	SaveLoad.load_sound_data(self)
+	if audio_slider.value == 0:
+		_on_value_slider_value_changed(0)
+		
 	value_label.text = str(int(audio_slider.value * 100)) + "%"
 
 

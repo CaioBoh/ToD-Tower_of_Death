@@ -46,7 +46,7 @@ signal health_changed
 func _ready():
 	if Global.first_time_spawning:
 		Global.first_time_spawning = false
-		global_position = Global.initial_player_position
+		#global_position = Global.initial_player_position
 	Global.global_player = self
 	#LifeBar.visible = false
 	animation_player.play("RESET")
