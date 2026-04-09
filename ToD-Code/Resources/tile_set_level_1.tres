@@ -2,21 +2,12 @@
 
 [ext_resource type="Texture2D" uid="uid://d1gtwnw5a64cl" path="res://Sprites/Levels/Level 1/tileset.png" id="2_ko0e6"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_l73la"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x5ibj"]
-texture = SubResource("ViewportTexture_l73la")
-0:0/0 = 0
-11:0/0 = 0
-20:0/0 = 0
-29:0/0 = 0
-35:0/0 = 0
-29:5/0 = 0
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ye0an"]
 texture = ExtResource("2_ko0e6")
 8:1/0 = 0
+8:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 10:1/0 = 0
+10:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 12:1/0 = 0
 13:1/0 = 0
 18:1/0 = 0
@@ -30,6 +21,7 @@ texture = ExtResource("2_ko0e6")
 6:2/0 = 0
 6:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 10:2/0 = 0
+10:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 12:2/0 = 0
 13:2/0 = 0
 15:2/0 = 0
@@ -45,6 +37,7 @@ texture = ExtResource("2_ko0e6")
 6:3/0 = 0
 6:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 10:3/0 = 0
+10:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 12:3/0 = 0
 12:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 0.972272, 8, 0.972272, 8, 4.86136, -8, 5.03814, -8, 4.86136)
 13:3/0 = 0
@@ -205,6 +198,7 @@ texture = ExtResource("2_ko0e6")
 12:13/0 = 0
 12:13/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 16:13/0 = 0
+16:13/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6, -8, 8, -8, 8, 8, -6, 8)
 8:12/0 = 0
 8:12/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -1.0791512, -8, -1.0791512)
 9:12/0 = 0
@@ -217,4 +211,3 @@ texture = ExtResource("2_ko0e6")
 physics_layer_0/collision_layer = 2
 physics_layer_0/collision_mask = 3
 sources/1 = SubResource("TileSetAtlasSource_ye0an")
-sources/0 = SubResource("TileSetAtlasSource_x5ibj")

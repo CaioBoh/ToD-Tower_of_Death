@@ -43,6 +43,10 @@ window/size/viewport_height=720
 window/stretch/mode="viewport"
 window/stretch/aspect="ignore"
 
+[editor]
+
+movie_writer/movie_file="C:/Users/caiob/Desktop/Desenhos,etc/Jogos/ToD/Gameplay-05_03.avi"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/gdfxr/plugin.cfg")

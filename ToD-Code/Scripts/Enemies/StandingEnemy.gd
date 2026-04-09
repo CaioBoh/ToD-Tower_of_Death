@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var dir: float
-const speed = 900.0
+const speed = 1200.0
 const JUMP_VELOCITY = -400.0
 var is_chasing = false
 var is_attacking = false
