@@ -39,7 +39,7 @@ GDScript (principal linguagem do jogo)
 
 ## 🚀 Como Rodar
 
-1. Instale o [Godot Engine](https://godotengine.org/download) (versão recomendada: **4.3**).
+1. Instale o [Godot Engine](https://godotengine.org/download) (versão recomendada: **4.6**).
 2. Clone este repositório:
    ```bash
    git clone https://github.com/CaioBoh/ToD-Tower_of_Death.git
