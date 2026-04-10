@@ -30,11 +30,11 @@ func apply_knockback(new_knockback : Vector2, duration : float):
 	var knockback_tween = get_tree().create_tween()
 	knockback_tween.tween_property(self, "knockback_vector", Vector2.ZERO, duration)
 	
-func handle_stairs_up(player_body: CharacterBody2D):
-	if player_body.velocity.x != 0 and is_touching_floor.is_colliding() and is_there_stairs.is_colliding() and not max_height_stairs.is_colliding():
-		player_body.position.y -= STEP_UP_VELOCITY
+func handle_stairs_up(moving_direction : int):
+	var player = Global.global_player
+	if moving_direction != 0 and is_touching_floor.is_colliding() and is_there_stairs.is_colliding() and not max_height_stairs.is_colliding():
+		player.position.y -= STEP_UP_VELOCITY
 		
-	
 func jump(delta, is_on_floor: bool, player_body: CharacterBody2D):
 	if Global.disable_physics:
 		return
@@ -50,7 +50,7 @@ func jump(delta, is_on_floor: bool, player_body: CharacterBody2D):
 		ledge_forgiveness_timer.stop()
 	
 	if Input.is_action_just_pressed("jump") and Global.input_allowed and not Global.is_talking:
-		if jump_state == enums.JumpState.GROUNDED || ledge_forgiveness_active:
+		if jump_state == enums.JumpState.GROUNDED or ledge_forgiveness_active:
 			player_body.velocity.y = JUMP_VELOCITY
 			jump_state = enums.JumpState.FIRST_JUMP
 			ledge_forgiveness_active = false
@@ -61,7 +61,11 @@ func jump(delta, is_on_floor: bool, player_body: CharacterBody2D):
 func move(player_body: CharacterBody2D):
 	if not Global.input_allowed or Global.disable_physics:
 		return
+		
 	var direction = Input.get_axis("left", "right") as int
+	
+	handle_stairs_up(direction)
+	
 	if Global.is_talking:
 		player_body.velocity.x = 0
 	elif knockback_vector != Vector2.ZERO:

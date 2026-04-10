@@ -69,7 +69,7 @@ func hurt(body, damage):
 	$HurtSound.play()
 	knockback_vector = global_position - body.global_position
 	var soul_instance = PreloadedScenes.soul_particle.instantiate()
-	add_child(PreloadedScenes.soul_instance)
+	add_child(soul_instance)
 	soul_instance.rotation = (knockback_vector).angle()	
 	soul_instance.global_position = global_position
 	var knockback_tween:= get_tree().create_tween()

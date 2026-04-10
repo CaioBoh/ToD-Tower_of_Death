@@ -5,7 +5,7 @@ extends Node
 var collected = false
 
 func _ready() -> void:
-
+	if Global.collectibles_collected[index]:
 		queue_free()
 
 func _on_actionable_body_entered(body: Node2D) -> void:

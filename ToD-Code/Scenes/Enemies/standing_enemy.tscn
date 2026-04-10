@@ -265,8 +265,8 @@ target_position = Vector2(0, 87.5233)
 collision_mask = 2
 
 [node name="IsThereStairs" type="RayCast2D" parent="Raycasts" unique_id=757993058]
-position = Vector2(39.1061, 57.7281)
-target_position = Vector2(10, 0)
+position = Vector2(28, 45)
+target_position = Vector2(20, 0)
 collision_mask = 2
 
 [node name="MaxHeightStairs" type="RayCast2D" parent="Raycasts" unique_id=1174432225]

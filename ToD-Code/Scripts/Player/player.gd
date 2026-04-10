@@ -17,7 +17,6 @@ func _ready():
 	animation_component.animation_player.play("RESET")
 
 func _physics_process(delta):
-	handle_physics()
 	handle_input(delta)
 	handle_animation()
 	handle_attack()
@@ -38,9 +37,6 @@ func handle_attack():
 	
 func handle_dash():
 	dash_component.handle_dash(physics_component, is_on_floor())
-
-func handle_physics():
-	physics_component.handle_stairs_up(self)
 	
 func flip():
 	animation_component.flip_sprite(physics_component)

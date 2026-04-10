@@ -59,8 +59,8 @@ func _physics_process(delta):
 
 func handle_stairs():
 	if is_there_stairs.is_colliding() and not max_height_stairs.is_colliding():
-			position.y -= 19
-	await get_tree().create_timer(0.5).timeout
+		position.y -= 18
+	await get_tree().create_timer(0.1).timeout
 	handle_stairs()
 
 func _on_walk_time_timeout():
