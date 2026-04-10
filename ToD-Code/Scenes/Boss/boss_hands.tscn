@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://c1cm4q3gijxok"]
+[gd_scene format=3 uid="uid://c1cm4q3gijxok"]
 
 [ext_resource type="Script" uid="uid://kfs44d52cy60" path="res://Scripts/Boss/boss_hands.gd" id="1_4jfak"]
 [ext_resource type="Script" uid="uid://ncvuswq3ubfu" path="res://Scripts/Boss/Hitbox.gd" id="2_0c5qw"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dnd61o7nd3lwh"]
+[gd_scene format=3 uid="uid://dnd61o7nd3lwh"]
 
 [ext_resource type="Script" uid="uid://bw1rqoop1q3yv" path="res://Scripts/UI/Menus/control_sound_effects.gd" id="1_0gi5l"]
 [ext_resource type="AudioStream" uid="uid://ctjmmbuy1jv1s" path="res://Sounds/UI/sfx-ui-up-down-opt-change.wav" id="1_p6bdj"]
@@ -6,25 +6,25 @@
 [ext_resource type="AudioStream" uid="uid://cld26pajdmk2d" path="res://Sounds/UI/sfx-ui-cancel-reverse.wav" id="3_0gi5l"]
 [ext_resource type="AudioStream" uid="uid://5k53pasjh34m" path="res://Sounds/UI/sfx-ui-game-start.wav" id="5_34kq6"]
 
-[node name="Control Sound Effects" type="Node2D" node_paths=PackedStringArray("change_focus_effect", "click_effect", "cancel_effect", "play_effect")]
+[node name="Control Sound Effects" type="Node2D" unique_id=1082460280 node_paths=PackedStringArray("change_focus_effect", "click_effect", "cancel_effect", "play_effect")]
 script = ExtResource("1_0gi5l")
 change_focus_effect = NodePath("Change Focus Effect")
 click_effect = NodePath("Click Effect")
 cancel_effect = NodePath("Cancel Effect")
 play_effect = NodePath("Play Effect")
 
-[node name="Change Focus Effect" type="AudioStreamPlayer" parent="."]
+[node name="Change Focus Effect" type="AudioStreamPlayer" parent="." unique_id=367772867]
 stream = ExtResource("1_p6bdj")
 bus = &"Sound Effects"
 
-[node name="Click Effect" type="AudioStreamPlayer" parent="."]
+[node name="Click Effect" type="AudioStreamPlayer" parent="." unique_id=237982997]
 stream = ExtResource("2_tnyvq")
 bus = &"Sound Effects"
 
-[node name="Cancel Effect" type="AudioStreamPlayer" parent="."]
+[node name="Cancel Effect" type="AudioStreamPlayer" parent="." unique_id=757621451]
 stream = ExtResource("3_0gi5l")
 bus = &"Sound Effects"
 
-[node name="Play Effect" type="AudioStreamPlayer" parent="."]
+[node name="Play Effect" type="AudioStreamPlayer" parent="." unique_id=713109482]
 stream = ExtResource("5_34kq6")
 bus = &"Sound Effects"

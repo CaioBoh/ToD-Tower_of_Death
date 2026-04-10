@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bs3v70xkv1n55"]
+[gd_scene format=3 uid="uid://bs3v70xkv1n55"]
 
 [ext_resource type="Shader" uid="uid://dg60wjdtftyeg" path="res://Shaders/vignette.gdshader" id="1_8glcj"]
 [ext_resource type="Texture2D" uid="uid://cl5a64cfcvy13" path="res://Sprites/UI/Health/Health 1.png" id="1_fdl0h"]
@@ -37,7 +37,7 @@ animations = [{
 [sub_resource type="LabelSettings" id="LabelSettings_mqf2c"]
 font_size = 50
 
-[node name="HUD" type="Control" node_paths=PackedStringArray("timer_countdown_label")]
+[node name="HUD" type="Control" unique_id=733659494 node_paths=PackedStringArray("timer_countdown_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -47,9 +47,9 @@ grow_vertical = 2
 script = ExtResource("1_mqf2c")
 timer_countdown_label = NodePath("CanvasLayer/CenterContainer/TimerCountdown")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=504479148]
 
-[node name="Vignette" type="ColorRect" parent="CanvasLayer" node_paths=PackedStringArray("vignette_jump_timer")]
+[node name="Vignette" type="ColorRect" parent="CanvasLayer" unique_id=1415194109 node_paths=PackedStringArray("vignette_jump_timer")]
 material = SubResource("ShaderMaterial_vsu76")
 anchors_preset = 15
 anchor_right = 1.0
@@ -59,22 +59,22 @@ grow_vertical = 2
 script = ExtResource("1_vsu76")
 vignette_jump_timer = NodePath("../VignetteJumpTimer")
 
-[node name="Health" type="AnimatedSprite2D" parent="CanvasLayer"]
+[node name="Health" type="AnimatedSprite2D" parent="CanvasLayer" unique_id=1532136966]
 position = Vector2(116, 604)
 sprite_frames = SubResource("SpriteFrames_ux5h0")
 autoplay = "default"
 frame_progress = 0.271255
 script = ExtResource("6_ux5h0")
 
-[node name="VignetteJumpTimer" type="Timer" parent="CanvasLayer"]
+[node name="VignetteJumpTimer" type="Timer" parent="CanvasLayer" unique_id=1163044972]
 wait_time = 2.0
 one_shot = true
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer" unique_id=1523565788]
 offset_right = 1281.0
 offset_bottom = 201.0
 
-[node name="TimerCountdown" type="Label" parent="CanvasLayer/CenterContainer"]
+[node name="TimerCountdown" type="Label" parent="CanvasLayer/CenterContainer" unique_id=102297489]
 layout_mode = 2
 label_settings = SubResource("LabelSettings_mqf2c")
 

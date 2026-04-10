@@ -1,7 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://yaal50vrvvmh"]
+[gd_scene format=3 uid="uid://yaal50vrvvmh"]
 
 [ext_resource type="Script" uid="uid://djesuoe875uan" path="res://Scripts/Levels/Level 1/UpgradeMovementPath.gd" id="1_o0s84"]
-[ext_resource type="Texture2D" uid="uid://cg7hkqm7p2kiv" path="res://Sprites/Particles/ball.png" id="2_d2ffm"]
+[ext_resource type="Texture2D" uid="uid://bs1d26noyo5w0" path="res://Sprites/Particles/ball.png" id="2_d2ffm"]
 [ext_resource type="AudioStream" uid="uid://7pmav0j3qe4c" path="res://Sounds/Player/sfx-upgrade.wav" id="3_uudjn"]
 
 [sub_resource type="Curve2D" id="Curve2D_4decj"]

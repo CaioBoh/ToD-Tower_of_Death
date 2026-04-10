@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://djr5nvclwf3q5"]
+[gd_scene format=3 uid="uid://djr5nvclwf3q5"]
 
 [ext_resource type="Script" uid="uid://byr5dpgqj2x7k" path="res://Scripts/collectible.gd" id="1_athsx"]
 [ext_resource type="Script" uid="uid://clin1w1c3jjjr" path="res://Scripts/UI/Dialogue/actionable.gd" id="2_7xeth"]
@@ -8,21 +8,21 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8cae6"]
 size = Vector2(67, 67)
 
-[node name="Collectible" type="Node2D"]
+[node name="Collectible" type="Node2D" unique_id=301347642]
 script = ExtResource("1_athsx")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1711024254]
 position = Vector2(1, -28)
 texture = ExtResource("2_ixlk2")
 
-[node name="Actionable" type="Area2D" parent="."]
+[node name="Actionable" type="Area2D" parent="." unique_id=1760243924]
 collision_layer = 0
 script = ExtResource("2_7xeth")
 dialogue_resource = ExtResource("3_7xeth")
 dialogue_start = "found"
 talkable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Actionable"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Actionable" unique_id=1112362391]
 position = Vector2(1, 2)
 shape = SubResource("RectangleShape2D_8cae6")
 

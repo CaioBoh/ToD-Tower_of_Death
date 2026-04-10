@@ -41,7 +41,7 @@ func color_based_on_health():
 		hands.modulate = lerp(lower_health_color,Color.WHITE,value)
 
 func _on_hands_damaged():
-	health -= Global.player_sword_damage
+	health -= Global.global_player.combat_component.SWORD_DAMAGE
 	hurt_sound.play()
 
 func _on_tremble_timer_timeout():

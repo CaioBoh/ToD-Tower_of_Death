@@ -21,7 +21,7 @@ scale_min = 0.01
 scale_max = 0.3
 color_initial_ramp = SubResource("GradientTexture1D_ejwow")
 
-[node name="GPUParticles2D" type="GPUParticles2D" unique_id=516340931]
+[node name="GPUParticles2D2" type="GPUParticles2D" unique_id=516340931]
 emitting = false
 amount = 10
 texture = ExtResource("1_a8unu")

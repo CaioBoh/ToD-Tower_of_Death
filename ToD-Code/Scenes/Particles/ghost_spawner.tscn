@@ -1,11 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://51sw4yq2f4ql"]
+[gd_scene format=3 uid="uid://51sw4yq2f4ql"]
 
 [ext_resource type="Script" uid="uid://bwentheupb1mq" path="res://Scripts/Particles/ghost_spawner.gd" id="1_fni34"]
 
-[node name="GhostSpawner" type="Node2D"]
+[node name="GhostSpawner" type="Node2D" unique_id=2021824239]
 script = ExtResource("1_fni34")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=1708659498]
 wait_time = 0.03
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -59,10 +59,10 @@ scale_max = 0.1
 scale_curve = SubResource("CurveTexture_6bmvg")
 color_ramp = SubResource("GradientTexture1D_033vo")
 
-[node name="CrossHit" type="Node2D"]
+[node name="CrossHit" type="Node2D" unique_id=1260015717]
 script = ExtResource("1_qlmgl")
 
-[node name="Horizontal" type="GPUParticles2D" parent="."]
+[node name="Horizontal" type="GPUParticles2D" parent="." unique_id=1138669469]
 emitting = false
 amount = 200
 texture = ExtResource("1_pum76")
@@ -71,7 +71,7 @@ explosiveness = 0.76
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_wio8d")
 
-[node name="Vertical" type="GPUParticles2D" parent="."]
+[node name="Vertical" type="GPUParticles2D" parent="." unique_id=1798166618]
 position = Vector2(1, 33)
 emitting = false
 amount = 300

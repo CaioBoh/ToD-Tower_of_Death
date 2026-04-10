@@ -66,7 +66,7 @@ scale_curve = SubResource("CurveTexture_dohmn")
 scale_over_velocity_max = 1000.0
 scale_over_velocity_curve = SubResource("CurveTexture_guy20")
 
-[node name="GPUParticles2D" type="GPUParticles2D"]
+[node name="GPUParticles2D" type="GPUParticles2D" unique_id=876615481]
 emitting = false
 amount = 150
 texture = ExtResource("1_nv6qr")
@@ -78,7 +78,7 @@ randomness = 0.81
 process_material = SubResource("ParticleProcessMaterial_3gncw")
 script = ExtResource("2_j8v47")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=842177535]
 emitting = false
 amount = 20
 texture = ExtResource("1_nv6qr")
@@ -87,7 +87,7 @@ explosiveness = 0.83
 randomness = 0.78
 process_material = SubResource("ParticleProcessMaterial_5kicj")
 
-[node name="ExplosionSound" type="AudioStreamPlayer2D" parent="."]
+[node name="ExplosionSound" type="AudioStreamPlayer2D" parent="." unique_id=702908600]
 stream = ExtResource("3_r36be")
 pitch_scale = 0.69
 bus = &"Sound Effects"

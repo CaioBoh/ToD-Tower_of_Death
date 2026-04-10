@@ -18,7 +18,7 @@ func _process(delta: float) -> void:
 	path_follow_2d.progress_ratio+=0.008
 
 func _on_upgrade_area_body_entered(body: Node2D) -> void:
-	if Global.global_player.animation_player.current_animation == "hurt_animation":
+	if Global.global_player.animation_component.animation_player.current_animation == "hurt_animation":
 		return
 	sfx_upgrade.play()
 	Global.current_camera.start_shake(5,30,15)
@@ -27,6 +27,6 @@ func _on_upgrade_area_body_entered(body: Node2D) -> void:
 	self.set_process(false)
 	collision_shape.disabled = true
 	Global.receive_upgrade(upgradeType)
-	Global.global_player.on_upgrade_picked()
+	Global.on_upgrade_picked()
 	await get_tree().create_timer(6.7).timeout
 	self.queue_free()

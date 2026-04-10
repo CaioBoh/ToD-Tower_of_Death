@@ -26,7 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://dcfomfi0l6wmq" path="res://Sprites/Player/Attack/Atlas-atk1.png" id="23_hjelp"]
 [ext_resource type="Texture2D" uid="uid://dxxtud63olvpy" path="res://Sprites/Player/Attack/Atlas-atk2.png" id="24_5rp8b"]
 [ext_resource type="PackedScene" uid="uid://dlgo1exiwsoba" path="res://Scenes/Particles/ghost.tscn" id="24_sj6qy"]
-[ext_resource type="Texture2D" uid="uid://cg7hkqm7p2kiv" path="res://Sprites/Particles/ball.png" id="25_pjbwp"]
+[ext_resource type="Texture2D" uid="uid://bs1d26noyo5w0" path="res://Sprites/Particles/ball.png" id="25_pjbwp"]
 [ext_resource type="Texture2D" uid="uid://cn3jbekf6a8yk" path="res://Sprites/Player/Attack/Atlas-atk3.png" id="25_sxipt"]
 [ext_resource type="PackedScene" uid="uid://cumvpgfebedbj" path="res://Scenes/Particles/receiving_power_particle.tscn" id="26_rwgup"]
 [ext_resource type="Texture2D" uid="uid://c56xaobs1oax4" path="res://Sprites/Player/Upgrade/Atlas-Upgrade2.png" id="27_oirlh"]
@@ -34,6 +34,11 @@
 [ext_resource type="AudioStream" uid="uid://dq78exguh4010" path="res://Sounds/Explosion/explosion3.sfxr" id="30_hop0w"]
 [ext_resource type="AudioStream" uid="uid://b41a4nx8qg2io" path="res://Sounds/Player/rapid_slash.mp3" id="31_yasg0"]
 [ext_resource type="AudioStream" uid="uid://cpyc6ffi16lv5" path="res://Sounds/Player/dashSound.mp3" id="32_0p8ua"]
+[ext_resource type="Script" uid="uid://bynkudn11exun" path="res://Scripts/Player/player_combat_component.gd" id="35_mwii3"]
+[ext_resource type="Script" uid="uid://b35anxora3cdj" path="res://Scripts/Player/player_dash_component.gd" id="35_ogmfp"]
+[ext_resource type="Script" uid="uid://gly3i2w8wxss" path="res://Scripts/Player/player_interaction_component.gd" id="36_2aanf"]
+[ext_resource type="Script" uid="uid://d1kr3vy3axgt" path="res://Scripts/Player/player_animation_component.gd" id="36_ixrbb"]
+[ext_resource type="Script" uid="uid://c52jlbntyb8sg" path="res://Scripts/Player/player_physics_component.gd" id="37_ei2r2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4q5tp"]
 atlas = ExtResource("2_a2ng3")
@@ -351,7 +356,7 @@ tracks/0/keys = {
 tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".")
+tracks/1/path = NodePath("AnimationComponent")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -359,7 +364,7 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"spawn_death_particle"
+"method": &"instantiate_death_particle"
 }]
 }
 
@@ -430,31 +435,31 @@ tracks/3/keys = {
 "update": 1,
 "values": [&"Upgrade", &"Atlas_idle"]
 }
-tracks/4/type = "method"
+tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath(".")
+tracks/4/path = NodePath("animation:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.0333333),
+"times": PackedFloat32Array(0.0333333, 6.4),
+"transitions": PackedFloat32Array(598240, 1),
+"update": 0,
+"values": [Vector2(1, -15), Vector2(1, 0)]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AnimationComponent")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.0333),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"ascend"
 }]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("animation:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0.0333333, 6.4),
-"transitions": PackedFloat32Array(598240, 1),
-"update": 0,
-"values": [Vector2(1, -15), Vector2(1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_162de"]
@@ -489,9 +494,14 @@ scale_curve = SubResource("CurveTexture_ivrhr")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_02nui"]
 size = Vector2(37, 38)
 
-[node name="player" type="CharacterBody2D" unique_id=274651577]
+[node name="player" type="CharacterBody2D" unique_id=274651577 node_paths=PackedStringArray("animation_component", "physics_component", "interaction_component", "combat_component", "dash_component")]
 collision_mask = 11
 script = ExtResource("1_glbys")
+animation_component = NodePath("AnimationComponent")
+physics_component = NodePath("PhysicsComponent")
+interaction_component = NodePath("InteractionComponent")
+combat_component = NodePath("CombatComponent")
+dash_component = NodePath("DashComponent")
 
 [node name="animation" type="AnimatedSprite2D" parent="." unique_id=1846428326]
 texture_filter = 1
@@ -579,7 +589,7 @@ collision_mask = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActionableSeeker" unique_id=1353104778]
 position = Vector2(-6.5, -1)
 shape = SubResource("RectangleShape2D_02nui")
-debug_color = Color(0.702388, 0.490781, 1.92523e-07, 0.42)
+debug_color = Color(0, 0.98071355, 0.93301374, 0.41960785)
 
 [node name="HurtSound" type="AudioStreamPlayer" parent="." unique_id=82074908]
 stream = ExtResource("30_hop0w")
@@ -615,11 +625,42 @@ one_shot = true
 wait_time = 0.2
 one_shot = true
 
-[connection signal="area_entered" from="SwordSideArea" to="." method="_on_sword_side_area_area_entered"]
-[connection signal="body_entered" from="SwordSideArea" to="." method="_on_sword_side_area_body_entered"]
-[connection signal="area_entered" from="SwordUpArea" to="." method="_on_sword_up_area_area_entered"]
-[connection signal="body_entered" from="SwordUpArea" to="." method="_on_sword_up_area_body_entered"]
-[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
-[connection signal="timeout" from="InvencibleTimer" to="." method="_on_invencible_timer_timeout"]
-[connection signal="timeout" from="JustStoppedTalking" to="." method="_on_just_stopped_talking_timeout"]
-[connection signal="timeout" from="LedgeForgivenessTimer" to="." method="_on_ledge_forgiveness_timer_timeout"]
+[node name="DashComponent" type="Node" parent="." unique_id=178153228 node_paths=PackedStringArray("ghost_spawner", "dash_sound", "dash_timer")]
+script = ExtResource("35_ogmfp")
+ghost_spawner = NodePath("../GhostSpawner")
+dash_sound = NodePath("../DashSound")
+dash_timer = NodePath("../DashTimer")
+
+[node name="AnimationComponent" type="Node" parent="." unique_id=2035327662 node_paths=PackedStringArray("animation", "animation_player")]
+script = ExtResource("36_ixrbb")
+animation = NodePath("../animation")
+animation_player = NodePath("../AnimationPlayer")
+
+[node name="PhysicsComponent" type="Node" parent="." unique_id=2116290802 node_paths=PackedStringArray("sword_area_side", "sword_area_up", "max_height_stairs", "is_there_stairs", "is_touching_floor", "ledge_forgiveness_timer")]
+script = ExtResource("37_ei2r2")
+sword_area_side = NodePath("../SwordSideArea")
+sword_area_up = NodePath("../SwordUpArea")
+max_height_stairs = NodePath("../MaxHeightStairs")
+is_there_stairs = NodePath("../IsThereStairs")
+is_touching_floor = NodePath("../IsTouchingFloor")
+ledge_forgiveness_timer = NodePath("../LedgeForgivenessTimer")
+
+[node name="InteractionComponent" type="Node" parent="." unique_id=1618810289 node_paths=PackedStringArray("actionable_seeker_area", "just_stopped_talking_timer")]
+script = ExtResource("36_2aanf")
+actionable_seeker_area = NodePath("../ActionableSeeker")
+just_stopped_talking_timer = NodePath("../JustStoppedTalking")
+
+[node name="CombatComponent" type="Node" parent="." unique_id=439613078 node_paths=PackedStringArray("slash_sound", "invincible_timer", "hurt_sound")]
+script = ExtResource("35_mwii3")
+slash_sound = NodePath("../SlashSound")
+invincible_timer = NodePath("../InvencibleTimer")
+hurt_sound = NodePath("../HurtSound")
+
+[connection signal="area_entered" from="SwordSideArea" to="CombatComponent" method="_on_sword_side_area_area_entered"]
+[connection signal="body_entered" from="SwordSideArea" to="CombatComponent" method="_on_sword_side_area_body_entered"]
+[connection signal="area_entered" from="SwordUpArea" to="CombatComponent" method="_on_sword_up_area_area_entered"]
+[connection signal="body_entered" from="SwordUpArea" to="CombatComponent" method="_on_sword_side_area_body_entered"]
+[connection signal="timeout" from="DashTimer" to="DashComponent" method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="InvencibleTimer" to="CombatComponent" method="_on_invencible_timer_timeout"]
+[connection signal="timeout" from="JustStoppedTalking" to="InteractionComponent" method="_on_just_stopped_talking_timeout"]
+[connection signal="timeout" from="LedgeForgivenessTimer" to="PhysicsComponent" method="_on_ledge_forgiveness_timer_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c2hcqohgaw0t5"]
+[gd_scene format=3 uid="uid://c2hcqohgaw0t5"]
 
 [ext_resource type="Script" uid="uid://cswxkbfqnikr5" path="res://Scripts/Enemies/flying_enemy.gd" id="1_riyx6"]
 [ext_resource type="Texture2D" uid="uid://cho3gamjywlvt" path="res://Sprites/Enemies/Flying Enemy/flying_skull2.png" id="2_gouph"]
@@ -199,59 +199,57 @@ animations = [{
 "speed": 6.0
 }]
 
-[node name="FlyingEnemy" type="CharacterBody2D"]
+[node name="FlyingEnemy" type="CharacterBody2D" unique_id=386438132]
 collision_layer = 4
 collision_mask = 0
 floor_max_angle = 1.01404
 script = ExtResource("1_riyx6")
 
-[node name="HurtBox" type="CollisionShape2D" parent="."]
+[node name="HurtBox" type="CollisionShape2D" parent="." unique_id=2064361016]
 shape = SubResource("CircleShape2D_eb0je")
 
-[node name="SightArea" type="Area2D" parent="."]
+[node name="SightArea" type="Area2D" parent="." unique_id=223006115]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SightArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SightArea" unique_id=541096092]
 shape = SubResource("CircleShape2D_qncv4")
 debug_color = Color(0.892952, 0.14188, 0.707504, 0.42)
 
-[node name="DashArea" type="Area2D" parent="."]
+[node name="DashArea" type="Area2D" parent="." unique_id=1595711642]
 visible = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DashArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DashArea" unique_id=1547406967]
 position = Vector2(1, 0)
 shape = SubResource("CircleShape2D_gs42d")
 debug_color = Color(0.989781, 0, 0.286363, 0.42)
 
-[node name="CollisionArea" type="Area2D" parent="."]
+[node name="CollisionArea" type="Area2D" parent="." unique_id=1629748393]
 
-[node name="HitBox" type="CollisionShape2D" parent="CollisionArea"]
+[node name="HitBox" type="CollisionShape2D" parent="CollisionArea" unique_id=781428156]
 position = Vector2(-1, 3)
 shape = SubResource("CircleShape2D_18xk5")
 debug_color = Color(0.668713, 0, 0.268887, 0.42)
 
-[node name="EscapeArea" type="Area2D" parent="."]
+[node name="EscapeArea" type="Area2D" parent="." unique_id=1603199798]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EscapeArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EscapeArea" unique_id=104243199]
 shape = SubResource("CircleShape2D_s5pxv")
 
-[node name="anim" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_hh2wh")
-}
+[node name="animation" type="AnimationPlayer" parent="." unique_id=1089075032]
+libraries/ = SubResource("AnimationLibrary_hh2wh")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1542380704]
 texture_filter = 1
 scale = Vector2(0.559999, 0.559999)
 sprite_frames = SubResource("SpriteFrames_vpwl4")
 autoplay = "default"
 frame_progress = 0.72064
 
-[node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
+[node name="HurtSound" type="AudioStreamPlayer2D" parent="." unique_id=243965334]
 stream = ExtResource("6_fketm")
 pitch_scale = 1.7
 bus = &"Sound Effects"
 
-[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="." unique_id=1832924633]
 stream = ExtResource("7_yglvq")
 volume_db = 9.905
 bus = &"Sound Effects"

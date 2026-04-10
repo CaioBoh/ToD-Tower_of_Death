@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dnt3mteolj5rl"]
+[gd_scene format=3 uid="uid://dnt3mteolj5rl"]
 
 [ext_resource type="PackedScene" uid="uid://cdj1x2nrtlnvu" path="res://Scenes/UI/Menus/audios_slider.tscn" id="1_6hxcx"]
 [ext_resource type="Script" uid="uid://cr234258io2nc" path="res://Scripts/UI/Menus/options.gd" id="1_hr7dv"]

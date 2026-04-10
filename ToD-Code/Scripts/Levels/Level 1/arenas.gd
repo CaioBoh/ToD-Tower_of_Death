@@ -35,7 +35,7 @@ func check_platform():
 			platform_path_follower.progress_ratio += 0.001
 		else:
 			platform_path_follower.progress_ratio = platform_path_progress_per_arena[arenas_cleared]
-			Global.global_player.input_allowed = true
+			Global.input_allowed = true
 			current_platform_status = PlatformStatus.STOP
 			if arenas_cleared != 3:
 				floors[arenas_cleared].disabled = false
@@ -78,21 +78,21 @@ func _on_arena_3_timer_timeout() -> void:
 	$Arena3.timer_label.text = ""
 	
 func move_player_to_platform_center():
-	Global.global_player.input_allowed = false
-	Global.global_player.knockback_vector = Vector2(0, 0)
+	Global.input_allowed = false
+	Global.global_player.physics_component.knockback_vector = Vector2(0, 0)
 	Global.global_player.velocity.x = 0
 	while not Global.global_player.is_on_floor():
 		await get_tree().create_timer(0.05).timeout
 		
 	var direction = Global.global_player.global_position.direction_to(platform_seeking_player.global_position).x
 	direction /= abs(direction)
-	Global.global_player.looking_direction = int(direction)
-	Global.global_player.velocity.x = Global.global_player.looking_direction * Global.global_player.SPEED
+	Global.global_player.physics_component.looking_direction = int(direction)
+	Global.global_player.velocity.x = Global.global_player.physics_component.looking_direction * Global.global_player.physics_component.SPEED
 	while abs(Global.global_player.global_position.x - platform_seeking_player.global_position.x) > 10:
 		await get_tree().create_timer(0.05).timeout
 	
 	Global.global_player.position.x = platform_seeking_player.global_position.x
 	Global.global_player.velocity.x = 0
-	Global.global_player.animation.flip_h = false
+	Global.global_player.animation_component.animation.flip_h = false
 		
 	current_platform_status = PlatformStatus.UP

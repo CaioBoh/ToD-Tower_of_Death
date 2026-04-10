@@ -14,7 +14,7 @@ scale_min = 0.1
 scale_max = 0.3
 color = Color(100, 100, 100, 1)
 
-[node name="DeathParticleAtlas" type="GPUParticles2D"]
+[node name="DeathParticleAtlas" type="GPUParticles2D" unique_id=1380573314]
 emitting = false
 amount = 50
 texture = ExtResource("1_vdu7f")

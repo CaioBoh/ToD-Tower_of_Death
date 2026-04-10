@@ -37,7 +37,7 @@ func _ready():
 	handle_stairs()
 
 func _physics_process(delta):
-	if Global.is_talking || Global.global_player.disable_physics:
+	if Global.is_talking or Global.disable_physics:
 		return
 		
 	# Add the gravity.
