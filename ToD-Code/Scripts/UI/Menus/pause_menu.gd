@@ -44,6 +44,7 @@ func _on_options_pressed() -> void:
 	play_sound_effect = false
 
 func _on_quit_pressed() -> void:
+	Global.returned_to_menu.emit()
 	get_tree().paused = false
 	$CanvasLayer.visible = false
 	SaveLoad.save_game_data()

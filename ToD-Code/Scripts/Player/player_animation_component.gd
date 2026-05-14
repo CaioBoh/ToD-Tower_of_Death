@@ -3,6 +3,7 @@ class_name player_animation_component
 
 @export var animation: AnimatedSprite2D
 @export var animation_player: AnimationPlayer
+@export var hurt_particle_scale: Vector2 = Vector2(0.7, 0.7)
 
 func handle_animation(physics_component : player_physics_component, combat_component : player_combat_component, velocity : Vector2):
 	if Global.disable_physics or combat_component.is_attacking:
@@ -14,28 +15,37 @@ func handle_animation(physics_component : player_physics_component, combat_compo
 		animation.play("Atlas_run")
 	
 func flip_sprite(physics_component : player_physics_component):
-	if physics_component.looking_direction == 1:
+	if physics_component.looking_direction > 0:
 		animation.flip_h = false
-	elif physics_component.looking_direction == -1:
+	elif physics_component.looking_direction < 0:
 		animation.flip_h = true
 
 func instantiate_hurt_particle(player_position: Vector2):
+	var step: float = 2.5
+	var initial_value: float = 5
+	var num_of_steps: float = randi_range(0, 6)
+	
 	var hurt_particle_instance = Global.CROSS_HIT.instantiate()
 	hurt_particle_instance.global_position = player_position
-	hurt_particle_instance.scale = Vector2(0.7,0.7)
-	hurt_particle_instance.rotation_degrees = [5,7.5,10,12.5,15,17.5,20,-5,-7.5,-10,-12.5,-15.0,-17.5,-20].pick_random()
-	owner.owner.add_child(hurt_particle_instance)
+	hurt_particle_instance.scale = hurt_particle_scale
+	var particle_rotation: float = (initial_value + num_of_steps) * step * [1, -1].pick_random()
+	hurt_particle_instance.rotation_degrees = particle_rotation
+	
+	owner.add_child(hurt_particle_instance)
 	animation_player.play("hurt_animation")
 	
 func instantiate_death_particle():
 	var player := Global.global_player as CharacterBody2D
-	var instance = Global.DEATH_PARTICLE_ATLAS.instantiate()
-	instance.global_position = player.global_position
-	instance.emitting = true
-	owner.owner.add_child(instance)
+	var death_particle_instance := Global.DEATH_PARTICLE_ATLAS.instantiate() as GPUParticles2D
+	owner.add_child(death_particle_instance)
+	death_particle_instance.global_position = player.global_position
+	death_particle_instance.emitting = true
 
 func ascend():
+	var height: float = 150
+	var duration: float = 3
+	
 	var player := Global.global_player as CharacterBody2D
 	var tween = create_tween()
-	tween = tween.tween_property(player, "position:y", player.position.y - 150, 3)
+	tween = tween.tween_property(player, "position:y", player.position.y - height, duration)
 	tween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)

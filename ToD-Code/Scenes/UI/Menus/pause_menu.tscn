@@ -5,7 +5,7 @@
 [sub_resource type="SystemFont" id="SystemFont_6bjwj"]
 font_names = PackedStringArray("MS UI Gothic")
 
-[node name="PauseMenu" type="Control" node_paths=PackedStringArray("continueButton", "optionsButton", "quitButton")]
+[node name="PauseMenu" type="Control" unique_id=594188645 node_paths=PackedStringArray("continueButton", "optionsButton", "quitButton")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -18,10 +18,10 @@ continueButton = NodePath("CanvasLayer/CenterContainer/Buttons/Continue")
 optionsButton = NodePath("CanvasLayer/CenterContainer/Buttons/Options")
 quitButton = NodePath("CanvasLayer/CenterContainer/Buttons/Quit")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=862334473]
 layer = 3
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=557358283]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -29,18 +29,18 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.196078, 0.196078, 0.211765, 0.705882)
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer" unique_id=629335091]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Buttons" type="VBoxContainer" parent="CanvasLayer/CenterContainer"]
+[node name="Buttons" type="VBoxContainer" parent="CanvasLayer/CenterContainer" unique_id=1354875793]
 layout_mode = 2
 theme_override_constants/separation = 50
 
-[node name="Continue" type="Button" parent="CanvasLayer/CenterContainer/Buttons"]
+[node name="Continue" type="Button" parent="CanvasLayer/CenterContainer/Buttons" unique_id=170072131]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Quit")
 focus_neighbor_bottom = NodePath("../Options")
@@ -49,7 +49,7 @@ theme_override_font_sizes/font_size = 90
 text = "Continuar"
 metadata/_edit_use_anchors_ = true
 
-[node name="Options" type="Button" parent="CanvasLayer/CenterContainer/Buttons"]
+[node name="Options" type="Button" parent="CanvasLayer/CenterContainer/Buttons" unique_id=413359211]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Continue")
 focus_neighbor_bottom = NodePath("../Quit")
@@ -58,7 +58,7 @@ theme_override_font_sizes/font_size = 90
 text = "Opções"
 metadata/_edit_use_anchors_ = true
 
-[node name="Quit" type="Button" parent="CanvasLayer/CenterContainer/Buttons"]
+[node name="Quit" type="Button" parent="CanvasLayer/CenterContainer/Buttons" unique_id=947834958]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Options")
 focus_neighbor_bottom = NodePath("../Continue")

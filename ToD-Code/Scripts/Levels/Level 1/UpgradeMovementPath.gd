@@ -25,8 +25,8 @@ func _on_upgrade_area_body_entered(body: Node2D) -> void:
 	#self.visible = false;
 	dash_upgrade_particle.emitting = false
 	self.set_process(false)
-	collision_shape.disabled = true
+	collision_shape.set_deferred("disabled", true)
 	Global.receive_upgrade(upgradeType)
 	Global.on_upgrade_picked()
 	await get_tree().create_timer(6.7).timeout
-	self.queue_free()
+	queue_free()

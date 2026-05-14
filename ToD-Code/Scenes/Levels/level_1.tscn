@@ -934,7 +934,7 @@ shape = SubResource("RectangleShape2D_jeepl")
 
 [node name="player" parent="." unique_id=1451575952 instance=ExtResource("3_nuy1v")]
 texture_filter = 1
-position = Vector2(4455, 2263)
+position = Vector2(607, 358)
 
 [node name="CameraGuide" type="Marker2D" parent="player" unique_id=797112459]
 script = ExtResource("4_xlpn7")
@@ -962,6 +962,7 @@ lifetime = 3.0
 process_material = SubResource("ParticleProcessMaterial_b7h0p")
 
 [node name="Polygon2D" type="Polygon2D" parent="AcidLake" unique_id=819342697]
+z_index = -2
 material = SubResource("ShaderMaterial_din62")
 position = Vector2(-102.99999, -63.000023)
 scale = Vector2(1.0000001, 1)
@@ -988,6 +989,7 @@ lifetime = 3.0
 process_material = SubResource("ParticleProcessMaterial_b7h0p")
 
 [node name="Polygon2D" type="Polygon2D" parent="AcidLake2" unique_id=1539877564]
+z_index = -2
 material = SubResource("ShaderMaterial_din62")
 position = Vector2(714.00037, 66.000046)
 rotation = 3.1415927

@@ -61,3 +61,4 @@ func death():
 	
 	SceneTransition.change_scene("res://Scenes/Levels/lobby.tscn", SceneTransition.menu_state.PLAYING)
 	player_health = 100
+	Global.is_player_dead = false

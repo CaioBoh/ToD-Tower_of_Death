@@ -5,7 +5,6 @@ const speed = 1200.0
 const JUMP_VELOCITY = -400.0
 var is_chasing = false
 var is_attacking = false
-var is_player_dead = false
 var player
 var health = 60
 var player_on_spear_range = false
@@ -66,7 +65,6 @@ func handle_stairs():
 func _on_walk_time_timeout():
 	if !is_chasing and !is_attacking:
 		dir = 0
-#		print("walked a little from idle")
 		walk_time.wait_time = choose([1,1.5,2])
 		dir = choose([-1,1,0.5,-0.5,0.25,-0.25,0,0,0])
 	

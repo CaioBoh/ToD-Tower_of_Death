@@ -19,6 +19,9 @@ var initial_player_position : Vector2
 var current_level_path : String
 var first_time_spawning := true
 var disable_physics := false
+var signal_id := 0
+
+signal returned_to_menu
 
 # ------------------------ #
 # DEATH DIALOGUE VARIABLES #
@@ -34,9 +37,36 @@ func _ready():
 	is_player_dead = false
 	death_encounters = 0
 
+func wait_safely(signal_to_wait: Signal):
+	var signal_received = [false]
+	var safe_signal_name = "safe_signal_" + str(signal_id)
+	signal_id += 1
+	add_user_signal(safe_signal_name)
+
+	var connect_to_generic_signal = func(...args):
+		if not signal_received[0]:
+			signal_received[0] = true
+			Global.emit_signal(safe_signal_name)
+				
+	if is_instance_valid(signal_to_wait.get_object()):
+		signal_to_wait.connect(connect_to_generic_signal)
+	else:
+		emit_signal(safe_signal_name)
+		
+	returned_to_menu.connect(connect_to_generic_signal)
+
+	var safe_signal = Signal(self, safe_signal_name)
+	
+	await safe_signal
+	
+	if is_instance_valid(signal_to_wait.get_object()):
+		signal_to_wait.disconnect(connect_to_generic_signal)
+	returned_to_menu.disconnect(connect_to_generic_signal)
+	remove_user_signal(safe_signal_name)
+
 func change_time_scale_for_duration(timeScale, duration):
 	Engine.time_scale = timeScale
-	await get_tree().create_timer(duration, true, false, true).timeout
+	await wait_safely(get_tree().create_timer(duration, true, false, true).timeout)
 	Engine.time_scale = 1
 	
 #Demo
@@ -74,6 +104,7 @@ func on_upgrade_picked():
 	disable_physics = true
 	global_player.velocity = Vector2(0, 0)
 	global_player.animation_component.animation_player.play("receiving_dash")
-	await global_player.animation_component.animation_player.animation_finished
+	await wait_safely(global_player.animation_component.animation_player.animation_finished)
 	input_allowed = true
 	disable_physics = false
+	#x: 607, y: 358

@@ -26,18 +26,21 @@ func _ready():
 	SaveLoad.load_game_data()
 
 func _on_demo_novo_jogo_pressed() -> void:
-	if not SceneTransition.isTransitioning:
-		toggleButtons(false)
+	if SceneTransition.isTransitioning:
+		return
 		
+	toggleButtons(false)
+	ControlSoundEffects.play_play()
 	SceneTransition.change_scene("res://Scenes/Levels/lobby.tscn", SceneTransition.menu_state.PLAYING)
 	Global.reset_demo()
-	ControlSoundEffects.play_play()
 	
 func _on_play_pressed() -> void:
-	if not SceneTransition.isTransitioning:
-		toggleButtons(false)
-	SceneTransition.change_scene("res://Scenes/Levels/lobby.tscn", SceneTransition.menu_state.PLAYING)
+	if SceneTransition.isTransitioning:
+		return
+		
+	toggleButtons(false)
 	ControlSoundEffects.play_play()
+	SceneTransition.change_scene("res://Scenes/Levels/lobby.tscn", SceneTransition.menu_state.PLAYING)
 	Global.reset()
 	
 func _on_options_pressed() -> void:

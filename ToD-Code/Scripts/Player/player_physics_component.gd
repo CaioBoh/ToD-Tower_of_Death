@@ -70,7 +70,6 @@ func move(player_body: CharacterBody2D):
 		player_body.velocity.x = 0
 	elif knockback_vector != Vector2.ZERO:
 		player_body.velocity = knockback_vector
-		print(knockback_vector)
 	else:
 		player_body.velocity.x = direction * SPEED
 

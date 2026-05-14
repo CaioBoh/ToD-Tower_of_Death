@@ -4,13 +4,12 @@ class_name player_dash_component
 @export var ghost_spawner : Node2D
 @export var dash_sound : AudioStreamPlayer
 @export var dash_timer : Timer
-
-var dashed_on_air := false
-var is_dash_timer_finished := true
-
 @export var KNOCKBACK_DASH : float = 2000.0
 @export var DASH_DURATION : float = 0.2
 @export var GHOST_SPAWNING_INTERVAL : float = 0.2
+
+var dashed_on_air := false
+var is_dash_timer_finished := true
 
 func handle_dash(physics_component : player_physics_component, is_on_floor : bool):
 	if is_on_floor:

@@ -13,9 +13,6 @@ var current_menu_state := menu_state.START_MENU
 @onready var press_any_button: Label = $"LoadingScreen/CenterContainer/Press Any Button"
 
 func change_scene(target:String, new_menu_state: menu_state) -> void:
-	if isTransitioning:
-		return
-		
 	isTransitioning = true
 	current_menu_state = menu_state.LOADING
 	
