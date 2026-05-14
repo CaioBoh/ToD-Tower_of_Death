@@ -17,10 +17,10 @@ func _ready() -> void:
 	vignette_jump_timer.start()
 	
 func change_low_health_vignette():
-	vignette_amount = 0.5 * (1 - clamp(float(Global.global_player.player_health) / (Global.global_player.max_player_health / 2), 0, 1))
+	vignette_amount = 0.5 * (1 - clamp(float(Global.global_player.player_health) / (Global.global_player.MAX_PLAYER_HEALTH / 2), 0, 1))
 	
 func _on_vignette_jump_timer_timeout() -> void:
-	if Global.global_player.player_health <= Global.global_player.max_player_health / 2:
+	if Global.global_player.player_health <= Global.global_player.MAX_PLAYER_HEALTH / 2:
 		while(vignette_increase < vignette_max_increase):
 			await get_tree().create_timer(0.05).timeout
 			vignette_increase += vignette_amount_increase_per_frame
@@ -28,7 +28,7 @@ func _on_vignette_jump_timer_timeout() -> void:
 		vignette_increase = vignette_max_increase
 		
 		await get_tree().create_timer(vignette_max_jump_time * \
-		clamp((float(Global.global_player.player_health) / (Global.global_player.max_player_health / 3)), 0.4, 1)).timeout
+		clamp((float(Global.global_player.player_health) / (Global.global_player.MAX_PLAYER_HEALTH / 3)), 0.4, 1)).timeout
 		
 		while(vignette_increase > 0):
 			await get_tree().create_timer(0.05).timeout
@@ -37,5 +37,5 @@ func _on_vignette_jump_timer_timeout() -> void:
 		vignette_increase = 0
 	
 	vignette_jump_timer.wait_time = vignette_max_jump_timer_wait_time * \
-	clamp(pow((float(Global.global_player.player_health) / (Global.global_player.max_player_health / 2)), 2), 0.05, 1)
+	clamp(pow((float(Global.global_player.player_health) / (Global.global_player.MAX_PLAYER_HEALTH / 2)), 2), 0.05, 1)
 	vignette_jump_timer.start()

@@ -1,14 +1,14 @@
 extends CharacterBody2D
 class_name player_script
 
-@export var animation_component : player_animation_component
-@export var physics_component : player_physics_component
-@export var interaction_component : player_interaction_component
-@export var combat_component : player_combat_component
-@export var dash_component : player_dash_component
+@export var MAX_PLAYER_HEALTH: int = 100
+@export var animation_component: player_animation_component
+@export var physics_component: player_physics_component
+@export var interaction_component: player_interaction_component
+@export var combat_component: player_combat_component
+@export var dash_component: player_dash_component
 
-@export var max_player_health: int = 100
-var player_health: int = max_player_health
+var player_health: int = MAX_PLAYER_HEALTH
 
 signal health_changed
 
@@ -16,7 +16,7 @@ func _ready():
 	Global.global_player = self
 	animation_component.animation_player.play("RESET")
 
-func _physics_process(delta):
+func _physics_process(delta: float):
 	handle_input(delta)
 	handle_animation()
 	handle_attack()
@@ -24,7 +24,7 @@ func _physics_process(delta):
 	flip()
 	move_and_slide()
 	
-func handle_input(delta):
+func handle_input(delta: float):
 	interaction_component.talk()
 	physics_component.jump(delta, is_on_floor(), self)
 	physics_component.move(self)
@@ -43,7 +43,7 @@ func flip():
 	physics_component.flip_areas()
 	interaction_component.flip_seeker(physics_component)
 
-func hurt(body,damage):
+func hurt(body: CharacterBody2D, damage: int):
 	player_health -= combat_component.hurt(self, body, damage, animation_component, physics_component)
 	
 	if(player_health == 0):

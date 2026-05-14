@@ -10,8 +10,8 @@ var key_picked: bool
 var dash_picked: bool
 var double_jump_picked: bool
 var is_player_dead: bool = false
-var max_player_health: int = 100
-var player_health := max_player_health
+var MAX_PLAYER_HEALTH: int = 100
+var player_health := MAX_PLAYER_HEALTH
 var amount_of_collectibles := 3
 var collectibles_collected: Array[bool]
 var collectibles_found := 0
