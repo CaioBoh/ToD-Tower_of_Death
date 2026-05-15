@@ -1,3 +1,4 @@
 player_animation_component
 player_combat_component
 player_dash_component
+player_interaction_component

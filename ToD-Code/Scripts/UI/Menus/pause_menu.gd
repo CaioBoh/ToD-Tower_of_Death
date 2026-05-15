@@ -6,6 +6,8 @@ extends Node
 @export var optionsButton: Button
 @export var quitButton: Button
 
+var focused_control: Control
+
 var play_sound_effect: bool = false
 
 func _ready() -> void:
@@ -19,6 +21,7 @@ func _process(_delta: float) -> void:
 			continue_game()
 		
 func pause_game():
+	focused_control = get_viewport().gui_get_focus_owner()
 	reset_focus()
 	$CanvasLayer.visible = true
 	get_tree().paused = true
@@ -30,6 +33,10 @@ func continue_game():
 	SceneTransition.current_menu_state = SceneTransition.menu_state.PLAYING
 	ControlSoundEffects.play_click()
 	play_sound_effect = false
+	
+	if is_instance_valid(focused_control):
+		focused_control.grab_focus()
+		focused_control = null
 	
 func _on_continue_pressed() -> void:
 	continue_game()

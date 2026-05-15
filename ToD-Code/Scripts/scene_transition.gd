@@ -12,6 +12,8 @@ var current_menu_state := menu_state.START_MENU
 @onready var progress_percentage: Label = $LoadingScreen/ProgressPercentage
 @onready var press_any_button: Label = $"LoadingScreen/CenterContainer/Press Any Button"
 
+var MAX_TRANSITION_TIME_ELAPSED: float = 2
+
 func change_scene(target:String, new_menu_state: menu_state) -> void:
 	isTransitioning = true
 	current_menu_state = menu_state.LOADING
@@ -27,6 +29,8 @@ func change_scene(target:String, new_menu_state: menu_state) -> void:
 	ResourceLoader.load_threaded_request(target)
 	var progress = []
 	var status = ResourceLoader.load_threaded_get_status(target, progress)
+	var start_time: float = Time.get_ticks_msec()
+	
 	while status != ResourceLoader.ThreadLoadStatus.THREAD_LOAD_LOADED:
 		progress_bar.value = progress[0] * 100
 		progress_percentage.text = str(int(progress[0] * 100)) + "%"
