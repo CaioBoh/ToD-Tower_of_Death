@@ -56,8 +56,7 @@ func _on_quit_pressed() -> void:
 	$CanvasLayer.visible = false
 	SaveLoad.save_game_data()
 	Global.first_time_spawning = true
-	if not SceneTransition.isTransitioning:
-		SceneTransition.change_scene("res://Scenes/UI/Menus/start_menu.tscn", SceneTransition.menu_state.START_MENU)
+	SceneTransition.change_scene("res://Scenes/UI/Menus/start_menu.tscn", SceneTransition.menu_state.START_MENU)
 	ControlSoundEffects.play_click()
 	play_sound_effect = false
 		

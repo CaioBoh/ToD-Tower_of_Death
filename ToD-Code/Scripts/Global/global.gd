@@ -107,4 +107,3 @@ func on_upgrade_picked():
 	await wait_safely(global_player.animation_component.animation_player.animation_finished)
 	input_allowed = true
 	disable_physics = false
-	#x: 607, y: 358

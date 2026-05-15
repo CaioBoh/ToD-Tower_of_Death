@@ -59,6 +59,5 @@ func death():
 	set_physics_process(false)
 	await animation_component.animation_player.animation_finished
 	
-	SceneTransition.change_scene("res://Scenes/Levels/lobby.tscn", SceneTransition.menu_state.PLAYING)
-	player_health = 100
 	Global.is_player_dead = false
+	SceneTransition.change_scene("res://Scenes/Levels/lobby.tscn", SceneTransition.menu_state.PLAYING)

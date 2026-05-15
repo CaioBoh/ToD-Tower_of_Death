@@ -56,7 +56,7 @@ func hurt(player_body: CharacterBody2D, body: CharacterBody2D, damage: int, anim
 		damage_dealt = damage
 	else:
 		damage_dealt = player_body.player_health
-		
+
 	return damage_dealt
 	
 func _on_sword_side_area_body_entered(body: CharacterBody2D):

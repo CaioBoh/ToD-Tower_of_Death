@@ -4,12 +4,10 @@ extends Node
 @export var exitButton: Button
 @export var optionsButton: Button
 @export var demoNewGame: Button
-
 @onready var cursor = $CanvasLayer/Cursor
 @onready var buttons = $CanvasLayer/CenterContainer/Buttons
 
 var play_sound_effect: bool = true
-
 
 func _ready():
 	# Garante que os botões aceitam foco por teclado/controle
@@ -26,22 +24,16 @@ func _ready():
 	SaveLoad.load_game_data()
 
 func _on_demo_novo_jogo_pressed() -> void:
-	if SceneTransition.isTransitioning:
-		return
-		
-	toggleButtons(false)
-	ControlSoundEffects.play_play()
-	SceneTransition.change_scene("res://Scenes/Levels/lobby.tscn", SceneTransition.menu_state.PLAYING)
-	Global.reset_demo()
+	if SceneTransition.change_scene("res://Scenes/Levels/lobby.tscn", SceneTransition.menu_state.PLAYING):
+		toggleButtons(false)
+		ControlSoundEffects.play_play()
+		Global.reset_demo()
 	
 func _on_play_pressed() -> void:
-	if SceneTransition.isTransitioning:
-		return
-		
-	toggleButtons(false)
-	ControlSoundEffects.play_play()
-	SceneTransition.change_scene("res://Scenes/Levels/lobby.tscn", SceneTransition.menu_state.PLAYING)
-	Global.reset()
+	if SceneTransition.change_scene("res://Scenes/Levels/lobby.tscn", SceneTransition.menu_state.PLAYING):
+		toggleButtons(false)
+		ControlSoundEffects.play_play()
+		Global.reset()
 	
 func _on_options_pressed() -> void:
 	SceneTransition.current_menu_state = SceneTransition.menu_state.OPTIONS

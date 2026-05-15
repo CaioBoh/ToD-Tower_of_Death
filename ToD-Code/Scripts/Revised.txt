@@ -2,3 +2,6 @@ player_animation_component
 player_combat_component
 player_dash_component
 player_interaction_component
+
+buga tudo se o quitar enquanto ta morrendo
+o feedback só aparece com o body do player, então da pra interagir antes do feedback aparecer
