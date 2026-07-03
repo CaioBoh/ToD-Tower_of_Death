@@ -713,6 +713,9 @@ _data = {
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_88p8f"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4d3gw"]
+size = Vector2(13919, 6566)
+
 [node name="FirstLevel" type="Node2D" unique_id=1271970136]
 
 [node name="BackGround" type="ParallaxBackground" parent="." unique_id=43159900]
@@ -2020,6 +2023,11 @@ parameters/looping = true
 [node name="Matsuyama" type="AnimatedSprite2D" parent="." unique_id=1360719341]
 position = Vector2(9562, 404)
 sprite_frames = SubResource("SpriteFrames_88p8f")
+
+[node name="Scene Bounds" type="CollisionShape2D" parent="." unique_id=727268722]
+position = Vector2(4749.5, -495)
+shape = SubResource("RectangleShape2D_4d3gw")
+disabled = true
 
 [connection signal="body_entered" from="CameraChangeArea/ShowUnderground" to="CameraChangeArea/ShowUnderground" method="_on_body_entered"]
 [connection signal="body_entered" from="CameraChangeArea/HideUnderground" to="CameraChangeArea/HideUnderground" method="_on_body_entered"]

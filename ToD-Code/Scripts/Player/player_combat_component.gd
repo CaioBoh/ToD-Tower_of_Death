@@ -37,7 +37,7 @@ func handle_attack(physics_component: player_physics_component, animation_compon
 		
 	is_attacking = false
 	
-func hurt(player_body: CharacterBody2D, body: CharacterBody2D, damage: int, animation_component: player_animation_component, physics_component: player_physics_component):	
+func hurt(player_body: CharacterBody2D, body, damage: int, animation_component: player_animation_component, physics_component: player_physics_component):	
 	if not can_be_hit:
 		return 0
 		

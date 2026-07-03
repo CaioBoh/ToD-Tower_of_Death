@@ -31,6 +31,7 @@ PauseMenu="*res://Scenes/UI/Menus/pause_menu.tscn"
 Options="*res://Scenes/UI/Menus/options.tscn"
 ControlSoundEffects="*res://Scenes/UI/Menus/control_sound_effects.tscn"
 PreloadedScenes="*uid://br8upsdv5k57f"
+Debug="*uid://oh7p28wa6jga"
 
 [dialogue_manager]
 
@@ -107,6 +108,11 @@ dash={
 cancel={
 "deadzone": 0.2,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194305,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+]
+}
+"Enter Debug Mode"={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":79,"key_label":0,"unicode":111,"location":0,"echo":false,"script":null)
 ]
 }
 

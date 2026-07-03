@@ -17,9 +17,11 @@ var current_menu_state := menu_state.START_MENU
 
 @export var MAX_TRANSITION_TIME_ELAPSED: float = 2
 
-func change_scene(target:String, new_menu_state: menu_state) -> int:
+func change_scene(target:String, new_menu_state: menu_state, function_to_call: Callable = Callable()) -> int:
 	if SceneTransition.isTransitioning:
 		return -1
+	if function_to_call.is_valid():
+		function_to_call.call()
 	_change_scene(target, new_menu_state)
 	return 0
 

@@ -43,7 +43,7 @@ func flip():
 	physics_component.flip_areas()
 	interaction_component.flip_seeker(physics_component)
 
-func hurt(body: CharacterBody2D, damage: int):
+func hurt(body, damage: int):
 	player_health -= combat_component.hurt(self, body, damage, animation_component, physics_component)
 	
 	if(player_health == 0):

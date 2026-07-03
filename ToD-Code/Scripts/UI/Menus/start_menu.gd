@@ -24,16 +24,20 @@ func _ready():
 	SaveLoad.load_game_data()
 
 func _on_demo_novo_jogo_pressed() -> void:
-	if SceneTransition.change_scene("res://Scenes/Levels/lobby.tscn", SceneTransition.menu_state.PLAYING):
+	SceneTransition.change_scene("res://Scenes/Levels/lobby.tscn", SceneTransition.menu_state.PLAYING, 
+	func():
 		toggleButtons(false)
 		ControlSoundEffects.play_play()
 		Global.reset_demo()
+	)
 	
 func _on_play_pressed() -> void:
-	if SceneTransition.change_scene("res://Scenes/Levels/lobby.tscn", SceneTransition.menu_state.PLAYING):
+	SceneTransition.change_scene("res://Scenes/Levels/lobby.tscn", SceneTransition.menu_state.PLAYING, 
+	func():
 		toggleButtons(false)
 		ControlSoundEffects.play_play()
 		Global.reset()
+	)
 	
 func _on_options_pressed() -> void:
 	SceneTransition.current_menu_state = SceneTransition.menu_state.OPTIONS

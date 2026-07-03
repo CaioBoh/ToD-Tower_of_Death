@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://oh7p28wa6jga"]
+
+[ext_resource type="Script" uid="uid://cyc85mbauc4no" path="res://Scripts/debug.gd" id="1_raf04"]
+[ext_resource type="Texture2D" uid="uid://d05jjkmgwd60h" path="res://Debug/Scene Screenshots/Certinho.png" id="2_axs6p"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5k3ys"]
+bg_color = Color(0.56078434, 0.13333334, 0.90588236, 1)
+
+[node name="Debug" type="Node2D" unique_id=1343891256]
+script = ExtResource("1_raf04")
+
+[node name="Debug Menu" type="CanvasLayer" parent="." unique_id=1185147025]
+
+[node name="ColorRect" type="ColorRect" parent="Debug Menu" unique_id=1517673630]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.7411765, 0, 0.7490196, 0.5137255)
+
+[node name="CenterContainer" type="CenterContainer" parent="Debug Menu" unique_id=897867734]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Debug Menu/CenterContainer" unique_id=2030042593]
+custom_minimum_size = Vector2(800, 400)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Debug Menu/CenterContainer/ScrollContainer" unique_id=1878090653]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="Debug Menu/CenterContainer/ScrollContainer/VBoxContainer" unique_id=1392319245]
+custom_minimum_size = Vector2(0, 66.98)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5k3ys")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Debug Menu/CenterContainer/ScrollContainer/VBoxContainer/Panel" unique_id=763651971]
+layout_mode = 0
+offset_right = 800.0
+offset_bottom = 67.0
+theme_override_constants/separation = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="Debug Menu/CenterContainer/ScrollContainer/VBoxContainer/Panel/HBoxContainer" unique_id=272367058]
+custom_minimum_size = Vector2(73.285, 62.515)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="Debug Menu/CenterContainer/ScrollContainer/VBoxContainer/Panel/HBoxContainer/CenterContainer" unique_id=850479717]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+color = Color(0.34901962, 0.34901962, 0.34901962, 1)
+
+[node name="TextureRect" type="TextureRect" parent="Debug Menu/CenterContainer/ScrollContainer/VBoxContainer/Panel/HBoxContainer/CenterContainer" unique_id=2014237275]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("2_axs6p")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="template botao" type="Button" parent="Debug Menu/CenterContainer/ScrollContainer/VBoxContainer/Panel/HBoxContainer" unique_id=1917418195]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 40
+text = "adadawdawdawdaw"
+alignment = 0
