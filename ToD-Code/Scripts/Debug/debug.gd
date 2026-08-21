@@ -1,17 +1,22 @@
 extends Node
 
-@export var map_canvas: CanvasLayer
-
+@export var debug_canvas: CanvasLayer
+var debug_properties: Array[PanelContainer]
 var auto_skip_dialogues: bool = false
 var enemy_detection: bool = false
 var take_damage: bool = false
 var take_knockback: bool = false
-var no_clip: bool = false
+var no_clip: bool = false  
 var drag_enemies: bool = false
 var show_colliders: bool = false
 
 var previous_focused_control: Control = null
 var debug_menu_active: bool = false
+
+func _ready() -> void:
+	var properties_container = debug_canvas.get_node("CenterContainer").get_node("ScrollContainer").get_node("VBoxContainer")
+	for property in properties_container.get_children():
+		debug_properties.push_back(property as PanelContainer)
 
 func _input(event: InputEvent) -> void:
 	if OS.is_debug_build() and event.is_action_pressed("Enter Debug Mode"):
@@ -42,12 +47,12 @@ func _input(event: InputEvent) -> void:
 
 func open_debug_menu():
 	previous_focused_control = get_viewport().gui_get_focus_owner()
-	map_canvas.visible = true
+	debug_canvas.visible = true
 	get_tree().paused = true
 	debug_menu_active = true
 	
 func close_debug_menu():
-	map_canvas.visible = false
+	debug_canvas.visible = false
 	get_tree().paused = false
 	debug_menu_active = false
 	if is_instance_valid(previous_focused_control):

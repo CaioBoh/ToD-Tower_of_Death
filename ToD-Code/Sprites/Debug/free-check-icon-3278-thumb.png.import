@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://sjeeopb3q48y"
-path="res://.godot/imported/flying_skull3.png-28daf0ec889e1e050594c5ef5c02ad19.ctex"
+uid="uid://bsixs8xkh52hx"
+path="res://.godot/imported/free-check-icon-3278-thumb.png-e7f128be7dca060951d6dbd6eb5fb346.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Enemies/Flying Enemy/flying_skull3.png"
-dest_files=["res://.godot/imported/flying_skull3.png-28daf0ec889e1e050594c5ef5c02ad19.ctex"]
+source_file="res://Sprites/Debug/free-check-icon-3278-thumb.png"
+dest_files=["res://.godot/imported/free-check-icon-3278-thumb.png-e7f128be7dca060951d6dbd6eb5fb346.ctex"]
 
 [params]
 

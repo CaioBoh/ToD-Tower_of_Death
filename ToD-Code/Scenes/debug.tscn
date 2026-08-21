@@ -1,17 +1,25 @@
 [gd_scene format=3 uid="uid://oh7p28wa6jga"]
 
-[ext_resource type="Script" uid="uid://cyc85mbauc4no" path="res://Scripts/debug.gd" id="1_raf04"]
-[ext_resource type="Texture2D" uid="uid://d05jjkmgwd60h" path="res://Debug/Scene Screenshots/Certinho.png" id="2_axs6p"]
+[ext_resource type="Script" uid="uid://cyc85mbauc4no" path="res://Scripts/Debug/debug.gd" id="1_raf04"]
+[ext_resource type="Script" uid="uid://ob8r5cucpces" path="res://Scripts/Debug/debug_property.gd" id="2_5k3ys"]
+[ext_resource type="Texture2D" uid="uid://bsixs8xkh52hx" path="res://Sprites/Debug/free-check-icon-3278-thumb.png" id="3_6fqrn"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5k3ys"]
-bg_color = Color(0.56078434, 0.13333334, 0.90588236, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n68y2"]
+bg_color = Color(0.27078915, 0.057301227, 0.27299005, 1)
 
-[node name="Debug" type="Node2D" unique_id=1343891256]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fxfmv"]
+bg_color = Color(0.18059903, 0.092546, 0.22062314, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_n68y2"]
+font_size = 32
+
+[node name="Debug" type="Node2D" unique_id=1343891256 node_paths=PackedStringArray("debug_canvas")]
 script = ExtResource("1_raf04")
+debug_canvas = NodePath("Debug Canvas")
 
-[node name="Debug Menu" type="CanvasLayer" parent="." unique_id=1185147025]
+[node name="Debug Canvas" type="CanvasLayer" parent="." unique_id=1185147025]
 
-[node name="ColorRect" type="ColorRect" parent="Debug Menu" unique_id=1517673630]
+[node name="ColorRect" type="ColorRect" parent="Debug Canvas" unique_id=1517673630]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -19,52 +27,284 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.7411765, 0, 0.7490196, 0.5137255)
 
-[node name="CenterContainer" type="CenterContainer" parent="Debug Menu" unique_id=897867734]
+[node name="CenterContainer" type="CenterContainer" parent="Debug Canvas" unique_id=897867734]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Debug Menu/CenterContainer" unique_id=2030042593]
+[node name="ScrollContainer" type="ScrollContainer" parent="Debug Canvas/CenterContainer" unique_id=2030042593]
 custom_minimum_size = Vector2(800, 400)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Debug Menu/CenterContainer/ScrollContainer" unique_id=1878090653]
+[node name="VBoxContainer" type="VBoxContainer" parent="Debug Canvas/CenterContainer/ScrollContainer" unique_id=1878090653]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Panel" type="Panel" parent="Debug Menu/CenterContainer/ScrollContainer/VBoxContainer" unique_id=1392319245]
-custom_minimum_size = Vector2(0, 66.98)
+[node name="Propriedade 1" type="PanelContainer" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer" unique_id=409781059 node_paths=PackedStringArray("check_image")]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_5k3ys")
+theme_override_styles/panel = SubResource("StyleBoxFlat_n68y2")
+script = ExtResource("2_5k3ys")
+check_image = NodePath("HBoxContainer/CenterContainer/TextureRect")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Debug Menu/CenterContainer/ScrollContainer/VBoxContainer/Panel" unique_id=763651971]
-layout_mode = 0
-offset_right = 800.0
-offset_bottom = 67.0
+[node name="HBoxContainer" type="HBoxContainer" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 1" unique_id=763651971]
+layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="CenterContainer" type="CenterContainer" parent="Debug Menu/CenterContainer/ScrollContainer/VBoxContainer/Panel/HBoxContainer" unique_id=272367058]
-custom_minimum_size = Vector2(73.285, 62.515)
+[node name="CenterContainer" type="CenterContainer" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 1/HBoxContainer" unique_id=272367058]
 layout_mode = 2
 
-[node name="ColorRect" type="ColorRect" parent="Debug Menu/CenterContainer/ScrollContainer/VBoxContainer/Panel/HBoxContainer/CenterContainer" unique_id=850479717]
-custom_minimum_size = Vector2(40, 40)
+[node name="PanelContainer" type="PanelContainer" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 1/HBoxContainer/CenterContainer" unique_id=1112220783]
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
-color = Color(0.34901962, 0.34901962, 0.34901962, 1)
+theme_override_styles/panel = SubResource("StyleBoxFlat_fxfmv")
+script = ExtResource("2_5k3ys")
 
-[node name="TextureRect" type="TextureRect" parent="Debug Menu/CenterContainer/ScrollContainer/VBoxContainer/Panel/HBoxContainer/CenterContainer" unique_id=2014237275]
-custom_minimum_size = Vector2(40, 40)
+[node name="TextureRect" type="TextureRect" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 1/HBoxContainer/CenterContainer" unique_id=2014237275]
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-texture = ExtResource("2_axs6p")
+texture = ExtResource("3_6fqrn")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="template botao" type="Button" parent="Debug Menu/CenterContainer/ScrollContainer/VBoxContainer/Panel/HBoxContainer" unique_id=1917418195]
+[node name="HSeparator" type="HSeparator" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 1/HBoxContainer" unique_id=481789195]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 1/HBoxContainer" unique_id=595607261]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 40
-text = "adadawdawdawdaw"
-alignment = 0
+size_flags_vertical = 1
+text = "Pular diálogos automaticamente"
+label_settings = SubResource("LabelSettings_n68y2")
+vertical_alignment = 1
+
+[node name="Propriedade 2" type="PanelContainer" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer" unique_id=7330351 node_paths=PackedStringArray("check_image")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_n68y2")
+script = ExtResource("2_5k3ys")
+check_image = NodePath("HBoxContainer/CenterContainer/TextureRect")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 2" unique_id=1410936410]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 2/HBoxContainer" unique_id=1416907637]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 2/HBoxContainer/CenterContainer" unique_id=246598528]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fxfmv")
+script = ExtResource("2_5k3ys")
+
+[node name="TextureRect" type="TextureRect" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 2/HBoxContainer/CenterContainer" unique_id=1223262798]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("3_6fqrn")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HSeparator" type="HSeparator" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 2/HBoxContainer" unique_id=1215817116]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 2/HBoxContainer" unique_id=1202384575]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Habilitar detecção por inimigos"
+label_settings = SubResource("LabelSettings_n68y2")
+vertical_alignment = 1
+
+[node name="Propriedade 3" type="PanelContainer" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer" unique_id=376886777 node_paths=PackedStringArray("check_image")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_n68y2")
+script = ExtResource("2_5k3ys")
+check_image = NodePath("HBoxContainer/CenterContainer/TextureRect")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 3" unique_id=358228381]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 3/HBoxContainer" unique_id=583166709]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 3/HBoxContainer/CenterContainer" unique_id=841535842]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fxfmv")
+script = ExtResource("2_5k3ys")
+
+[node name="TextureRect" type="TextureRect" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 3/HBoxContainer/CenterContainer" unique_id=735054316]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("3_6fqrn")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HSeparator" type="HSeparator" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 3/HBoxContainer" unique_id=783125388]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 3/HBoxContainer" unique_id=641297794]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Receber dano"
+label_settings = SubResource("LabelSettings_n68y2")
+vertical_alignment = 1
+
+[node name="Propriedade 4" type="PanelContainer" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer" unique_id=1500479317 node_paths=PackedStringArray("check_image")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_n68y2")
+script = ExtResource("2_5k3ys")
+check_image = NodePath("HBoxContainer/CenterContainer/TextureRect")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 4" unique_id=2139375479]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 4/HBoxContainer" unique_id=560643150]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 4/HBoxContainer/CenterContainer" unique_id=654355474]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fxfmv")
+script = ExtResource("2_5k3ys")
+
+[node name="TextureRect" type="TextureRect" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 4/HBoxContainer/CenterContainer" unique_id=473763298]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("3_6fqrn")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HSeparator" type="HSeparator" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 4/HBoxContainer" unique_id=328348947]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 4/HBoxContainer" unique_id=1219390020]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Receber repulsão"
+label_settings = SubResource("LabelSettings_n68y2")
+vertical_alignment = 1
+
+[node name="Propriedade 5" type="PanelContainer" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer" unique_id=1723660479 node_paths=PackedStringArray("check_image")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_n68y2")
+script = ExtResource("2_5k3ys")
+check_image = NodePath("HBoxContainer/CenterContainer/TextureRect")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 5" unique_id=808537779]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 5/HBoxContainer" unique_id=1020392783]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 5/HBoxContainer/CenterContainer" unique_id=826762203]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fxfmv")
+script = ExtResource("2_5k3ys")
+
+[node name="TextureRect" type="TextureRect" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 5/HBoxContainer/CenterContainer" unique_id=115800882]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("3_6fqrn")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HSeparator" type="HSeparator" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 5/HBoxContainer" unique_id=496478409]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 5/HBoxContainer" unique_id=764037335]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Vôo livre"
+label_settings = SubResource("LabelSettings_n68y2")
+vertical_alignment = 1
+
+[node name="Propriedade 6" type="PanelContainer" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer" unique_id=2014922774 node_paths=PackedStringArray("check_image")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_n68y2")
+script = ExtResource("2_5k3ys")
+check_image = NodePath("HBoxContainer/CenterContainer/TextureRect")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 6" unique_id=1189782264]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 6/HBoxContainer" unique_id=1988020200]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 6/HBoxContainer/CenterContainer" unique_id=1646296160]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fxfmv")
+script = ExtResource("2_5k3ys")
+
+[node name="TextureRect" type="TextureRect" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 6/HBoxContainer/CenterContainer" unique_id=1837819997]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("3_6fqrn")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HSeparator" type="HSeparator" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 6/HBoxContainer" unique_id=1349843097]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 6/HBoxContainer" unique_id=1822400729]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Permitir arrastar inimigos com ponteiro"
+label_settings = SubResource("LabelSettings_n68y2")
+vertical_alignment = 1
+
+[node name="Propriedade 7" type="PanelContainer" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer" unique_id=475578286 node_paths=PackedStringArray("check_image")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_n68y2")
+script = ExtResource("2_5k3ys")
+check_image = NodePath("HBoxContainer/CenterContainer/TextureRect")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 7" unique_id=1090053161]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 7/HBoxContainer" unique_id=1221950002]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 7/HBoxContainer/CenterContainer" unique_id=530803492]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fxfmv")
+script = ExtResource("2_5k3ys")
+
+[node name="TextureRect" type="TextureRect" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 7/HBoxContainer/CenterContainer" unique_id=895696348]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("3_6fqrn")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HSeparator" type="HSeparator" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 7/HBoxContainer" unique_id=13274319]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 7/HBoxContainer" unique_id=2061634967]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Mostrar colisores"
+label_settings = SubResource("LabelSettings_n68y2")
+vertical_alignment = 1
