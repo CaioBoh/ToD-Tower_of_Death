@@ -50,7 +50,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("8_1jxha")
 }],
-"loop": false,
+"loop": 0,
 "name": &"attack",
 "speed": 9.0
 }, {
@@ -58,7 +58,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("9_edkwq")
 }],
-"loop": true,
+"loop": 1,
 "name": &"idle",
 "speed": 5.0
 }, {
@@ -81,7 +81,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("2_bm5p1")
 }],
-"loop": false,
+"loop": 0,
 "name": &"transition_to_attack",
 "speed": 20.0
 }, {
@@ -113,7 +113,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("23_du2jg")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walking",
 "speed": 10.0
 }]
@@ -191,7 +191,7 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_c0kgv"]
 radius = 1000.0
 
-[node name="StandingEnemy" type="CharacterBody2D" unique_id=1345592001]
+[node name="StandingEnemy" type="CharacterBody2D" unique_id=1345592001 groups=["Enemy Detection"]]
 scale = Vector2(0.537, 0.537)
 collision_layer = 4
 collision_mask = 2

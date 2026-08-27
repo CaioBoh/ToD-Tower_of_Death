@@ -13,11 +13,14 @@ bg_color = Color(0.18059903, 0.092546, 0.22062314, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_n68y2"]
 font_size = 32
 
-[node name="Debug" type="Node2D" unique_id=1343891256 node_paths=PackedStringArray("debug_canvas")]
+[node name="Debug" type="Node2D" unique_id=1343891256 node_paths=PackedStringArray("debug_canvas", "debug_properties_container")]
+process_mode = 3
 script = ExtResource("1_raf04")
 debug_canvas = NodePath("Debug Canvas")
+debug_properties_container = NodePath("Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer")
 
 [node name="Debug Canvas" type="CanvasLayer" parent="." unique_id=1185147025]
+layer = 100
 
 [node name="ColorRect" type="ColorRect" parent="Debug Canvas" unique_id=1517673630]
 anchors_preset = 15
@@ -59,8 +62,8 @@ layout_mode = 2
 [node name="PanelContainer" type="PanelContainer" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 1/HBoxContainer/CenterContainer" unique_id=1112220783]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_fxfmv")
-script = ExtResource("2_5k3ys")
 
 [node name="TextureRect" type="TextureRect" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 1/HBoxContainer/CenterContainer" unique_id=2014237275]
 custom_minimum_size = Vector2(60, 60)
@@ -70,6 +73,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="HSeparator" type="HSeparator" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 1/HBoxContainer" unique_id=481789195]
+modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 
@@ -97,8 +101,8 @@ layout_mode = 2
 [node name="PanelContainer" type="PanelContainer" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 2/HBoxContainer/CenterContainer" unique_id=246598528]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_fxfmv")
-script = ExtResource("2_5k3ys")
 
 [node name="TextureRect" type="TextureRect" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 2/HBoxContainer/CenterContainer" unique_id=1223262798]
 custom_minimum_size = Vector2(60, 60)
@@ -108,6 +112,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="HSeparator" type="HSeparator" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 2/HBoxContainer" unique_id=1215817116]
+modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 
@@ -115,7 +120,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-text = "Habilitar detecção por inimigos"
+text = "Desabilitar detecção por inimigos"
 label_settings = SubResource("LabelSettings_n68y2")
 vertical_alignment = 1
 
@@ -135,8 +140,8 @@ layout_mode = 2
 [node name="PanelContainer" type="PanelContainer" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 3/HBoxContainer/CenterContainer" unique_id=841535842]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_fxfmv")
-script = ExtResource("2_5k3ys")
 
 [node name="TextureRect" type="TextureRect" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 3/HBoxContainer/CenterContainer" unique_id=735054316]
 custom_minimum_size = Vector2(60, 60)
@@ -146,6 +151,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="HSeparator" type="HSeparator" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 3/HBoxContainer" unique_id=783125388]
+modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 
@@ -153,7 +159,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-text = "Receber dano"
+text = "Não receber dano"
 label_settings = SubResource("LabelSettings_n68y2")
 vertical_alignment = 1
 
@@ -173,8 +179,8 @@ layout_mode = 2
 [node name="PanelContainer" type="PanelContainer" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 4/HBoxContainer/CenterContainer" unique_id=654355474]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_fxfmv")
-script = ExtResource("2_5k3ys")
 
 [node name="TextureRect" type="TextureRect" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 4/HBoxContainer/CenterContainer" unique_id=473763298]
 custom_minimum_size = Vector2(60, 60)
@@ -184,6 +190,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="HSeparator" type="HSeparator" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 4/HBoxContainer" unique_id=328348947]
+modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 
@@ -191,7 +198,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-text = "Receber repulsão"
+text = "Não receber repulsão"
 label_settings = SubResource("LabelSettings_n68y2")
 vertical_alignment = 1
 
@@ -211,8 +218,8 @@ layout_mode = 2
 [node name="PanelContainer" type="PanelContainer" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 5/HBoxContainer/CenterContainer" unique_id=826762203]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_fxfmv")
-script = ExtResource("2_5k3ys")
 
 [node name="TextureRect" type="TextureRect" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 5/HBoxContainer/CenterContainer" unique_id=115800882]
 custom_minimum_size = Vector2(60, 60)
@@ -222,6 +229,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="HSeparator" type="HSeparator" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 5/HBoxContainer" unique_id=496478409]
+modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 
@@ -249,8 +257,8 @@ layout_mode = 2
 [node name="PanelContainer" type="PanelContainer" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 6/HBoxContainer/CenterContainer" unique_id=1646296160]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_fxfmv")
-script = ExtResource("2_5k3ys")
 
 [node name="TextureRect" type="TextureRect" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 6/HBoxContainer/CenterContainer" unique_id=1837819997]
 custom_minimum_size = Vector2(60, 60)
@@ -260,6 +268,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="HSeparator" type="HSeparator" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 6/HBoxContainer" unique_id=1349843097]
+modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 
@@ -271,40 +280,4 @@ text = "Permitir arrastar inimigos com ponteiro"
 label_settings = SubResource("LabelSettings_n68y2")
 vertical_alignment = 1
 
-[node name="Propriedade 7" type="PanelContainer" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer" unique_id=475578286 node_paths=PackedStringArray("check_image")]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_n68y2")
-script = ExtResource("2_5k3ys")
-check_image = NodePath("HBoxContainer/CenterContainer/TextureRect")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 7" unique_id=1090053161]
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="CenterContainer" type="CenterContainer" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 7/HBoxContainer" unique_id=1221950002]
-layout_mode = 2
-
-[node name="PanelContainer" type="PanelContainer" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 7/HBoxContainer/CenterContainer" unique_id=530803492]
-custom_minimum_size = Vector2(80, 80)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_fxfmv")
-script = ExtResource("2_5k3ys")
-
-[node name="TextureRect" type="TextureRect" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 7/HBoxContainer/CenterContainer" unique_id=895696348]
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-texture = ExtResource("3_6fqrn")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="HSeparator" type="HSeparator" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 7/HBoxContainer" unique_id=13274319]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 7/HBoxContainer" unique_id=2061634967]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "Mostrar colisores"
-label_settings = SubResource("LabelSettings_n68y2")
-vertical_alignment = 1
+[connection signal="toggle_property" from="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 2" to="." method="toggle_enemy_detection"]

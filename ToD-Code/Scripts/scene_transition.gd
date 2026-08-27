@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-enum menu_state { START_MENU, PAUSE_MENU, OPTIONS, LOADING, PLAYING }
+enum menu_state { START_MENU, PAUSE_MENU, DEBUG_MENU, OPTIONS, LOADING, PLAYING }
 
 var isTransitioning := false
 var is_dissolved: bool = false

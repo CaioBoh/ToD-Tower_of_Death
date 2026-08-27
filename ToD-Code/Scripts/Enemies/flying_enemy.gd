@@ -146,3 +146,14 @@ func _on_dash_area_body_entered(body):
 		chasing = false
 		is_dashing = true
 		dash()
+		
+func _debug_toggle_player_detection():
+	var sight_area: Area2D = get_node("SightArea")
+	var dash_area: Area2D = get_node("DashArea")
+	sight_area.monitoring = not sight_area.monitoring
+	dash_area.monitoring = not dash_area.monitoring
+	
+	if chasing or is_dashing:
+		_on_escape_area_body_exited(Global.global_player)
+		dash_vector = Vector2.ZERO
+		

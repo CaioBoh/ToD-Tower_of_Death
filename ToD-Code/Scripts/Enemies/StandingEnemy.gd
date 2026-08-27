@@ -3,7 +3,7 @@ extends CharacterBody2D
 var dir: float
 const speed = 1200.0
 const JUMP_VELOCITY = -400.0
-var is_chasing = false
+var chasing = false
 var is_attacking = false
 var player
 var health = 60
@@ -31,7 +31,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
 	player = Global.global_player
-	is_chasing = false
+	chasing = false
 	is_attacking = false
 	handle_stairs()
 
@@ -63,7 +63,7 @@ func handle_stairs():
 	handle_stairs()
 
 func _on_walk_time_timeout():
-	if !is_chasing and !is_attacking:
+	if !chasing and !is_attacking:
 		dir = 0
 		walk_time.wait_time = choose([1,1.5,2])
 		dir = choose([-1,1,0.5,-0.5,0.25,-0.25,0,0,0])
@@ -89,7 +89,7 @@ func handle_animation():
 	if is_attacking:
 		return
 		
-	if velocity.x < 1 and velocity.x > -1 and not is_chasing:
+	if velocity.x < 1 and velocity.x > -1 and not chasing:
 		if animated_sprite_2d.animation != "transition_to_attack":
 			animated_sprite_2d.play("idle")
 	else: 
@@ -99,14 +99,13 @@ func handle_animation():
 func handle_movement():
 	if sight_ray_1.is_colliding():
 		if sight_ray_1.get_collider() == player:
-			is_chasing = true
+			chasing = true
 			walk_time.stop()
-			#current_state = state.CHASING
 	
 	if Global.is_player_dead:
-		is_chasing = false
+		chasing = false
 	
-	if is_chasing and not is_attacking and animated_sprite_2d.animation != "transition_to_attack":
+	if chasing and not is_attacking and animated_sprite_2d.animation != "transition_to_attack":
 		look_to_player()
 
 func _on_spear_range_body_entered(body):
@@ -199,7 +198,7 @@ func summon_hurt_particle() -> void:
 
 func _on_chase_area_body_exited(body: Node2D) -> void:
 	if body == player:
-		is_chasing = false
+		chasing = false
 		velocity.x = 0
 		dir = 0
 		walk_time.start()
@@ -221,5 +220,16 @@ func stop_attack():
 		is_waiting_to_attack = false
 		is_attacking = false
 		animated_sprite_2d.play("idle")
+		walk_time.start()
 		return true
 	return false
+	
+func _debug_toggle_player_detection():
+	var sight_ray: RayCast2D = get_node("SightRay1")
+	var spear_range: Area2D = get_node("SpearRange")
+	sight_ray.enabled = not sight_ray.enabled
+	spear_range.monitoring = not spear_range.monitoring
+	
+	if chasing:
+		stop_attacking = true
+		_on_chase_area_body_exited(Global.global_player)

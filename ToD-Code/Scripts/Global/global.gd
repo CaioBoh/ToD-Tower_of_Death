@@ -74,9 +74,9 @@ func reset_demo():
 	death_encounters = 0
 	dead_count = 0
 	is_talking = false
-	key_picked = true
+	key_picked = false
 	dash_picked = true
-	double_jump_picked = true
+	double_jump_picked = false
 	is_player_dead = false
 	player_health = 100
 

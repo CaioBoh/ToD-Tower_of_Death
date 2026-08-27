@@ -194,12 +194,12 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_v0xha")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 6.0
 }]
 
-[node name="FlyingEnemy" type="CharacterBody2D" unique_id=386438132]
+[node name="FlyingEnemy" type="CharacterBody2D" unique_id=386438132 groups=["Enemy Detection"]]
 collision_layer = 4
 collision_mask = 0
 floor_max_angle = 1.01404
