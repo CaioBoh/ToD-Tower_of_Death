@@ -15,7 +15,7 @@ func handle_dash(physics_component: player_physics_component, is_on_floor: bool)
 	if is_on_floor: dashed_on_air = false
 	
 	var can_dash: bool = Global.dash_picked and is_dash_timer_finished and not dashed_on_air
-	can_dash = can_dash and not Global.disable_physics and Global.input_allowed
+	can_dash = can_dash and not Global.disable_physics and Global.input_allowed and not Debug.no_clip
 	
 	if not Input.is_action_just_pressed("dash") or not can_dash:
 		return

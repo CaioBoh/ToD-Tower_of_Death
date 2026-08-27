@@ -53,3 +53,7 @@ func toggle_take_damage() -> void:
 
 func toggle_take_knockback() -> void:
 	take_knockback = not take_knockback
+	
+func toggle_no_clip() -> void:
+	Global.global_player.set_collision_mask_value(2, no_clip)
+	no_clip = not no_clip

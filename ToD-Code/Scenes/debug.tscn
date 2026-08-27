@@ -283,3 +283,4 @@ vertical_alignment = 1
 [connection signal="toggle_property" from="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 2" to="." method="toggle_enemy_detection"]
 [connection signal="toggle_property" from="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 3" to="." method="toggle_take_damage"]
 [connection signal="toggle_property" from="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 4" to="." method="toggle_take_knockback"]
+[connection signal="toggle_property" from="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 5" to="." method="toggle_no_clip"]

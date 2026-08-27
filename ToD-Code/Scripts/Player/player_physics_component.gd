@@ -78,3 +78,19 @@ func move(player_body: CharacterBody2D):
 		
 func _on_ledge_forgiveness_timer_timeout():
 	ledge_forgiveness_active = false
+	
+func _debug_move(player_body: CharacterBody2D):
+	if not Global.input_allowed or Global.disable_physics:
+		return
+		
+	var direction: Vector2 = Input.get_vector("left", "right", "up", "down")
+	
+	if Global.is_talking:
+		player_body.velocity.x = 0
+	elif knockback_vector != Vector2.ZERO:
+		player_body.velocity = knockback_vector
+	else:
+		player_body.velocity = direction.normalized() * SPEED * 1.5 * (2 if Input.is_action_pressed("no_clip_speed_up") else 1)
+
+	if direction.x != 0:
+		looking_direction = direction.x

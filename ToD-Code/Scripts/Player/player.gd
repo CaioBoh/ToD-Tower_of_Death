@@ -14,6 +14,7 @@ signal health_changed
 
 func _ready():
 	Global.global_player = self
+	Global.global_player.set_collision_mask_value(2, not Debug.no_clip)
 	animation_component.animation_player.play("RESET")
 
 func _physics_process(delta: float):
@@ -26,8 +27,11 @@ func _physics_process(delta: float):
 	
 func handle_input(delta: float):
 	interaction_component.talk()
-	physics_component.jump(delta, is_on_floor(), self)
-	physics_component.move(self)
+	if not Debug.no_clip:
+		physics_component.jump(delta, is_on_floor(), self)
+		physics_component.move(self)
+	else:
+		physics_component._debug_move(self)
 	
 func handle_animation():
 	animation_component.handle_animation(physics_component, combat_component, velocity)

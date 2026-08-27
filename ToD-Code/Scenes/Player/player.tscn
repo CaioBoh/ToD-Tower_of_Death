@@ -186,7 +186,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_pjp5m")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Atlas_idle",
 "speed": 9.0
 }, {
@@ -215,7 +215,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_kwtkw")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Atlas_run",
 "speed": 15.0
 }, {
@@ -229,7 +229,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gskpa")
 }],
-"loop": false,
+"loop": 0,
 "name": &"Attack1",
 "speed": 6.0
 }, {
@@ -243,7 +243,7 @@ animations = [{
 "duration": 3.0,
 "texture": SubResource("AtlasTexture_pa57u")
 }],
-"loop": false,
+"loop": 0,
 "name": &"Upgrade",
 "speed": 10.0
 }]
