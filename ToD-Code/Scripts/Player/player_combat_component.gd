@@ -57,7 +57,7 @@ func hurt(player_body: CharacterBody2D, body, damage: int, animation_component: 
 	else:
 		damage_dealt = player_body.player_health
 
-	return damage_dealt
+	return damage_dealt if Debug.take_damage else 0
 	
 func _on_sword_side_area_body_entered(body: CharacterBody2D):
 	var player_body: CharacterBody2D = Global.global_player

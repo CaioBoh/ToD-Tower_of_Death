@@ -281,3 +281,4 @@ label_settings = SubResource("LabelSettings_n68y2")
 vertical_alignment = 1
 
 [connection signal="toggle_property" from="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 2" to="." method="toggle_enemy_detection"]
+[connection signal="toggle_property" from="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 3" to="." method="toggle_take_damage"]

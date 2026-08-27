@@ -47,3 +47,7 @@ func toggle_debug_menu(value: bool):
 func toggle_enemy_detection() -> void:
 	enemy_detection = not enemy_detection
 	get_tree().call_group("Enemy Detection", "_debug_toggle_player_detection")
+
+
+func toggle_take_damage() -> void:
+	take_damage = not take_damage
