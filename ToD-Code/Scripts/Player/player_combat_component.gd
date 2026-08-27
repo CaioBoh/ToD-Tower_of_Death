@@ -49,9 +49,10 @@ func hurt(player_body: CharacterBody2D, body, damage: int, animation_component: 
 		animation_component.instantiate_hurt_particle(player_body.global_position)
 		Global.change_time_scale_for_duration(TIME_SCALE_WHILE_HIT, TIME_SCALE_SHIFT_DURATION)
 		
-		var direction_to_body: Vector2 = player_body.global_position.direction_to(body.global_position)
-		var knockback := Vector2(-direction_to_body.x, 0).normalized() * KNOCKBACK_HIT_TAKEN
-		physics_component.apply_knockback(knockback, KNOCKBACK_HIT_TAKEN_DURATION)
+		if Debug.take_knockback:
+			var direction_to_body: Vector2 = player_body.global_position.direction_to(body.global_position)
+			var knockback := Vector2(-direction_to_body.x, 0).normalized() * KNOCKBACK_HIT_TAKEN
+			physics_component.apply_knockback(knockback, KNOCKBACK_HIT_TAKEN_DURATION)
 		
 		damage_dealt = damage
 	else:
