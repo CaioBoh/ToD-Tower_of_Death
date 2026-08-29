@@ -7,14 +7,16 @@ class_name player_dash_component
 @export var ghost_spawner: Node2D
 @export var dash_sound: AudioStreamPlayer
 @export var dash_timer: Timer
+@export var dash_cooldown: Timer
 
+var dash_in_cooldown: bool = false
 var dashed_on_air: bool = false
 var is_dash_timer_finished: bool = true
 
 func handle_dash(physics_component: player_physics_component, is_on_floor: bool):
 	if is_on_floor: dashed_on_air = false
 	
-	var can_dash: bool = Global.dash_picked and is_dash_timer_finished and not dashed_on_air
+	var can_dash: bool = Global.dash_picked and is_dash_timer_finished and not dashed_on_air and not dash_in_cooldown
 	can_dash = can_dash and not Global.disable_physics and Global.input_allowed and not Debug.no_clip
 	
 	if not Input.is_action_just_pressed("dash") or not can_dash:
@@ -40,3 +42,8 @@ func spawn_dash_ghosts():
 	
 func _on_dash_timer_timeout():
 	is_dash_timer_finished = true
+	dash_in_cooldown = true
+	dash_cooldown.start()
+
+func _on_dash_cooldown_timeout():
+	dash_in_cooldown = false

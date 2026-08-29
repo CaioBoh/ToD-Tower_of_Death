@@ -625,11 +625,15 @@ one_shot = true
 wait_time = 0.2
 one_shot = true
 
-[node name="DashComponent" type="Node" parent="." unique_id=178153228 node_paths=PackedStringArray("ghost_spawner", "dash_sound", "dash_timer")]
+[node name="Dash Cooldown" type="Timer" parent="." unique_id=309000088]
+wait_time = 0.619
+
+[node name="DashComponent" type="Node" parent="." unique_id=178153228 node_paths=PackedStringArray("ghost_spawner", "dash_sound", "dash_timer", "dash_cooldown")]
 script = ExtResource("35_ogmfp")
 ghost_spawner = NodePath("../GhostSpawner")
 dash_sound = NodePath("../DashSound")
 dash_timer = NodePath("../DashTimer")
+dash_cooldown = NodePath("../Dash Cooldown")
 
 [node name="AnimationComponent" type="Node" parent="." unique_id=2035327662 node_paths=PackedStringArray("animation", "animation_player")]
 script = ExtResource("36_ixrbb")
@@ -664,3 +668,4 @@ hurt_sound = NodePath("../HurtSound")
 [connection signal="timeout" from="InvencibleTimer" to="CombatComponent" method="_on_invencible_timer_timeout"]
 [connection signal="timeout" from="JustStoppedTalking" to="InteractionComponent" method="_on_just_stopped_talking_timeout"]
 [connection signal="timeout" from="LedgeForgivenessTimer" to="PhysicsComponent" method="_on_ledge_forgiveness_timer_timeout"]
+[connection signal="timeout" from="Dash Cooldown" to="DashComponent" method="_on_dash_cooldown_timeout"]
