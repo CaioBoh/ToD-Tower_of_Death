@@ -4,8 +4,11 @@
 [ext_resource type="Script" uid="uid://ob8r5cucpces" path="res://Scripts/Debug/debug_property.gd" id="2_5k3ys"]
 [ext_resource type="Texture2D" uid="uid://bsixs8xkh52hx" path="res://Sprites/Debug/free-check-icon-3278-thumb.png" id="3_6fqrn"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0px7k"]
+bg_color = Color(0.27058825, 0.05882353, 0.27450982, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n68y2"]
-bg_color = Color(0.27078915, 0.057301227, 0.27299005, 1)
+bg_color = Color(0.27058825, 0.05882353, 0.27450982, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fxfmv"]
 bg_color = Color(0.18059903, 0.092546, 0.22062314, 1)
@@ -13,11 +16,15 @@ bg_color = Color(0.18059903, 0.092546, 0.22062314, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_n68y2"]
 font_size = 32
 
-[node name="Debug" type="Node2D" unique_id=1343891256 node_paths=PackedStringArray("debug_canvas", "debug_properties_container")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fvmsl"]
+bg_color = Color(0.27058825, 0.05882353, 0.27450982, 1)
+
+[node name="Debug" type="Node2D" unique_id=1343891256 node_paths=PackedStringArray("debug_canvas", "debug_properties_container", "debug_teleport_canvas")]
 process_mode = 3
 script = ExtResource("1_raf04")
 debug_canvas = NodePath("Debug Canvas")
 debug_properties_container = NodePath("Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer")
+debug_teleport_canvas = NodePath("Debug Teleport")
 
 [node name="Debug Canvas" type="CanvasLayer" parent="." unique_id=1185147025]
 layer = 100
@@ -46,44 +53,12 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Propriedade 1" type="PanelContainer" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer" unique_id=409781059 node_paths=PackedStringArray("check_image")]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_n68y2")
-script = ExtResource("2_5k3ys")
-check_image = NodePath("HBoxContainer/CenterContainer/TextureRect")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 1" unique_id=763651971]
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="CenterContainer" type="CenterContainer" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 1/HBoxContainer" unique_id=272367058]
-layout_mode = 2
-
-[node name="PanelContainer" type="PanelContainer" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 1/HBoxContainer/CenterContainer" unique_id=1112220783]
+[node name="Button" type="Button" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer" unique_id=245185216]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
-mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_fxfmv")
-
-[node name="TextureRect" type="TextureRect" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 1/HBoxContainer/CenterContainer" unique_id=2014237275]
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-texture = ExtResource("3_6fqrn")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="HSeparator" type="HSeparator" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 1/HBoxContainer" unique_id=481789195]
-modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 1/HBoxContainer" unique_id=595607261]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "Pular diálogos automaticamente"
-label_settings = SubResource("LabelSettings_n68y2")
-vertical_alignment = 1
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_0px7k")
+text = "Teleportar"
 
 [node name="Propriedade 2" type="PanelContainer" parent="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer" unique_id=7330351 node_paths=PackedStringArray("check_image")]
 layout_mode = 2
@@ -280,7 +255,85 @@ text = "Permitir arrastar inimigos com ponteiro"
 label_settings = SubResource("LabelSettings_n68y2")
 vertical_alignment = 1
 
+[node name="CenterContainer3" type="CenterContainer" parent="Debug Canvas" unique_id=1638588132]
+custom_minimum_size = Vector2(80, 80)
+offset_left = 55.0
+offset_top = 50.0
+offset_right = 135.0
+offset_bottom = 130.0
+
+[node name="Voltar" type="Button" parent="Debug Canvas/CenterContainer3" unique_id=1875741316]
+custom_minimum_size = Vector2(80, 80)
+custom_maximum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="Line2D" type="Line2D" parent="Debug Canvas/CenterContainer3" unique_id=1488433503]
+position = Vector2(3, 3)
+points = PackedVector2Array(60, 60, 15, 15)
+
+[node name="Line2D2" type="Line2D" parent="Debug Canvas/CenterContainer3" unique_id=1652036964]
+position = Vector2(2, 3)
+points = PackedVector2Array(15, 60, 60, 15)
+
+[node name="Debug Teleport" type="CanvasLayer" parent="." unique_id=1721422763]
+layer = 100
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="Debug Teleport" unique_id=1294441095]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.7411765, 0, 0.7490196, 0.5137255)
+
+[node name="CenterContainer" type="CenterContainer" parent="Debug Teleport" unique_id=1216829078]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Debug Teleport/CenterContainer" unique_id=178451095]
+custom_minimum_size = Vector2(800, 400)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Debug Teleport/CenterContainer/ScrollContainer" unique_id=920043962]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="Debug Teleport/CenterContainer/ScrollContainer/VBoxContainer" unique_id=2026156068]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_fvmsl")
+text = "Arena"
+
+[node name="CenterContainer2" type="CenterContainer" parent="Debug Teleport" unique_id=689056160]
+custom_minimum_size = Vector2(80, 80)
+offset_left = 55.0
+offset_top = 50.0
+offset_right = 135.0
+offset_bottom = 130.0
+
+[node name="Voltar" type="Button" parent="Debug Teleport/CenterContainer2" unique_id=1953527535]
+custom_minimum_size = Vector2(80, 80)
+custom_maximum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="Line2D" type="Line2D" parent="Debug Teleport/CenterContainer2" unique_id=678317870]
+position = Vector2(3, 3)
+points = PackedVector2Array(60, 60, 15, 15)
+
+[node name="Line2D2" type="Line2D" parent="Debug Teleport/CenterContainer2" unique_id=1995693769]
+position = Vector2(2, 3)
+points = PackedVector2Array(15, 60, 60, 15)
+
+[connection signal="pressed" from="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Button" to="." method="open_teleport_menu"]
 [connection signal="toggle_property" from="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 2" to="." method="toggle_enemy_detection"]
 [connection signal="toggle_property" from="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 3" to="." method="toggle_take_damage"]
 [connection signal="toggle_property" from="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 4" to="." method="toggle_take_knockback"]
 [connection signal="toggle_property" from="Debug Canvas/CenterContainer/ScrollContainer/VBoxContainer/Propriedade 5" to="." method="toggle_no_clip"]
+[connection signal="pressed" from="Debug Canvas/CenterContainer3/Voltar" to="." method="close_debug_menu"]
+[connection signal="pressed" from="Debug Teleport/CenterContainer2/Voltar" to="." method="close_teleport_menu"]

@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://xyig1hov182g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ytqa"]
+bg_color = Color(0.27058825, 0.05882353, 0.27450982, 1)
+
+[node name="TeleportOption" type="Button" unique_id=542787064]
+custom_minimum_size = Vector2(80, 80)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_8ytqa")

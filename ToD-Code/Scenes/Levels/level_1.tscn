@@ -153,7 +153,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("29_boiit")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 10.0
 }]
@@ -254,7 +254,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_bkeyh")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 5.0
 }]
@@ -2028,6 +2028,34 @@ sprite_frames = SubResource("SpriteFrames_88p8f")
 position = Vector2(4749.5, -495)
 shape = SubResource("RectangleShape2D_4d3gw")
 disabled = true
+
+[node name="Debug" type="Node2D" parent="." unique_id=1305536605]
+
+[node name="Teleport Locations" type="Node2D" parent="Debug" unique_id=1031412287]
+
+[node name="Boss" type="Marker2D" parent="Debug/Teleport Locations" unique_id=2108520879]
+position = Vector2(3255, -389)
+
+[node name="Collectible 1" type="Marker2D" parent="Debug/Teleport Locations" unique_id=74634330]
+position = Vector2(-956, -1179)
+
+[node name="Collectible 2" type="Marker2D" parent="Debug/Teleport Locations" unique_id=1806665696]
+position = Vector2(10512, -2642)
+
+[node name="Collectible 3" type="Marker2D" parent="Debug/Teleport Locations" unique_id=1712060317]
+position = Vector2(4453, 2299)
+
+[node name="Dash" type="Marker2D" parent="Debug/Teleport Locations" unique_id=701687337]
+position = Vector2(2768, -2513)
+
+[node name="Double Jump" type="Marker2D" parent="Debug/Teleport Locations" unique_id=196842607]
+position = Vector2(306, 2049)
+
+[node name="Arena" type="Marker2D" parent="Debug/Teleport Locations" unique_id=1556530683]
+position = Vector2(-1204, 1063)
+
+[node name="Key" type="Marker2D" parent="Debug/Teleport Locations" unique_id=272342273]
+position = Vector2(442, -2510)
 
 [connection signal="body_entered" from="CameraChangeArea/ShowUnderground" to="CameraChangeArea/ShowUnderground" method="_on_body_entered"]
 [connection signal="body_entered" from="CameraChangeArea/HideUnderground" to="CameraChangeArea/HideUnderground" method="_on_body_entered"]

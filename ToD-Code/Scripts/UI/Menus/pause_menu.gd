@@ -13,8 +13,9 @@ var play_sound_effect: bool = false
 func _ready() -> void:
 	pause_menu_canvas.visible = false
 
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("cancel"):
+func _input(event: InputEvent):
+	if event.is_action_pressed("cancel") and not Debug.debug_menu_active:
+		print(Debug.debug_menu_active)
 		if SceneTransition.current_menu_state == SceneTransition.menu_state.PLAYING:
 			pause_game()
 		elif SceneTransition.current_menu_state == SceneTransition.menu_state.PAUSE_MENU:
