@@ -122,9 +122,9 @@ bus = &"Music"
 parameters/looping = true
 
 [connection signal="focus_entered" from="CanvasLayer/CenterContainer/Buttons/New_game" to="." method="_on_focus_entered"]
-[connection signal="pressed" from="CanvasLayer/CenterContainer/Buttons/New_game" to="." method="_on_demo_novo_jogo_pressed"]
+[connection signal="pressed" from="CanvasLayer/CenterContainer/Buttons/New_game" to="." method="_on_new_game_pressed"]
 [connection signal="focus_entered" from="CanvasLayer/CenterContainer/Buttons/Continue" to="." method="_on_focus_entered"]
-[connection signal="pressed" from="CanvasLayer/CenterContainer/Buttons/Continue" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="CanvasLayer/CenterContainer/Buttons/Continue" to="." method="_on_continue_game_pressed"]
 [connection signal="focus_entered" from="CanvasLayer/CenterContainer/Buttons/Options" to="." method="_on_focus_entered"]
 [connection signal="pressed" from="CanvasLayer/CenterContainer/Buttons/Options" to="." method="_on_options_pressed"]
 [connection signal="focus_entered" from="CanvasLayer/CenterContainer/Buttons/Exit" to="." method="_on_focus_entered"]

@@ -30,6 +30,8 @@ const HIT_PARTICLE = preload("res://Scenes/Particles/hit_particle_2.tscn")
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
+	if not Debug.enemy_detection:
+		_debug_toggle_player_detection()
 	player = Global.global_player
 	chasing = false
 	is_attacking = false

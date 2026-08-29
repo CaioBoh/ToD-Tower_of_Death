@@ -68,19 +68,8 @@ func change_time_scale_for_duration(timeScale, duration):
 	Engine.time_scale = timeScale
 	await wait_safely(get_tree().create_timer(duration, true, false, true).timeout)
 	Engine.time_scale = 1
-	
-#Demo
-func reset_demo():
-	death_encounters = 0
-	dead_count = 0
-	is_talking = false
-	key_picked = false
-	dash_picked = true
-	double_jump_picked = false
-	is_player_dead = false
-	player_health = 100
 
-func reset():
+func reset_game():
 	is_talking = false
 	is_player_dead = false
 	first_time_spawning = true

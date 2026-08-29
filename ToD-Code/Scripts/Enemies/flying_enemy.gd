@@ -24,6 +24,8 @@ var bounce_tween: Tween
 
 func _ready():
 	animation.play("RESET")
+	if not Debug.enemy_detection:
+		_debug_toggle_player_detection()
 
 func _physics_process(delta):
 	if Global.is_talking or Global.disable_physics:

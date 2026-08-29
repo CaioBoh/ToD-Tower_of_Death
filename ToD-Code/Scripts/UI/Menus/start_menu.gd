@@ -20,23 +20,24 @@ func _ready():
 	if buttons.get_child_count() > 0:
 		var first_button := buttons.get_child(0) as Button
 		first_button.grab_focus()
-		
-	SaveLoad.load_game_data()
 
-func _on_demo_novo_jogo_pressed() -> void:
+func _on_new_game_pressed() -> void:
 	SceneTransition.change_scene("res://Scenes/Levels/lobby.tscn", SceneTransition.menu_state.PLAYING, 
 	func():
+		SaveLoad.delete_game_data()
+		SaveLoad.load_game_data()
 		toggleButtons(false)
 		ControlSoundEffects.play_play()
-		Global.reset_demo()
+		Global.reset_game()
 	)
 	
-func _on_play_pressed() -> void:
+func _on_continue_game_pressed() -> void:
 	SceneTransition.change_scene("res://Scenes/Levels/lobby.tscn", SceneTransition.menu_state.PLAYING, 
 	func():
+		SaveLoad.load_game_data()
 		toggleButtons(false)
 		ControlSoundEffects.play_play()
-		Global.reset()
+		Global.reset_game()
 	)
 	
 func _on_options_pressed() -> void:
@@ -60,7 +61,6 @@ func toggleButtons(enabled: bool):
 	exitButton.disabled = not enabled
 	optionsButton.disabled = not enabled
 	demoNewGame.disabled = not enabled
-
 
 func _on_focus_entered() -> void:
 	var button := get_viewport().gui_get_focus_owner() as Control

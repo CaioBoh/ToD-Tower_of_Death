@@ -50,7 +50,7 @@ static func load_game_data():
 			
 static func delete_game_data():
 	if ResourceLoader.exists("user://game_data.tres", "GameData"):
-		DirAccess.remove_absolute("user://game_data.tres");
+		DirAccess.remove_absolute("user://game_data.tres")
 		
 static func save_sound_data():
 	var sound_data := SoundData.new()
