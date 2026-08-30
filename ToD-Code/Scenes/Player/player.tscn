@@ -626,7 +626,7 @@ wait_time = 0.2
 one_shot = true
 
 [node name="Dash Cooldown" type="Timer" parent="." unique_id=309000088]
-wait_time = 0.619
+wait_time = 0.5
 
 [node name="DashComponent" type="Node" parent="." unique_id=178153228 node_paths=PackedStringArray("ghost_spawner", "dash_sound", "dash_timer", "dash_cooldown")]
 script = ExtResource("35_ogmfp")

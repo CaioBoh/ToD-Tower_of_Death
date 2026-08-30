@@ -119,7 +119,7 @@ func get_invisible():
 
 func summon_death_particle():
 	var soul_instance = PreloadedScenes.death_particle.instantiate()
-	add_child(soul_instance)
+	get_tree().current_scene.add_child(soul_instance)
 	soul_instance.global_position = global_position
 	
 func create_bounce():

@@ -4,8 +4,8 @@
 [ext_resource type="Script" uid="uid://bew5641sdtm54" path="res://Scripts/Particles/simple_oneshot_particle.gd" id="2_ejfen"]
 
 [sub_resource type="Gradient" id="Gradient_rklww"]
-offsets = PackedFloat32Array(0.0147059, 0.176471)
-colors = PackedColorArray(0.366667, 1, 0, 1, 1, 1, 1, 1)
+offsets = PackedFloat32Array(0.6216216, 1)
+colors = PackedColorArray(0.366667, 1, 0, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_wddbi"]
 gradient = SubResource("Gradient_rklww")
@@ -30,8 +30,8 @@ spread = 180.0
 initial_velocity_min = 101.76
 initial_velocity_max = 282.58
 gravity = Vector3(0, 98, 0)
-scale_min = 0.1
-scale_max = 0.3
+scale_min = 0.25
+scale_max = 0.39999998
 scale_curve = SubResource("CurveTexture_xr7gj")
 color_ramp = SubResource("GradientTexture1D_w3eo4")
 color_initial_ramp = SubResource("GradientTexture1D_wddbi")
@@ -42,9 +42,8 @@ collision_use_scale = true
 
 [node name="GPUParticles2D" type="GPUParticles2D" unique_id=1871978011]
 emitting = false
-amount = 30
+amount = 40
 texture = ExtResource("1_nqlte")
-lifetime = 2.0
 one_shot = true
 explosiveness = 0.85
 process_material = SubResource("ParticleProcessMaterial_0biw4")

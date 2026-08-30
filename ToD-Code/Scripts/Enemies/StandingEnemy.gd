@@ -177,12 +177,16 @@ func hurt(body,damage):
 	knockback_vector = body.global_position.direction_to(global_position) * 1000 + Vector2(0,-100)
 	var knockback_tween:= get_tree().create_tween()
 	knockback_tween.tween_property(self,"knockback_vector", Vector2.ZERO,0.25)
-	summon_hurt_particle()
 	$AnimationPlayer.play("hurt")
-	var sound = choose([$HurtSound1, $HurtSound2])
+	var sound = choose([$HurtSound1, $HurtSound2]) as AudioStreamPlayer
 	sound.playing = true
+	summon_hurt_particle()
 	
-	if health<=0:
+	if health <= 0:
+		visible = false
+		get_node("hurtbox").disabled = true
+		await sound.finished
+		
 		queue_free()
 		
 func _on_animation_changed():
@@ -192,11 +196,11 @@ func _on_animation_changed():
 
 func summon_hurt_particle() -> void:
 	var instance = HIT_PARTICLE.instantiate()
-	instance.position = Vector2.ZERO
+	instance.global_position = global_position
 	instance.emitting = true
 	var direction_player = global_position.direction_to(player.global_position)
 	instance.rotation = Vector2(-direction_player.x, 0).angle()
-	add_child(instance)
+	get_tree().current_scene.add_child(instance)
 
 func _on_chase_area_body_exited(body: Node2D) -> void:
 	if body == player:
